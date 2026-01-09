@@ -2,7 +2,7 @@
   "chiron": {
     "description": "Personal AI assistant (Plan Mode). Read-only analysis, planning, and guidance.",
     "mode": "primary",
-    "model": "opencode/claude-sonnet-4-5",
+    "model": "anthropic/claude-sonnet-4-5",
     "prompt": "{file:./prompts/chiron.txt}",
     "permission": {
       "read": {
@@ -28,7 +28,7 @@
   "chiron-forge": {
     "description": "Personal AI assistant (Worker Mode). Full write access with safety prompts.",
     "mode": "primary",
-    "model": "opencode/claude-sonnet-4-5",
+    "model": "anthropic/claude-sonnet-4-5",
     "prompt": "{file:./prompts/chiron-forge.txt}",
     "permission": {
       "read": {
