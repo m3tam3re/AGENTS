@@ -17,8 +17,8 @@ This repository serves as a **personal AI operating system** - a collection of s
 
 ```
 .
-├── agent/           # AI agent configurations
-│   └── chiron.md    # Personal assistant agent
+├── agent/           # Agent definitions (agents.json)
+├── prompts/         # Agent system prompts (chiron.txt, chiron-forge.txt)
 ├── context/         # User profiles and preferences
 │   └── profile.md   # Work style, PARA areas, preferences
 ├── command/         # Custom command definitions
@@ -32,6 +32,8 @@ This repository serves as a **personal AI operating system** - a collection of s
 │   ├── mem0-memory/          # Persistent memory
 │   ├── research/             # Investigation workflows
 │   └── knowledge-management/ # Note capture & organization
+├── scripts/         # Repository utility scripts
+│   └── test-skill.sh # Test skills without deploying
 ├── .beads/          # Issue tracking database
 ├── AGENTS.md        # Developer documentation
 └── README.md        # This file
@@ -50,28 +52,34 @@ This repository serves as a **personal AI operating system** - a collection of s
 
 #### Option 1: Nix Flake (Recommended)
 
-Add to your Nix flake configuration:
+This repository is consumed as a **non-flake input** by your NixOS configuration:
 
 ```nix
-# In your flake.nix or home.nix
-{
-  inputs.agents = {
-    url = "github:yourusername/AGENTS";  # Update with your repo
-    flake = false;
-  };
+# In your flake.nix
+inputs.agents = {
+  url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
+  flake = false;  # Pure files, not a Nix flake
+};
 
-  # In your home-manager configuration
-  xdg.configFile."opencode" = {
-    source = inputs.agents;
-    recursive = true;
-  };
-}
+# In your home-manager module (e.g., opencode.nix)
+xdg.configFile = {
+  "opencode/skill".source = "${inputs.agents}/skill";
+  "opencode/context".source = "${inputs.agents}/context";
+  "opencode/command".source = "${inputs.agents}/command";
+  "opencode/prompts".source = "${inputs.agents}/prompts";
+};
+
+# Agent config is embedded into config.json, not deployed as files
+programs.opencode.settings.agent = builtins.fromJSON 
+  (builtins.readFile "${inputs.agents}/agent/agents.json");
 ```
 
 Rebuild your system:
 ```bash
 home-manager switch
 ```
+
+**Note**: The `agent/` directory is NOT deployed as files. Instead, `agents.json` is read at Nix evaluation time and embedded into the opencode `config.json`.
 
 #### Option 2: Manual Installation
 
@@ -134,9 +142,18 @@ compatibility: opencode
 python3 skill/skill-creator/scripts/quick_validate.py skill/my-skill-name
 ```
 
-### 4. Test in Opencode
+### 4. Test the Skill
 
-Open Opencode and trigger your skill naturally in conversation. The skill will load based on the `description` field in the frontmatter.
+Test your skill without deploying via home-manager:
+
+```bash
+# Use the test script to validate and list skills
+./scripts/test-skill.sh my-skill-name    # Validate specific skill
+./scripts/test-skill.sh --list           # List all dev skills
+./scripts/test-skill.sh --run            # Launch opencode with dev skills
+```
+
+The test script creates a temporary config directory with symlinks to this repo's skills, allowing you to test changes before committing.
 
 ## 📚 Available Skills
 
@@ -155,7 +172,7 @@ Open Opencode and trigger your skill naturally in conversation. The skill will l
 
 ### Chiron - Personal Assistant
 
-**Location**: `agent/chiron.md`
+**Configuration**: `agent/agents.json` + `prompts/chiron.txt`
 
 Chiron is a personal AI assistant focused on productivity and task management. Named after the wise centaur from Greek mythology, Chiron provides:
 
@@ -163,6 +180,10 @@ Chiron is a personal AI assistant focused on productivity and task management. N
 - Daily and weekly review workflows
 - Skill routing based on user intent
 - Integration with productivity tools (Anytype, ntfy, n8n)
+
+**Modes**:
+- **Chiron** (Plan Mode) - Read-only analysis and planning (`prompts/chiron.txt`)
+- **Chiron-Forge** (Worker Mode) - Full write access with safety prompts (`prompts/chiron-forge.txt`)
 
 **Triggers**: Personal productivity requests, task management, reviews, planning
 
@@ -184,9 +205,9 @@ bd sync               # Sync with git
 
 Before committing:
 
-1. **Validate skills**: `python3 skill/skill-creator/scripts/quick_validate.py skill/<name>`
-2. **Check formatting**: Ensure YAML frontmatter is valid
-3. **Test locally**: Use the skill in Opencode to verify behavior
+1. **Validate skills**: `./scripts/test-skill.sh --validate` or `python3 skill/skill-creator/scripts/quick_validate.py skill/<name>`
+2. **Test locally**: `./scripts/test-skill.sh --run` to launch opencode with dev skills
+3. **Check formatting**: Ensure YAML frontmatter is valid
 4. **Update docs**: Keep README and AGENTS.md in sync
 
 ### Session Completion
@@ -232,11 +253,12 @@ See `AGENTS.md` for complete developer documentation.
 
 ### Modify Agent Behavior
 
-Edit `agent/chiron.md` to customize:
-- Skill routing logic
-- Communication style
-- Operating principles
-- Integration awareness
+Edit `agent/agents.json` for agent definitions and `prompts/*.txt` for system prompts:
+- `agent/agents.json` - Agent names, models, permissions
+- `prompts/chiron.txt` - Chiron (Plan Mode) system prompt
+- `prompts/chiron-forge.txt` - Chiron-Forge (Worker Mode) system prompt
+
+**Note**: Agent changes require `home-manager switch` to take effect (config is embedded, not symlinked).
 
 ### Update User Context
 

@@ -29,7 +29,8 @@ This repository serves as a foundation for any Opencode-compatible skill or agen
 
 ```
 .
-├── agent/           # AI agent configurations (chiron.md)
+├── agent/           # Agent definitions (agents.json)
+├── prompts/         # Agent system prompts (chiron.txt, chiron-forge.txt)
 ├── context/         # User profiles and preferences
 ├── command/         # Custom command definitions
 ├── skill/           # Opencode Agent Skills (8 skills)
@@ -41,32 +42,10 @@ This repository serves as a foundation for any Opencode-compatible skill or agen
 │   ├── mem0-memory/
 │   ├── research/
 │   └── knowledge-management/
-├── .beads/          # Issue tracking database
+├── scripts/         # Repository-level utility scripts
 └── AGENTS.md        # This file
 ```
 
-## Issue Tracking with Beads
-
-This project uses **bd** (beads) for AI-native issue tracking.
-
-### Quick Reference
-
-```bash
-bd ready              # Find available work
-bd show <id>          # View issue details
-bd update <id> --status in_progress  # Claim work
-bd close <id>         # Complete work
-bd sync               # Sync with git
-bd list               # View all issues
-bd create "title"     # Create new issue
-```
-
-### Beads Workflow Integration
-
-- Issues live in `.beads/` directory (git-tracked)
-- Auto-syncs with commits
-- CLI-first design for AI agents
-- No web UI needed
 
 ## Skill Development
 
@@ -235,37 +214,43 @@ items:
 
 ## Nix Flake Integration
 
-This repository is designed to be consumed by a Nix flake via home-manager.
+This repository is the central source for all Opencode configuration, consumed as a **non-flake input** by your NixOS configuration.
 
-### Expected Deployment Pattern
+### Integration Reference
 
+**NixOS config location**: `~/p/NIX/nixos-config/home/features/coding/opencode.nix`
+
+**Flake input definition** (in `flake.nix`):
 ```nix
-# In your flake.nix or home.nix
-xdg.configFile."opencode" = {
-  source = /path/to/AGENTS;
-  recursive = true;
+agents = {
+  url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
+  flake = false;  # Pure files, not a Nix flake
 };
 ```
 
-This deploys:
-- `agent/` → `~/.config/opencode/agent/`
-- `skill/` → `~/.config/opencode/skill/`
-- `context/` → `~/.config/opencode/context/`
-- `command/` → `~/.config/opencode/command/`
+### Deployment Mapping
 
-### Best Practices for Nix
+| Source | Deployed To | Method |
+|--------|-------------|--------|
+| `skill/` | `~/.config/opencode/skill/` | xdg.configFile (symlink) |
+| `context/` | `~/.config/opencode/context/` | xdg.configFile (symlink) |
+| `command/` | `~/.config/opencode/command/` | xdg.configFile (symlink) |
+| `prompts/` | `~/.config/opencode/prompts/` | xdg.configFile (symlink) |
+| `agent/agents.json` | `programs.opencode.settings.agent` | **Embedded into config.json** |
 
-1. **Keep original structure** - Don't rename directories; Opencode expects this layout
-2. **Use recursive = true** - Required for directory deployment
-3. **Exclude .git and .beads** - These are development artifacts:
-   ```nix
-   xdg.configFile."opencode" = {
-     source = /path/to/AGENTS;
-     recursive = true;
-     # Or filter with lib.cleanSource
-   };
-   ```
-4. **No absolute paths in configs** - All references should be relative
+### Important: Agent Configuration Nuance
+
+The `agent/` directory is **NOT** deployed as files to `~/.config/opencode/agent/`. Instead, `agents.json` is read at Nix evaluation time and embedded directly into the opencode `config.json` via:
+
+```nix
+programs.opencode.settings.agent = builtins.fromJSON (builtins.readFile "${inputs.agents}/agent/agents.json");
+```
+
+**Implications**:
+- Agent changes require `home-manager switch` to take effect
+- Skills, context, and commands are symlinked (changes visible immediately after rebuild)
+- The `prompts/` directory is referenced by `agents.json` via `{file:./prompts/chiron.txt}` syntax
+
 
 ## Quality Gates
 
@@ -282,40 +267,77 @@ Before committing changes, verify:
 
 **When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
 
-### MANDATORY WORKFLOW
 
-1. **File issues for remaining work** - Create beads issues for anything that needs follow-up
-2. **Run quality gates** - Validate modified skills, check file structure
-3. **Update issue status** - Close finished work, update in-progress items
-4. **PUSH TO REMOTE** - This is MANDATORY:
-   ```bash
-   git pull --rebase
-   bd sync
-   git push
-   git status  # MUST show "up to date with origin"
-   ```
-5. **Clean up** - Clear stashes, prune remote branches
-6. **Verify** - All changes committed AND pushed
-7. **Hand off** - Provide context for next session
+## Testing Skills
 
-### CRITICAL RULES
+Since this repo deploys via Nix/home-manager, changes require a rebuild to appear in `~/.config/opencode/`. Use these methods to test skills during development.
 
-- Work is NOT complete until `git push` succeeds
-- NEVER stop before pushing - that leaves work stranded locally
-- NEVER say "ready to push when you are" - YOU must push
-- If push fails, resolve and retry until it succeeds
+### Method 1: XDG_CONFIG_HOME Override (Recommended)
 
-## Common Operations
-
-### Test a Skill Locally
+Test skills by pointing opencode to this repository directly:
 
 ```bash
-# Validate structure
+# From the AGENTS repository root
+cd ~/p/AI/AGENTS
+
+# List skills loaded from this repo (not the deployed ones)
+XDG_CONFIG_HOME=. opencode debug skill
+
+# Run an interactive session with development skills
+XDG_CONFIG_HOME=. opencode
+
+# Or use the convenience script
+./scripts/test-skill.sh              # List all development skills
+./scripts/test-skill.sh task-management  # Validate specific skill
+./scripts/test-skill.sh --run        # Launch interactive session
+```
+
+**Note**: The convenience script creates a temporary directory with proper symlinks since opencode expects `$XDG_CONFIG_HOME/opencode/skill/` structure.
+
+### Method 2: Project-Local Skills
+
+For quick iteration on a single skill, use `.opencode/skill/` in any project:
+
+```bash
+cd /path/to/any/project
+mkdir -p .opencode/skill/
+
+# Symlink the skill you're developing
+ln -s ~/p/AI/AGENTS/skill/my-skill .opencode/skill/
+
+# Skills in .opencode/skill/ are auto-discovered alongside global skills
+opencode debug skill
+```
+
+### Method 3: Validation Only
+
+Validate skill structure without running opencode:
+
+```bash
+# Validate a single skill
 python3 skill/skill-creator/scripts/quick_validate.py skill/<skill-name>
 
-# Check skill triggers by reading SKILL.md frontmatter
-grep -A5 "^description:" skill/<skill-name>/SKILL.md
+# Validate all skills
+for dir in skill/*/; do
+  python3 skill/skill-creator/scripts/quick_validate.py "$dir"
+done
 ```
+
+### Verification Commands
+
+```bash
+# List all loaded skills (shows name, description, location)
+opencode debug skill
+
+# Show resolved configuration
+opencode debug config
+
+# Show where opencode looks for files
+opencode debug paths
+```
+
+
+## Common Operations
 
 ### Create New Skill
 
@@ -340,11 +362,10 @@ Edit `context/profile.md` to update:
 
 ### Modify Agent Behavior
 
-Edit `agent/chiron.md` to adjust:
-- Skill routing logic
-- Communication protocols
-- Daily rhythm support
-- Operating principles
+Edit `agent/agents.json` to adjust agent definitions, and `prompts/*.txt` for system prompts:
+- `agent/agents.json` - Agent names, models, permissions
+- `prompts/chiron.txt` - Chiron (Plan Mode) system prompt
+- `prompts/chiron-forge.txt` - Chiron-Forge (Worker Mode) system prompt
 
 ## Reference Documentation
 
@@ -352,8 +373,7 @@ Edit `agent/chiron.md` to adjust:
 **Workflow patterns**: `skill/skill-creator/references/workflows.md`
 **Output patterns**: `skill/skill-creator/references/output-patterns.md`
 **User profile**: `context/profile.md`
-**Agent config**: `agent/chiron.md`
-**Beads docs**: `.beads/README.md`
+**Agent config**: `agent/agents.json`
 
 ## Notes for AI Agents
 
