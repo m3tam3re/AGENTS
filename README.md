@@ -23,7 +23,7 @@ This repository serves as a **personal AI operating system** - a collection of s
 │   └── profile.md   # Work style, PARA areas, preferences
 ├── command/         # Custom command definitions
 │   └── reflection.md
-├── skill/           # Opencode Agent Skills (8+ skills)
+├── skill/           # Opencode Agent Skills (11+ skills)
 │   ├── task-management/      # PARA-based productivity
 │   ├── skill-creator/        # Meta-skill for creating skills
 │   ├── reflection/           # Conversation analysis
@@ -31,7 +31,10 @@ This repository serves as a **personal AI operating system** - a collection of s
 │   ├── calendar-scheduling/  # Time management
 │   ├── mem0-memory/          # Persistent memory
 │   ├── research/             # Investigation workflows
-│   └── knowledge-management/ # Note capture & organization
+│   ├── knowledge-management/ # Note capture & organization
+│   ├── basecamp/             # Basecamp project management
+│   ├── brainstorming/        # Ideation & strategic thinking
+│   └── plan-writing/         # Project planning templates
 ├── scripts/         # Repository utility scripts
 │   └── test-skill.sh # Test skills without deploying
 ├── .beads/          # Issue tracking database
@@ -165,8 +168,11 @@ The test script creates a temporary config directory with symlinks to this repo'
 | **communications** | Email drafts, follow-ups, message management | ✅ Active |
 | **calendar-scheduling** | Time blocking, meeting management | ✅ Active |
 | **mem0-memory** | Persistent memory storage and retrieval | ✅ Active |
-| **research** | Investigation workflows, source management | 🚧 Stub |
-| **knowledge-management** | Note capture, knowledge organization | 🚧 Stub |
+| **research** | Investigation workflows, source management | ✅ Active |
+| **knowledge-management** | Note capture, knowledge organization | ✅ Active |
+| **basecamp** | Basecamp project & todo management via MCP | ✅ Active |
+| **brainstorming** | General-purpose ideation with Anytype save | ✅ Active |
+| **plan-writing** | Project plans with templates (kickoff, tasks, risks) | ✅ Active |
 
 ## 🤖 AI Agents
 
@@ -248,6 +254,9 @@ See `AGENTS.md` for complete developer documentation.
 - **task-management/** - Full implementation with Anytype integration
 - **skill-creator/** - Meta-skill with bundled resources
 - **reflection/** - Conversation analysis with rating system
+- **basecamp/** - MCP server integration with multiple tool categories
+- **brainstorming/** - Framework-based ideation with Anytype object creation
+- **plan-writing/** - Template-driven document generation
 
 ## 🔧 Customization
 
