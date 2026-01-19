@@ -358,7 +358,7 @@ When creating skills for Opencode:
 
 1. **Location**: Skills should be placed in `~/.config/opencode/skill/<skill-name>/`
 2. **Compatibility**: Add `compatibility: opencode` to the frontmatter
-3. **Tools**: Opencode has different tools available compared to Claude Desktop - refer to Opencode's tool documentation when writing workflows
+3. **Tools**: Opencode has different tools available compared to Claude and ChatGPT - refer to Opencode's tool documentation when writing workflows
 4. **Testing**: Test skills directly in Opencode by invoking them naturally in conversation or using the skill loader
 
 ## Quick Reference
