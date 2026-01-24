@@ -101,5 +101,30 @@
       "external_directory": "ask",
       "doom_loop": "ask"
     }
+  },
+  "athena": {
+    "description": "Goddess of wisdom and knowledge. Research sub-agent for non-technical investigation and analysis.",
+    "model": "zai-coding-plan/glm-4.7",
+    "prompt": "{file:./prompts/athena.txt}",
+    "permission": {
+      "read": {
+        "*": "allow",
+        "*.env": "deny",
+        "*.env.*": "deny",
+        "*.env.example": "allow",
+        "*/.ssh/*": "deny",
+        "*/.gnupg/*": "deny",
+        "*credentials*": "deny",
+        "*secrets*": "deny",
+        "*.pem": "deny",
+        "*.key": "deny",
+        "*/.aws/*": "deny",
+        "*/.kube/*": "deny"
+      },
+      "edit": "deny",
+      "bash": "deny",
+      "external_directory": "deny",
+      "doom_loop": "deny"
+    }
   }
 }

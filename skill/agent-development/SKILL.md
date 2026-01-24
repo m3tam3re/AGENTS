@@ -127,6 +127,11 @@ Controls how the agent can be used.
 "mode": "primary"
 ```
 
+**IMPORTANT**: Always explicitly set the `mode` field for clarity:
+- Primary agents: `"mode": "primary"`
+- Subagents: `"mode": "subagent"`
+- Avoid relying on defaults; explicit declaration makes intent clear and follows best practices
+
 ### model
 
 Override the model for this agent. Format: `provider/model-id`.
@@ -159,13 +164,20 @@ Control response randomness (0.0 - 1.0).
 
 | Range | Use Case |
 |-------|----------|
-| 0.0-0.2 | Focused, deterministic (code analysis, planning) |
-| 0.3-0.5 | Balanced (general development) |
-| 0.6-1.0 | Creative (brainstorming) |
+| 0.0-0.2 | Focused, deterministic (code analysis, planning, research) |
+| 0.3-0.5 | Balanced (general development, writing) |
+| 0.6-1.0 | Creative (brainstorming, ideation) |
 
 ```json
 "temperature": 0.1
 ```
+
+**RECOMMENDATIONS BY AGENT TYPE:**
+- **Research/Analysis**: 0.0-0.2 (focused, deterministic, consistent results)
+- **Code Generation**: 0.1-0.3 (precise but allows slight creativity)
+- **Code Review**: 0.0-0.2 (strict adherence to patterns)
+- **Brainstorming/Creative**: 0.6-1.0 (explore many options)
+- **General Purpose**: 0.3-0.5 (balanced approach)
 
 ### maxSteps
 
@@ -343,7 +355,7 @@ Write prompts in second person, addressing the agent directly.
 ```
 You are [role] specializing in [domain].
 
-**Your Core Responsibilities:**
+**Your Core Responsibilities:**  ← USE THIS EXACT HEADER
 1. [Primary responsibility]
 2. [Secondary responsibility]
 3. [Additional responsibilities]
@@ -365,6 +377,13 @@ You are [role] specializing in [domain].
 - [Edge case 2]: [How to handle]
 ```
 
+**IMPORTANT**: Use exact section headers for consistency:
+- Use "Your Core Responsibilities:" (not "capabilities", "duties", etc.)
+- Use "Process:" for step-by-step workflows
+- Use "Quality Standards:" for evaluation criteria
+- Use "Output Format:" for response structure
+- Use "Edge Cases:" for exception handling
+
 ### Prompt File Convention
 
 Store prompts in a `prompts/` directory with `.txt` extension:
@@ -380,11 +399,13 @@ Reference in config:
 **DO:**
 - Use second person ("You are...", "You will...")
 - Be specific about responsibilities
+- Use numbered lists for responsibilities (1, 2, 3) - not bullet points
 - Provide step-by-step processes
 - Define output format
 - Include quality standards
 - Address edge cases
 - Keep under 10,000 characters
+- Keep section names consistent with standard structure, but adapt if semantically equivalent (e.g., "Ethical Guidelines" vs "Quality Standards" for research agents)
 
 **DON'T:**
 - Write in first person
@@ -406,7 +427,8 @@ Prompts for: location, description, tools, then generates the agent file.
 
 1. Add agent to `opencode.json` or `agents.json`
 2. Create prompt file in `prompts/` directory
-3. Validate with `scripts/validate-agent.sh`
+3. Validate with `scripts/validate-agent.sh` (if available in repo)
+   - Alternative: Use `python3 -c "import json; json.load(open('agents.json'))"` for syntax check
 
 ### Method 3: Markdown File
 
