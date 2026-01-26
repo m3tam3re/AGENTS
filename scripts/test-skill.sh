@@ -24,13 +24,13 @@ NC='\033[0m'
 setup_test_config() {
     local tmp_base="${TMPDIR:-/tmp}/opencode-test-$$"
     local tmp_config="$tmp_base/opencode"
-    
+
     mkdir -p "$tmp_config"
-    ln -sf "$REPO_ROOT/skill" "$tmp_config/skill"
+    ln -sf "$REPO_ROOT/skills" "$tmp_config/skills"
     ln -sf "$REPO_ROOT/context" "$tmp_config/context"
-    ln -sf "$REPO_ROOT/command" "$tmp_config/command"
+    ln -sf "$REPO_ROOT/commands" "$tmp_config/commands"
     ln -sf "$REPO_ROOT/prompts" "$tmp_config/prompts"
-    
+
     echo "$tmp_base"
 }
 
@@ -64,7 +64,7 @@ list_skills() {
     local tmp_base
     tmp_base=$(setup_test_config)
     trap "cleanup_test_config '$tmp_base'" EXIT
-    
+
     echo -e "${YELLOW}Skills in development (from $REPO_ROOT):${NC}"
     echo ""
     XDG_CONFIG_HOME="$tmp_base" opencode debug skill
@@ -73,14 +73,14 @@ list_skills() {
 validate_skill() {
     local skill_name="$1"
     local skill_path="$REPO_ROOT/skill/$skill_name"
-    
+
     if [[ ! -d "$skill_path" ]]; then
         echo -e "${RED}❌ Skill not found: $skill_name${NC}"
         echo "Available skills:"
         ls -1 "$REPO_ROOT/skill/"
         exit 1
     fi
-    
+
     echo -e "${YELLOW}Validating skill: $skill_name${NC}"
     if python3 "$REPO_ROOT/skill/skill-creator/scripts/quick_validate.py" "$skill_path"; then
         echo -e "${GREEN}✅ Skill '$skill_name' is valid${NC}"
@@ -93,7 +93,7 @@ validate_skill() {
 validate_all() {
     echo -e "${YELLOW}Validating all skills...${NC}"
     echo ""
-    
+
     local failed=0
     for skill_dir in "$REPO_ROOT/skill/"*/; do
         local skill_name=$(basename "$skill_dir")
@@ -106,7 +106,7 @@ validate_all() {
             ((failed++)) || true
         fi
     done
-    
+
     echo ""
     if [[ $failed -eq 0 ]]; then
         echo -e "${GREEN}All skills valid!${NC}"
@@ -120,7 +120,7 @@ run_opencode() {
     local tmp_base
     tmp_base=$(setup_test_config)
     trap "cleanup_test_config '$tmp_base'" EXIT
-    
+
     echo -e "${YELLOW}Launching opencode with development skills...${NC}"
     echo -e "Config path: ${GREEN}$tmp_base/opencode${NC}"
     echo ""

@@ -1,6 +1,6 @@
 ---
 name: skill-creator
-description: (opencode - Skill) Guide for creating effective Opencode Agent Skills. Use this when users want to create a new skill (or update an existing skill) that extends Opencode's capabilities with specialized knowledge, workflows, or tool integrations.
+description: Guide for creating effective Opencode Agent Skills. Use this when users want to create a new skill (or update an existing skill) that extends Opencode's capabilities with specialized knowledge, workflows, or tool integrations.
 compatibility: opencode
 ---
 
