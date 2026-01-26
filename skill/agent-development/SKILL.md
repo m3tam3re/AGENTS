@@ -427,8 +427,7 @@ Prompts for: location, description, tools, then generates the agent file.
 
 1. Add agent to `opencode.json` or `agents.json`
 2. Create prompt file in `prompts/` directory
-3. Validate with `scripts/validate-agent.sh` (if available in repo)
-   - Alternative: Use `python3 -c "import json; json.load(open('agents.json'))"` for syntax check
+3. Validate with: `python3 -c "import json; json.load(open('agents.json'))"` for syntax check
 
 ### Method 3: Markdown File
 
@@ -442,10 +441,7 @@ Validate agent configuration:
 
 ```bash
 # Validate agents.json
-./scripts/validate-agent.sh agents.json
-
-# Validate markdown agent
-./scripts/validate-agent.sh ~/.config/opencode/agents/review.md
+python3 -c "import json; json.load(open('agents.json'))"
 ```
 
 ## Testing

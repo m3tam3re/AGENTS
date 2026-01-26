@@ -104,7 +104,9 @@
   },
   "athena": {
     "description": "Goddess of wisdom and knowledge. Research sub-agent for non-technical investigation and analysis.",
+    "mode": "subagent",
     "model": "zai-coding-plan/glm-4.7",
+    "temperature": 0.1,
     "prompt": "{file:./prompts/athena.txt}",
     "permission": {
       "read": {
