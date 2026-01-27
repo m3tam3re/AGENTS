@@ -1,246 +1,406 @@
 ---
 name: task-management
-description: "PARA-based task and project management with Anytype integration. Use when: (1) creating/managing tasks or projects, (2) daily or weekly reviews, (3) prioritizing work, (4) capturing action items, (5) planning sprints or focus blocks, (6) asking 'what should I work on?'. Triggers: task, todo, project, priority, review, focus, plan, backlog, inbox, capture."
+description: "PARA-based task management using Obsidian Tasks plugin format. Use when: (1) creating/managing tasks, (2) daily or weekly reviews, (3) prioritizing work, (4) searching for tasks, (5) planning sprints or focus blocks. Triggers: task, todo, find tasks, search tasks, overdue, prioritize."
 compatibility: opencode
 ---
 
 # Task Management
 
-PARA-based productivity system integrated with Anytype for Sascha's personal and professional task management.
+PARA-based task management using Obsidian Tasks plugin format for Chiron system.
 
-## Quick Reference
+## Obsidian Tasks Format
 
-| Action | Command Pattern |
-|--------|-----------------|
-| Quick capture | "Capture: [item]" or "Add to inbox: [item]" |
-| Create task | "Task: [title] for [area/project]" |
-| Create project | "New project: [title] in [area]" |
-| Daily review | "Daily review" or "What's on for today?" |
-| Weekly review | "Weekly review" or "Week planning" |
-| Focus check | "What should I focus on?" |
-| Context batch | "What [area] tasks can I batch?" |
+**Basic format:**
+```markdown
+- [ ] Task description #tag ⏫ 📅 YYYY-MM-DD
+```
 
-## Anytype Configuration
+**Priority indicators:**
+- ⏫ = Critical (urgent AND important)
+- 🔼 = High (important, not urgent)
+- 🔽 = Low (nice to have)
 
-**Space**: Chiron (create if not exists)
+**Date indicators:**
+- 📅 = Due date
+- ⏳ = Start date
+- 🛫 = Scheduled date
 
-### Types
+**Owner attribution:**
+```markdown
+- [ ] Task description #todo 👤 @owner ⏫ 📅 YYYY-MM-DD
+```
 
-| Type | PARA Category | Purpose |
-|------|---------------|---------|
-| `project` | Projects | Active outcomes with deadlines |
-| `area` | Areas | Ongoing responsibilities |
-| `resource` | Resources | Reference materials |
-| `task` | (within Projects/Areas) | Individual action items |
-| `note` | (Inbox/Resources) | Quick captures, meeting notes |
+## Task Locations
 
-### Key Properties
-
-| Property | Type | Used On | Values |
-|----------|------|---------|--------|
-| `status` | select | Task, Project | `inbox`, `next`, `waiting`, `scheduled`, `done` |
-| `priority` | select | Task, Project | `critical`, `high`, `medium`, `low` |
-| `area` | relation | Task, Project | Links to Area objects |
-| `due_date` | date | Task, Project | Deadline |
-| `energy` | select | Task | `high`, `medium`, `low` |
-| `context` | multi_select | Task | `deep-work`, `admin`, `calls`, `errands` |
+```
+~/CODEX/
+├── tasks/                    # Central task management
+│   ├── inbox.md            # Unprocessed tasks
+│   ├── waiting.md          # Blocked/delegated
+│   ├── someday.md           # Future ideas
+│   └── by-context/          # Context-based task lists
+│       ├── work.md
+│       ├── home.md
+│       └── errands.md
+├── 01-projects/             # Project-specific tasks (in _index.md or notes/tasks.md)
+└── 02-areas/                # Area-specific tasks (in area files)
+```
 
 ## Core Workflows
 
-### 1. Quick Capture
+### Create Task
 
-Minimal friction inbox capture. Process later during review.
+**When user says**: "Add task: X", "Todo: X", "Remember to: X"
 
+**Steps:**
+
+1. **Parse task from request:**
+   - Task description
+   - Priority (if specified: critical, high, low)
+   - Due date (if specified)
+   - Owner (if specified: @mention)
+   - Context (if specified)
+   - Project/area (if specified)
+
+2. **Determine location:**
+   - Project-specific → `01-projects/[project]/_index.md` or `tasks.md`
+   - Area-specific → `02-areas/[area].md`
+   - General → `tasks/inbox.md`
+
+3. **Create task in Obsidian format:**
+   ```markdown
+   - [ ] [Task description] #tag [priority] 👤 [@owner] 📅 [date]
+   ```
+
+4. **Confirm creation**
+
+**Examples:**
 ```
-User: "Capture: Review Q1 budget proposal"
+User: "Add task: Review Q1 budget proposal, critical, due Friday"
 
 Action:
-1. Create note in Anytype with status=inbox
-2. Confirm: "Captured to inbox. 12 items pending processing."
+Create in tasks/inbox.md:
+- [ ] Review Q1 budget proposal #inbox ⏫ 📅 2026-01-31
+
+Confirm: "Created task in inbox."
 ```
 
-### 2. Create Task
-
-Full task with metadata for proper routing.
-
 ```
-User: "Task: Prepare board presentation for CTO Leadership, high priority, due Friday"
+User: "Task: Email John about project deadline, due Friday, @john"
 
 Action:
-1. Find or create "CTO Leadership" area in Anytype
-2. Create task object:
-   - name: "Prepare board presentation"
-   - area: [CTO Leadership object ID]
-   - priority: high
-   - due_date: [this Friday]
-   - status: next
-3. Confirm with task details
+Create in tasks/inbox.md:
+- [ ] Email John about project deadline #inbox 🔼 👤 @john 📅 2026-01-31
+
+Confirm: "Created task assigned to John."
 ```
 
-### 3. Create Project
-
-Projects are outcomes with multiple tasks and a completion state.
-
 ```
-User: "New project: Launch NixOS Flakes Course in m3ta.dev area"
+User: "Add task to Project X: Create PRD, high priority"
 
 Action:
-1. Find "m3ta.dev" area
-2. Create project object:
-   - name: "Launch NixOS Flakes Course"
-   - area: [m3ta.dev object ID]
-   - status: active
-3. Prompt: "What are the key milestones or first tasks?"
-4. Create initial tasks if provided
+Create in 01-projects/work/project-x/_index.md:
+- [ ] Create PRD #high 📅 2026-02-15
+
+Confirm: "Created task in Project X."
 ```
 
-### 4. Daily Review (Evening)
+### Find Tasks
 
-Run each evening to close the day and prep tomorrow.
+**When user says**: "Find tasks", "What tasks do I have?", "Show me tasks for [context/project]"
 
-**Workflow** - See [references/review-templates.md](references/review-templates.md) for full template.
+**Steps:**
 
-Steps:
-1. **Fetch today's completed** - Celebrate wins
-2. **Fetch incomplete tasks** - Reschedule or note blockers
-3. **Check inbox** - Quick process or defer to weekly
-4. **Tomorrow's priorities** - Identify top 3 for morning focus
-5. **Send summary via ntfy** (if configured)
+1. **Determine search scope:**
+   - All tasks → Search all task files
+   - Context tasks → Search `tasks/by-context/[context].md`
+   - Project tasks → Read project's `_index.md` or `tasks.md`
+   - Area tasks → Read area file
+   - Overdue tasks → Search for tasks with past due dates
 
-```
-User: "Daily review"
+2. **Search using rg:**
+   ```bash
+   # Find all tasks
+   rg "- \\[ \\]" ~/CODEX --type md
 
-Output format:
-## Daily Review - [Date]
+   # Find tasks by tag
+   rg "#work" ~/CODEX --type md
 
-### Completed Today
-- [x] Task 1
-- [x] Task 2
+   # Find overdue tasks
+   rg "- \\[ \\].*📅" ~/CODEX --type md | filter-past-dates
+   ```
 
-### Carried Forward
-- [ ] Task 3 (rescheduled to tomorrow)
-- [ ] Task 4 (blocked: waiting on X)
+3. **Parse and organize:**
+   - Extract task description
+   - Extract priority indicators (⏫/🔼/🔽)
+   - Extract due dates
+   - Extract owners (@mentions)
+   - Extract tags
 
-### Inbox Items: 5 pending
+4. **Present results grouped by:**
+   - Priority
+   - Due date
+   - Context/project/area
 
-### Tomorrow's Top 3
-1. [Highest impact task]
-2. [Second priority]
-3. [Third priority]
-```
+**Output format:**
+```markdown
+# Found 15 tasks
 
-### 5. Weekly Review
+## Critical Tasks (⏫)
+1. [ ] Review Q1 budget #work ⏫ 📅 2026-01-31
+2. [ ] Client presentation #work ⏫ 📅 2026-01-30
 
-Comprehensive PARA review. See [references/para-methodology.md](references/para-methodology.md).
+## High Priority (🔼)
+1. [ ] Update documentation #project-a 🔼 📅 2026-02-15
+2. [ ] Team meeting notes #work 🔼 👤 @john
+3. [ ] Buy groceries #personal 🔼 📅 2026-01-28
 
-**Workflow**:
-1. **Get Clear** - Process inbox to zero
-2. **Get Current** - Review each Area's active projects
-3. **Get Creative** - Identify new projects or opportunities
-4. **Plan Week** - Set weekly outcomes and time blocks
+## Upcoming (by due date)
+This week:
+- [ ] Submit expense report #work 🔼 📅 2026-01-29
+- [ ] Dentist appointment #personal 🔼 📅 2026-01-30
 
-```
-User: "Weekly review"
+Next week:
+- [ ] Project milestone #work 🔼 📅 2026-02-05
+- [ ] Car service #personal 🔼 📅 2026-02-07
 
-Process:
-1. List all inbox items -> prompt to process each
-2. For each Area, show active projects and their status
-3. Flag stalled projects (no activity 7+ days)
-4. Identify completed projects -> move to archive
-5. Prompt for new commitments
-6. Output weekly plan
-```
-
-### 6. Priority Focus
-
-Impact-first prioritization using Sascha's preferences.
-
-```
-User: "What should I focus on?"
-
-Logic:
-1. Fetch tasks where status=next, sorted by:
-   - priority (critical > high > medium > low)
-   - due_date (sooner first)
-   - energy match (if time of day known)
-2. Return top 3-5 with rationale
-3. Consider context batching opportunities
-
-Output:
-## Focus Recommendations
-
-**Top Priority**: [Task] 
-- Why: [Impact statement]
-- Area: [Area name]
-- Due: [Date or "no deadline"]
-
-**Also Important**:
-1. [Task 2] - [brief why]
-2. [Task 3] - [brief why]
-
-**Batching Opportunity**: You have 3 [context] tasks that could be done together.
+## By Owner
+Assigned to @john (2 tasks):
+- [ ] Team meeting notes #work 🔼
+- [ ] Email stakeholder #work 🔼 📅 2026-02-01
 ```
 
-### 7. Context Batching
+### Search Specific Contexts
 
-Group similar tasks for focused execution.
+**When user says**: "What [context] tasks do I have?", "Show work tasks", "Show personal tasks"
 
+**Steps:**
+
+1. **Read context file**: `tasks/by-context/[context].md`
+2. **Parse tasks**
+3. **Present filtered list**
+
+**Available contexts:**
+- `work.md` - Work-related tasks
+- `home.md` - Household/admin tasks
+- `errands.md` - Shopping/running errands
+- `deep-work.md` - Focus work (no interruptions)
+- `calls.md` - Phone/video calls
+- `admin.md` - Administrative tasks
+
+### Prioritize Tasks
+
+**When user says**: "Prioritize my tasks", "What should I work on?", "Focus check"
+
+**Steps:**
+
+1. **Fetch all incomplete tasks**:
+   - `rg "- \\[ \\]" ~/CODEX --type md`
+   - Filter out completed (`[x]`)
+
+2. **Sort by criteria:**
+   - Priority (⏫ > 🔼 > 🔽 > no indicator)
+   - Due date (sooner first)
+   - Energy level (if specified: high/medium/low)
+
+3. **Return top 3-5 tasks**
+4. **Include rationale** for prioritization
+
+**Output format:**
+```markdown
+# Focus Recommendations (5 tasks found)
+
+## Top Priority: ⏫ Critical
+1. **[Review Q1 budget]** #work ⏫ 📅 2026-01-31
+   - Why: Due in 4 days, critical for Q2 planning
+   - Area: Finances
+   - Estimated time: 2 hours
+
+## High Priority: 🔼 Important (due within week)
+1. **[Client presentation]** #work 🔼 📅 2026-01-30
+   - Why: Client commitment, high impact
+   - Area: Work
+   - Estimated time: 4 hours
+
+2. **[Team standup]** #work 🔼
+   - Why: Daily sync, keeps team aligned
+   - Area: Work
+   - Estimated time: 30 minutes
+
+3. **[Car registration]** #personal 🔼 📅 2026-02-01
+   - Why: Legal requirement, must complete
+   - Area: Home
+   - Estimated time: 1 hour
+
+## Recommended Order
+1. Team standup (30min, energizes for day)
+2. Review Q1 budget (2 hours, critical, morning focus)
+3. Client presentation (4 hours, high energy block)
+4. Car registration (1 hour, after lunch)
+
+## Not Now (someday)
+- [ ] Learn Rust #personal 🔽
+- [ ] Organize photos #personal 🔽
 ```
-User: "What admin tasks can I batch?"
+
+### Update Task Status
+
+**When user says**: "Mark task X as done", "Complete: X", "Task X finished"
+
+**Steps:**
+
+1. **Find task** (by description or show options)
+2. **Change checkbox:**
+   ```markdown
+   # Before:
+   - [ ] Task description
+
+   # After:
+   - [x] Task description
+   ```
+3. **Update modified date** in frontmatter (if present)
+4. **Confirm**
+
+### Move Tasks
+
+**When user says**: "Move task X to project Y", "Task X goes to area Z"
+
+**Steps:**
+
+1. **Find source task**
+2. **Read target location** (project `_index.md` or area file)
+3. **Move task** (copy to target, delete from source)
+4. **Update task context/tags** if needed
+5. **Confirm**
+
+**Example:**
+```
+User: "Move 'Buy groceries' to Finances area"
 
 Action:
-1. Fetch tasks where context contains "admin"
-2. Group by area
-3. Estimate total time
-4. Suggest execution order
-
-Output:
-## Admin Task Batch
-
-**Estimated time**: ~45 minutes
-
-1. [ ] Reply to vendor email (CTO Leadership) - 10min
-2. [ ] Approve expense reports (CTO Leadership) - 15min  
-3. [ ] Update team wiki (CTO Leadership) - 20min
-
-Ready to start? I can track completion.
+1. Find task in tasks/inbox.md
+2. Read 02-areas/personal/finances.md
+3. Copy task to finances.md
+4. Delete from tasks/inbox.md
+5. Confirm: "Moved 'Buy groceries' to Finances area."
 ```
 
-## Notification Integration (ntfy)
+### Task Delegation/Blocking
 
-Send notifications for:
-- Daily review summary (evening)
-- Overdue task alerts
-- Weekly review reminder (Sunday evening)
+**When user says**: "Delegate task X to Y", "Task X is blocked", "Waiting for X"
 
-Format for ntfy:
-```bash
-curl -d "Daily Review: 5 completed, 3 for tomorrow. Top priority: [task]" \
-  ntfy.sh/sascha-chiron
+**Steps:**
+
+1. **Find task**
+2. **Add owner or blocking info:**
+   ```markdown
+   # Delegation:
+   - [ ] Task description #waiting 👤 @owner ⏫ 📅 date
+
+   # Blocked:
+   - [ ] Task description #waiting 🛑 Blocked by: [reason]
+   ```
+3. **Move to `tasks/waiting.md`** if delegated/blocked
+4. **Confirm**
+
+## Integration with Other Skills
+
+**Delegates to:**
+- `obsidian-management` - File operations (create/update/delete tasks)
+- `chiron-core` - PARA methodology for task placement
+- `daily-routines` - Task prioritization and scheduling
+- `project-structures` - Project task lists
+- `meeting-notes` - Extract action items from meetings
+
+**Delegation rules:**
+- File operations → `obsidian-management`
+- PARA placement → `chiron-core`
+- Project tasks → `project-structures`
+- Meeting actions → `meeting-notes`
+
+## Quick Reference
+
+| Action | Command Pattern | Location |
+|--------|-----------------|------------|
+| Create task | "Task: [description] [priority] [due] [@owner]" | tasks/inbox.md or project/area |
+| Find tasks | "Find tasks" or "What tasks do I have?" | All task files |
+| Context tasks | "Show [context] tasks" | tasks/by-context/[context].md |
+| Prioritize | "Prioritize tasks" or "What should I work on?" | All tasks, sorted |
+| Mark done | "Task [description] done" or "Complete: [description]" | Task location |
+| Move task | "Move task [description] to [project/area]" | Target location |
+| Defer | "Someday: [task]" or "Defer: [task]" | tasks/someday.md |
+
+## Best Practices
+
+### Creating Tasks
+- Be specific (not vague like "follow up")
+- Set realistic due dates
+- Assign owners clearly
+- Link to projects/areas immediately
+- Use appropriate priorities
+
+### Managing Tasks
+- Review daily (delegate to daily-routines)
+- Process inbox weekly
+- Archive completed tasks regularly
+- Update context when tasks move
+
+### Searching Tasks
+- Use tags for filtering
+- Search by context when batching
+- Check overdue tasks daily
+- Review waiting tasks weekly
+
+## Error Handling
+
+### Task Not Found
+1. Search similar tasks
+2. Ask user: "Which task?"
+3. List options with context
+
+### Duplicate Tasks
+1. Detect duplicates by description
+2. Ask: "Merge or keep separate?"
+3. If merge, combine due dates/priorities
+
+### Location Not Found
+1. Create directory structure
+2. Ask user: "Create in this location?"
+3. Create task in inbox as fallback
+
+## Resources
+
+- `references/task-formats.md` - Obsidian Tasks plugin syntax
+- `references/prioritization-methods.md` - Eisenhower matrix, energy-based prioritization
+- `references/search-patterns.md` - rg patterns for finding tasks
+
+**Load references when:**
+- Format questions arise
+- Prioritization help needed
+- Search issues occur
+- Task automation questions
+
+## Obsidian Tasks Plugin Configuration
+
+For full functionality, configure Obsidian Tasks plugin:
+
+**Settings:**
+- Task format: `- [ ] Task #tag ⏫ 📅 YYYY-MM-DD`
+- Priority symbols: ⏫, 🔼, 🔽
+- Date format: YYYY-MM-DD
+- Default file: tasks/inbox.md
+
+**Queries:**
+```dataview
+TASK
+WHERE !completed
+GROUP BY priority
+SORT due date ASC
 ```
 
-Configure topic in environment or Anytype settings.
-
-## Anytype API Patterns
-
-See [references/anytype-workflows.md](references/anytype-workflows.md) for:
-- Space and type setup
-- CRUD operations for tasks/projects
-- Query patterns for reviews
-- Batch operations
-
-## PARA Methodology Reference
-
-See [references/para-methodology.md](references/para-methodology.md) for:
-- PARA category definitions
-- When to use Projects vs Areas
-- Archive criteria
-- Maintenance rhythms
-
-## Initial Setup
-
-See [references/anytype-setup.md](references/anytype-setup.md) for:
-- Step-by-step Anytype space creation
-- Type and property configuration
-- Initial Area objects to create
-- View setup recommendations
+```dataview
+TASK
+WHERE !completed AND due < date(today)
+SORT due ASC
+GROUP BY project
+```
