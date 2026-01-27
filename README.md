@@ -162,7 +162,7 @@ The test script creates a temporary config directory with symlinks to this repo'
 
 | Skill | Purpose | Status |
 |-------|---------|--------|
-| **task-management** | PARA-based productivity with Anytype integration | ✅ Active |
+| **task-management** | PARA-based productivity with Obsidian Tasks integration | ✅ Active |
 | **skill-creator** | Guide for creating new Opencode skills | ✅ Active |
 | **reflection** | Conversation analysis and skill improvement | ✅ Active |
 | **communications** | Email drafts, follow-ups, message management | ✅ Active |
@@ -171,7 +171,7 @@ The test script creates a temporary config directory with symlinks to this repo'
 | **research** | Investigation workflows, source management | ✅ Active |
 | **knowledge-management** | Note capture, knowledge organization | ✅ Active |
 | **basecamp** | Basecamp project & todo management via MCP | ✅ Active |
-| **brainstorming** | General-purpose ideation with Anytype save | ✅ Active |
+| **brainstorming** | General-purpose ideation with Obsidian save | ✅ Active |
 | **plan-writing** | Project plans with templates (kickoff, tasks, risks) | ✅ Active |
 
 ## 🤖 AI Agents
@@ -185,7 +185,7 @@ Chiron is a personal AI assistant focused on productivity and task management. N
 - Task and project management guidance
 - Daily and weekly review workflows
 - Skill routing based on user intent
-- Integration with productivity tools (Anytype, ntfy, n8n)
+- Integration with productivity tools (Obsidian, ntfy, n8n)
 
 **Modes**:
 - **Chiron** (Plan Mode) - Read-only analysis and planning (`prompts/chiron.txt`)
@@ -251,11 +251,11 @@ See `AGENTS.md` for complete developer documentation.
 
 ### Example Skills to Study
 
-- **task-management/** - Full implementation with Anytype integration
+- **task-management/** - Full implementation with Obsidian Tasks integration
 - **skill-creator/** - Meta-skill with bundled resources
 - **reflection/** - Conversation analysis with rating system
 - **basecamp/** - MCP server integration with multiple tool categories
-- **brainstorming/** - Framework-based ideation with Anytype object creation
+- **brainstorming/** - Framework-based ideation with Obsidian markdown save
 - **plan-writing/** - Template-driven document generation
 
 ## 🔧 Customization
@@ -285,7 +285,7 @@ Create new command definitions in `command/` directory following the pattern in 
 
 ### Personal Productivity
 
-Use the PARA methodology with Anytype integration:
+Use the PARA methodology with Obsidian Tasks integration:
 - Capture tasks and notes quickly
 - Run daily/weekly reviews
 - Prioritize work based on impact
@@ -333,7 +333,7 @@ This repository contains personal configurations and skills. Feel free to use th
 - [Opencode](https://opencode.dev) - AI coding assistant
 - [Beads](https://github.com/steveyegge/beads) - AI-native issue tracking
 - [PARA Method](https://fortelabs.com/blog/para/) - Productivity methodology
-- [Anytype](https://anytype.io) - Knowledge management platform
+- [Obsidian](https://obsidian.md) - Knowledge management platform
 
 ## 🙋 Questions?
 

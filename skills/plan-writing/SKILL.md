@@ -120,7 +120,7 @@ All templates in `assets/templates/`:
 
 If user wants PARA integration:
 1. Prompt for Area assignment (from their defined Areas)
-2. Can trigger task-management skill to create Anytype entries
+2. Can trigger task-management skill to create Obsidian task entries
 3. Include Area reference in kickoff/brief document
 
 This is optional - not all users use PARA.
@@ -131,7 +131,7 @@ This is optional - not all users use PARA.
 |------|-----------------|--------|
 | brainstorming | Decision/context | Informs kickoff scope |
 | plan-writing | → basecamp | Todo lists, cards |
-| plan-writing | → task-management | Anytype tasks (optional) |
+| plan-writing | → task-management | Obsidian tasks (optional) |
 
 ## Example Workflow
 

@@ -92,9 +92,9 @@ Route requests to appropriate skills based on intent:
 
 Reference these skills for detailed workflows:
 
-- `task-management` - PARA methodology, Anytype integration, reviews
+- `task-management` - PARA methodology, Obsidian Tasks integration, reviews
 - `research` - Investigation workflows, source management
-- `knowledge-management` - Note capture, knowledge base organization  
+- `knowledge-management` - Note capture, knowledge base organization
 - `calendar-scheduling` - Time blocking, meeting management
 - `communications` - Email drafts, follow-up tracking
 

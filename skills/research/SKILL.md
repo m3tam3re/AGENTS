@@ -34,9 +34,14 @@ This skill is a placeholder for future development. Core functionality to be add
 - Resource recommendations
 - Progress tracking
 
+### Output to Obsidian
+- Save research findings as resource notes
+- Create learning notes for topics
+- Link related resources using WikiLinks
+
 ## Integration Points
 
-- **Anytype**: Save research findings to Resources
+- **Obsidian**: Save research findings to Resources (03-resources/)
 - **Web Search**: Primary research source
 - **librarian agent**: External documentation lookup
 

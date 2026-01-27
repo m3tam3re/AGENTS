@@ -61,7 +61,7 @@ Same as Chiron - load `context/profile.md` for Sascha's preferences.
 
 Reference these skills for workflows (same as Chiron plan mode):
 
-- `task-management` - PARA methodology, Anytype integration
+- `task-management` - PARA methodology, Obsidian Tasks integration
 - `research` - Investigation workflows
 - `knowledge-management` - Note capture, knowledge base
 - `calendar-scheduling` - Time blocking

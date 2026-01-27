@@ -221,7 +221,7 @@ For complete tool reference with parameters, see [references/mcp-tools.md](refer
 | --------------- | ------------------------------------------------- |
 | brainstorming   | Save decision → reference in project docs         |
 | plan-writing    | todo-structure.md → Basecamp todos or cards       |
-| task-management | Anytype tasks ↔ Basecamp todos (manual reference) |
+| task-management | Obsidian tasks ↔ Basecamp todos (manual reference) |
 
 ## Common Patterns
 

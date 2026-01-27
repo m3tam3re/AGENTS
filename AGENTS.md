@@ -1,179 +1,108 @@
-# Agent Instructions - Opencode Skills Repository
+# Opencode Skills Repository
 
-Configuration repository for Opencode Agent Skills, context files, and agent configurations. Files deploy to `~/.config/opencode/` via Nix flake + home-manager.
+Configuration repository for Opencode Agent Skills, context files, and agent configurations. Deployed via Nix home-manager to `~/.config/opencode/`.
 
 ## Quick Commands
 
-### Testing Skills
 ```bash
-# List or validate all skills
-./scripts/test-skill.sh              # List all development skills
+# Skill validation
 ./scripts/test-skill.sh --validate   # Validate all skills
 ./scripts/test-skill.sh <skill-name>  # Validate specific skill
+./scripts/test-skill.sh --run        # Test interactively
 
-# Test in Opencode (interactive)
-./scripts/test-skill.sh --run        # Launch session with dev skills
-```
+# Skill creation
+python3 skills/skill-creator/scripts/init_skill.py <name> --path skills/
 
-### Creating Skills
-```bash
-python3 skills/skill-creator/scripts/init_skill.py <skill-name> --path skills/
-python3 skills/skill-creator/scripts/quick_validate.py skills/<skill-name>
-```
-
-### Running Tests
-```bash
-# Run single test file
-python3 -m unittest skills/pdf/scripts/check_bounding_boxes_test.py
-
-# Run all tests in a module
-python3 -m unittest discover -s skills/pdf/scripts -p "*_test.py"
-```
-
-### Issue Tracking
-```bash
-bd ready              # Find available work
-bd create "title"     # Create new issue
-bd update <id> --status in_progress
-bd close <id>         # Complete work
-bd sync               # Sync with git
-```
-
-## Code Style Guidelines
-
-### File Naming
-- Skills: hyphen-case (e.g., `task-management`, `skill-creator`)
-- Python: snake_case (e.g., `init_skill.py`, `quick_validate.py`)
-- Markdown: UPPERCASE or sentence-case (e.g., `SKILL.md`, `profile.md`)
-- Config: Standard conventions (e.g., `config.yaml`, `metadata.json`)
-
-### Python Style
-**Shebang**: Always `#!/usr/bin/env python3`
-
-**Docstrings**:
-```python
-"""
-Brief description
-
-Usage:
-    script.py <args>
-
-Examples:
-    script.py my-skill --path ~/.config/opencode/skill
-"""
-```
-
-**Imports** (standard → third-party → local):
-```python
-import sys
-import os
-from pathlib import Path
-import yaml
-from . import utilities
-```
-
-**Naming**:
-- Functions: `snake_case`
-- Classes: `PascalCase`
-- Constants: `UPPER_SNAKE_CASE`
-- Private: `_leading_underscore`
-
-**Error handling**:
-```python
-try:
-    # operation
-except SpecificException as e:
-    print(f"❌ Error: {e}")
-    return None
-```
-
-**User feedback**:
-```python
-print(f"✅ Success: {result}")
-print(f"❌ Error: {error}")
-```
-
-### Bash Style
-**Shebang**: Always `#!/usr/bin/env bash`
-**Strict mode**: `set -euo pipefail`
-**Functions**: `snake_case`, descriptive names
-
-### Markdown Style
-- YAML frontmatter between `---` delimiters
-- ATX headers (`#`, `##`, `###`)
-- Use `-` for unordered lists
-- Specify language in code blocks (```python, ```bash, etc.)
-
-### YAML Style
-```yaml
-name: skill-name
-description: "Text with special chars in quotes"
-compatibility: opencode
-items:
-  - first
-  - second
+# Issue tracking (beads)
+bd ready && bd create "title" && bd close <id> && bd sync
 ```
 
 ## Directory Structure
 
 ```
 .
+├── skills/          # Agent skills (25 modules)
+│   └── skill-name/
+│       ├── SKILL.md         # Required: YAML frontmatter + workflows
+│       ├── scripts/         # Executable code (optional)
+│       ├── references/      # Domain docs (optional)
+│       └── assets/         # Templates/files (optional)
 ├── agents/          # Agent definitions (agents.json)
-├── prompts/         # Agent system prompts
-├── context/         # User profiles and preferences
-├── commands/        # Custom command definitions
-├── skills/          # Opencode Agent Skills
-│   ├── skill-name/
-│   │   ├── SKILL.md
-│   │   ├── scripts/     # Executable code (optional)
-│   │   ├── references/   # Documentation (optional)
-│   │   └── assets/      # Templates/files (optional)
-├── scripts/         # Repository utilities
-└── AGENTS.md        # This file
+├── prompts/         # System prompts (chiron*.txt)
+├── context/         # User profiles
+├── commands/        # Custom commands
+└── scripts/         # Repo utilities (test-skill.sh)
 ```
 
-## Nix Deployment
+## Code Conventions
 
-**Flake input** (non-flake):
+**File naming**: hyphen-case (skills), snake_case (Python), UPPERCASE/sentence-case (MD)
+
+**SKILL.md structure**:
+```yaml
+---
+name: skill-name
+description: "Use when: (1) X, (2) Y. Triggers: a, b, c."
+compatibility: opencode
+---
+
+## Overview (1 line)
+## Core Workflows (step-by-step)
+## Integration with Other Skills
+```
+
+**Python**: `#!/usr/bin/env python3` + docstrings + emoji feedback (✅/❌)
+**Bash**: `#!/usr/bin/env bash` + `set -euo pipefail`
+**Markdown**: YAML frontmatter, ATX headers, `-` lists, language in code blocks
+
+## Anti-Patterns (CRITICAL)
+
+**Frontend Design**: NEVER use generic AI aesthetics, NEVER converge on common choices
+**Excalidraw**: NEVER use diamond shapes (broken arrows), NEVER use `label` property
+**Debugging**: NEVER fix just symptom, ALWAYS find root cause first
+**Excel**: ALWAYS respect existing template conventions over guidelines
+**Structure**: NEVER place scripts/docs outside scripts/references/ directories
+
+## Testing Patterns
+
+**Unique conventions** (skill-focused, not CI/CD):
+- Manual validation via `test-skill.sh`, no automated CI
+- Tests co-located with source (not separate test directories)
+- YAML frontmatter validation = primary quality gate
+- Mixed formats: Python unittest, markdown pressure tests, A/B prompt testing
+
+**Known deviations**:
+- `systematic-debugging/test-*.md` - Academic/pressure testing in wrong location
+- `pdf/forms.md`, `pdf/reference.md` - Docs outside references/
+
+## Deployment
+
+**Nix pattern** (non-flake input):
 ```nix
 agents = {
   url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
-  flake = false;
+  flake = false;  # Files only, not a Nix flake
 };
 ```
 
-**Deployment mapping**:
-- `skills/` → `~/.config/opencode/skill/` (symlink)
-- `context/` → `~/.config/opencode/context/` (symlink)
-- `commands/` → `~/.config/opencode/command/` (symlink)
-- `prompts/` → `~/.config/opencode/prompts/` (symlink)
-- `agents/agents.json` → Embedded into opencode config.json (not symlinked)
+**Mapping** (via home-manager):
+- `skills/`, `context/`, `commands/`, `prompts/` → symlinks
+- `agents/agents.json` → embedded into config.json
+- Agent changes: require `home-manager switch`
+- Other changes: visible immediately
 
-**Note**: Agent changes require `home-manager switch`; other changes visible after rebuild.
+## Notes for AI Agents
+
+1. **Config-only repo** - No compilation, no build, manual validation only
+2. **Skills are documentation** - Write for AI consumption, progressive disclosure
+3. **Consistent structure** - All skills follow 4-level deep pattern (skills/name/ + optional subdirs)
+4. **Cross-cutting concerns** - Standardized SKILL.md, workflow patterns, delegation rules
+5. **Always push** - Session completion workflow: commit + bd sync + git push
 
 ## Quality Gates
 
 Before committing:
-1. Validate skills: `./scripts/test-skill.sh --validate`
-2. Validate YAML frontmatter: `python3 skills/skill-creator/scripts/quick_validate.py skills/<name>`
-3. Check Python scripts have proper shebang and docstrings
-4. Ensure no extraneous files (README.md, CHANGELOG.md in skills)
-5. Git status clean
-
-## Notes for AI Agents
-
-1. **Config-only repo** - No compilation, no build, minimal test infrastructure
-2. **Validation is manual** - Run scripts explicitly before committing
-3. **Skills are documentation** - Write for AI consumption, not humans
-4. **Directory naming** - Use `skills/` (plural), not `skill/`; `agents/` (plural), not `agent/`
-5. **Commands naming** - Use `commands/` (plural), not `command/`
-6. **Nix deployment** - Maintain structure expected by home-manager
-7. **Always push** - Follow session completion workflow
-
-## Optimization Opportunities
-
-1. **Add Python linting** - Configure ruff or black for consistent formatting
-2. **Add pre-commit hooks** - Auto-validate skills and run linters before commit
-3. **Test coverage** - Add pytest for skill scripts beyond PDF skill
-4. **CI/CD** - Add GitHub Actions to validate skills on PR
-5. **Documentation** - Consolidate README.md and AGENTS.md to reduce duplication
+1. `./scripts/test-skill.sh --validate`
+2. Python shebang + docstrings check
+3. No extraneous files (README.md, CHANGELOG.md in skills/)
+4. Git status clean

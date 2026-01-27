@@ -70,18 +70,18 @@
 
 | System | Purpose | Status |
 |--------|---------|--------|
-| Anytype | Knowledge management, PARA system | Setting up |
+| Obsidian | Knowledge management, PARA system | Active |
 | ntfy | Push notifications | Active |
 | n8n | Workflow automation | Active |
 | Proton Mail | Email | Active |
 | Proton Calendar | Scheduling | Active |
 | Android | Mobile | Active |
 
-## Anytype Configuration
+## Obsidian Configuration
 
-- **Space**: Chiron (to be created)
+- **Vault**: ~/CODEX
 - **Structure**: PARA methodology
-- **Types**: Project, Area, Resource, Archive, Task, Note
+- **Note Types**: Project, Area, Resource, Archive, Task, Note, Brainstorm
 
 ## Context for AI Interactions
 

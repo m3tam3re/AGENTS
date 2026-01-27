@@ -65,56 +65,69 @@ Be ready to backtrack and clarify. Brainstorming is non-linear.
 
 After reaching clarity, offer:
 
-> "Would you like me to save this as an Anytype Brainstorm object for reference?"
+> "Would you like me to save this brainstorm to Obsidian for reference?"
 
-If yes, use the Anytype MCP to create a Brainstorm object:
+If yes, create a brainstorm note in Obsidian:
 
 ```
-Anytype_API-create-object
-  space_id: CHIRON_SPACE_ID
-  type_key: "brainstorm_v_2"
-  name: "<topic>"
-  body: "<full brainstorm content in markdown>"
-  icon: { format: "emoji", emoji: "💭" }
-  properties: [
-    { key: "topic", text: "<short title>" },
-    { key: "context", text: "<situation and trigger>" },
-    { key: "outcome", text: "<what success looks like>" },
-    { key: "constraints", text: "<time, resources, boundaries>" },
-    { key: "options", text: "<options considered>" },
-    { key: "decision", text: "<final choice>" },
-    { key: "rationale", text: "<reasoning behind decision>" },
-    { key: "next_steps", text: "<action items>" },
-    { key: "framework", select: "<framework_tag_id>" },
-    { key: "status", select: "draft" }
-  ]
+File: ~/CODEX/03-resources/brainstorms/YYYY-MM-DD-[topic].md
+
+---
+date: {{date}}
+created: {{timestamp}}
+type: brainstorm
+framework: {{framework_used}}
+status: {{draft|final|archived}}
+tags: #brainstorm #{{framework_tag}}
+---
+
+# {{topic}}
+
+## Context
+{{situation and trigger}}
+
+## Outcome
+{{what success looks like}}
+
+## Constraints
+{{time, resources, boundaries}}
+
+## Options Explored
+{{options considered}}
+
+## Decision
+{{final choice}}
+
+## Rationale
+{{reasoning behind decision}}
+
+## Next Steps
+{{action items}}
+
+---
+*Created: {{timestamp}}*
 ```
 
-**Chiron Space ID**: `bafyreie5sfq7pjfuq56hxsybos545bi4tok3kx7nab3vnb4tnt4i3575p4.yu20gbnjlbxv`
+**Framework tags** (use in `tags:` frontmatter):
+- `#pros-cons` - Pros/Cons analysis
+- `#swot` - Strategic SWOT assessment
+- `#5-whys` - Root cause analysis
+- `#how-now-wow` - Prioritization matrix
+- `#starbursting` - Comprehensive exploration (6 questions)
+- `#constraint-mapping` - Boundary analysis
 
-**Framework Tag IDs**:
-- `bafyreiatkdbwq53shngaje6wuw752wxnwqlk3uhy6nicamdr56jpvji34i` - None
-- `bafyreiaizrndgxmzbbzo6lurkgi7fc6evemoc5tivswrdu57ngkizy4b3u` - Pros/Cons
-- `bafyreiaym5zkajnsrklivpjkizkuyhy3v5fzo62aaeobdlqzhq47clv6lm` - SWOT
-- `bafyreihgfpsjeyuu7p46ejzd5jce5kmgfsuxy7r5kl4fqdhuq7jqoggtgq` - 5 Whys
-- `bafyreieublfraypplrr5mmnksnytksv4iyh7frspyn64gixaodwmnhmosu` - How-Now-Wow
-- `bafyreieyz6xjpt3zxad7h643m24oloajcae3ocnma3ttqfqykmggrsksk4` - Starbursting
-- `bafyreigokn5xgdosd4cihehl3tqfsd25mwdaapuhopjgn62tkpvpwn4tmy` - Constraint Mapping
-
-**Status Tag IDs**:
-- `bafyreig5um57baws2dnntaxsi4smxtrzftpe57a7wyhfextvcq56kdkllq` - Draft
-- `bafyreiffiinadpa2fwxw3iylj7pph3yzbnhe63dcyiwr4x24ne4jsgi24` - Final
-- `bafyreihk6dlpwh3nljrxcqqe3v6tl52bxuvmx3rcgyzyom6yjmtdegu4ja` - Archived
-
-**Optional**: Link to related objects using `linked_projects` or `linked_tasks` properties with object IDs.
+**Status tags** (use in `status:` frontmatter):
+- `draft` - Initial capture
+- `final` - Decision made
+- `archived` - No longer active
 
 ---
 
 ## Template Setup
 
-For a better editing experience, create a template in Anytype:
+For a better editing experience, create a template in Obsidian:
 
-1. Open Anytype desktop app → Chiron space
+1. Open Obsidian → ~/CODEX vault
 2. Go to Content Model → Object Types → Brainstorm v2
 3. Click Templates (top right) → Click + to create template
 4. Name it "Brainstorm Session" and configure default fields:
@@ -185,4 +198,4 @@ After brainstorming, common next steps:
 | Task identified | task-management | "Add this to my tasks" |
 | Work project | basecamp | "Set this up in Basecamp" |
 
-All handoffs can reference the Anytype Brainstorm object via its ID or linked objects.
+All handoffs can reference the Obsidian brainstorm note via WikiLinks or file paths.
