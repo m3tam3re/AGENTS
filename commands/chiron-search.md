@@ -1,5 +1,5 @@
 ---
-name: /chiron-search
+name: chiron-search
 description: "Search knowledge base - find notes, tasks, or information in ~/CODEX vault"
 ---
 

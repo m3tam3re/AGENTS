@@ -1,5 +1,5 @@
 ---
-name: /chiron-start
+name: chiron-start
 description: "Morning planning ritual - set focus for the day and prioritize work"
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: /chiron-review
+name: chiron-review
 description: "Comprehensive weekly review - metrics, project status, inbox processing, next week planning"
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: /chiron-project
+name: chiron-project
 description: "Create new project - initialize project structure using PARA methodology"
 ---
 

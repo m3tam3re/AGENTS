@@ -1,5 +1,5 @@
 ---
-name: /chiron-learn
+name: chiron-learn
 description: "Capture learning - record insights, discoveries, and knowledge"
 ---
 

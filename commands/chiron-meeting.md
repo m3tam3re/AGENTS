@@ -1,5 +1,5 @@
 ---
-name: /chiron-meeting
+name: chiron-meeting
 description: "Meeting notes - structured capture of meetings with action items"
 ---
 

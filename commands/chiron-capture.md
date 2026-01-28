@@ -1,5 +1,5 @@
 ---
-name: /chiron-capture
+name: chiron-capture
 description: "Quick capture to inbox - minimal friction capture for tasks, notes, meetings, learnings"
 ---
 

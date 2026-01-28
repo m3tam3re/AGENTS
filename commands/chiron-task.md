@@ -1,5 +1,5 @@
 ---
-name: /chiron-task
+name: chiron-task
 description: "Add task with smart defaults - create task with proper formatting and placement"
 ---
 

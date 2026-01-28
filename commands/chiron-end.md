@@ -1,5 +1,5 @@
 ---
-name: /chiron-end
+name: chiron-end
 description: "Evening reflection ritual - review the day, capture wins/learnings, plan tomorrow"
 ---
 

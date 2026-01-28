@@ -215,6 +215,83 @@ For complete tool reference with parameters, see [references/mcp-tools.md](refer
 - **Work projects only**: This skill is for professional/team projects
 - **Pagination handled**: MCP server handles pagination transparently
 
+## Project Mapping Configuration
+
+### Map Basecamp Projects to PARA
+
+When setting up the integration, create a mapping between Basecamp projects and Obsidian project folders:
+
+**Example configuration** (to be customized):
+```json
+{
+  "basecamp_projects": {
+    "project_123": {
+      "name": "API Integration Platform",
+      "para_path": "01-projects/work/api-integration-platform",
+      "area": "technical-excellence",
+      "type": "engineering"
+    },
+    "project_456": {
+      "name": "Customer Portal Redesign",
+      "para_path": "01-projects/work/customer-portal-redesign",
+      "area": "technical-excellence",
+      "type": "product-design"
+    }
+    // ... add all projects
+  }
+}
+```
+
+**Where to store**:
+- Obsidian: `~/CODEX/_chiron/context/basecamp-projects.md`
+- Or in skill: `references/basecamp-project-map.md`
+
+### Usage in Workflows
+
+When creating/syncing to Basecamp:
+
+```
+1. User mentions: "API Integration Platform"
+2. Look up in project map:
+   - Get: project_id = "project_123"
+   - Get: para_path = "01-projects/work/api-integration-platform"
+3. Use project_id for Basecamp operations
+4. Use para_path for Obsidian operations
+```
+
+### Fetching Real Projects
+
+**When first setting up**:
+
+```
+User: "Fetch my Basecamp projects and set up PARA structure"
+
+Steps:
+1. get_projects() → Get all Basecamp projects
+2. For each project:
+   - Extract: id, name, status, last_activity
+   - Determine PARA path (kebab-case from name)
+   - Create project folder with _index.md
+   - Add frontmatter: basecamp_id, project_link
+3. Create mapping in basecamp-projects.md
+4. Confirm: "Mapped 10 Basecamp projects to PARA structure"
+```
+
+**Example project _index.md frontmatter**:
+```yaml
+---
+title: "[Project Name]"
+basecamp_id: "project_123"
+basecamp_url: "https://3.basecampapi.com/123456/projects/project_123"
+status: active
+deadline: YYYY-MM-DD
+source: basecamp
+tags: [work, project, engineering]
+---
+```
+
+---
+
 ## Integration with Other Skills
 
 | From Skill      | To Basecamp                                       |
@@ -222,6 +299,8 @@ For complete tool reference with parameters, see [references/mcp-tools.md](refer
 | brainstorming   | Save decision → reference in project docs         |
 | plan-writing    | todo-structure.md → Basecamp todos or cards       |
 | task-management | Obsidian tasks ↔ Basecamp todos (manual reference) |
+| daily-routines  | Morning planning with Basecamp todos, evening review   |
+| meeting-notes  | Sync action items from meetings to Basecamp          |
 
 ## Common Patterns
 

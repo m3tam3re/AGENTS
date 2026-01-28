@@ -298,12 +298,296 @@ Morning planning, evening reflection, and weekly review workflows for the Chiron
 - `task-management` - Extract/update tasks
 - `chiron-core` - PARA guidance, prioritization, reflection questions
 - `calendar-scheduling` - Calendar integration
+- `basecamp` - Fetch work todos, check project status
+- `outline` - Search wiki for work context
 
 **Delegation rules:**
 - User wants to understand PARA → `chiron-core`
 - User asks about tasks → `task-management`
 - User needs file operations → `obsidian-management`
 - User needs calendar → `calendar-scheduling`
+- User needs work context → `basecamp`
+- User needs wiki knowledge → `outline`
+
+---
+
+## Work Context Integration
+
+### Morning Planning with Work
+
+**Enhanced morning plan workflow:**
+
+```
+1. Read yesterday's daily note (personal + work)
+2. Check today's work todos:
+   - Delegate to basecamp skill: "Show my Basecamp todos due today"
+   - Get: project name, task title, due date, assignee
+3. Check project status:
+   - For each active work project:
+     Delegate to basecamp: "What's status of [project]?"
+     - Get: completion %, overdue items, next milestones
+4. Check wiki for relevant docs:
+   - Delegate to outline: "Search Outline for [topic]"
+   - Get: related docs, decisions, processes
+5. Create integrated morning plan:
+   - Personal priorities (from PARA areas)
+   - Work priorities (from Basecamp)
+   - Meeting schedule (from calendar)
+   - Deep work blocks aligned with energy
+```
+
+**Morning plan with work context:**
+```markdown
+# 🌅 Morning Plan - YYYY-MM-DD
+
+## Work Focus (Top 3)
+1. [[API Integration Platform]] - Complete OAuth flow (Basecamp: 3 todos today)
+2. [[Customer Portal Redesign]] - Review mockups (Basecamp: 2 todos due)
+3. [[Data Analytics Dashboard]] - Fix query performance (Basecamp: 1 overdue)
+
+## Personal Focus (Top 2)
+1. Health - Morning workout
+2. Finances - Review monthly budget
+
+## Deep Work Blocks
+- [9:00-11:00] [[API Integration Platform]] (High energy, no meetings)
+- [14:00-16:00] [[Customer Portal Redesign]] (Design work)
+
+## Meetings (Work)
+- [11:00-12:00] Project Sync (Teams)
+- [15:00-16:00] Architecture Review (Zoom)
+
+## Quick Wins (<15min)
+- [ ] Respond to urgent emails
+- [ ] Update project status in Basecamp
+- [ ] Process inbox items (3 items)
+
+## Work Wiki Resources
+- 📄 [[OAuth Setup Guide]](outline://doc/abc123) - Reference for project 1
+- 📄 [[UI Design System]](outline://doc/def456) - Reference for project 2
+
+## Inbox to Process
+- [X] items in 00-inbox/ to process
+```
+
+### Evening Reflection with Work
+
+**Enhanced evening reflection workflow:**
+
+```
+1. Review completed tasks (personal + work)
+   - Check Basecamp: "What did I complete today in Basecamp?"
+   - Get: todos marked complete, cards moved to Done
+2. Check project progress:
+   - For each active project: get status
+   - Note: milestones reached, blockers encountered
+3. Capture work learnings:
+   - Technical learnings (to document later)
+   - Process insights (to export to wiki)
+   - Team collaboration notes
+4. Sync to Obsidian:
+   - Create work summary in project notes
+   - Export decisions to Outline (if n8n available)
+5. Plan tomorrow:
+   - Carry over incomplete Basecamp todos
+   - Update project priorities based on today's progress
+   - Identify personal priorities
+```
+
+**Evening reflection with work context:**
+```markdown
+# 🌙 Evening Reflection - YYYY-MM-DD
+
+## Work Tasks Completed
+- ✅ Complete OAuth2 implementation (Basecamp)
+- ✅ Review dashboard mockups (Basecamp)
+- ✅ Respond to 5 team messages (Teams)
+- ⏭️ Fix query performance (carried over)
+
+## Personal Tasks Completed
+- ✅ Morning workout
+- ✅ Weekly grocery shopping
+- ⏭️ Read book chapter (carried over)
+
+## Work Wins
+1. OAuth2 implementation complete ahead of schedule
+2. Team approved dashboard design direction
+3. Documented architecture decision in wiki
+
+## Personal Wins
+1. Maintained morning routine
+2. Saved money on groceries
+
+## Work Challenges
+- Blocker: Waiting for API key from security team (project 1)
+- Solution: Scheduled meeting tomorrow to expedite
+
+## Work Learnings
+- OAuth2 token refresh pattern is simpler than expected
+- Team prefers async communication over meetings
+
+## Project Status Updates
+
+### [[API Integration Platform]]
+- Progress: 65% complete
+- Completed: OAuth2, token management
+- Next: API endpoints implementation
+- Deadline: 2026-03-15 (on track)
+
+### [[Customer Portal Redesign]]
+- Progress: 40% complete
+- Completed: Research, mockups
+- Next: User testing
+- Deadline: 2026-04-30 (slightly behind)
+
+## Tomorrow's Work Focus
+1. Complete API endpoints (OAuth Integration Platform)
+2. Conduct user testing (Customer Portal Redesign)
+3. Follow up on API key (Security team)
+
+## Tomorrow's Personal Focus
+1. Evening workout
+2. Update budget with new expenses
+
+## Energy Level
+- Morning: 8/10
+- Midday: 6/10 (meeting-heavy)
+- Evening: 7/10
+
+## Reflection
+[User's response]
+```
+
+### Weekly Review with Work
+
+**Enhanced weekly review workflow:**
+
+```
+1. Collect completed work:
+   - Get Basecamp stats: "Show my completed todos this week"
+   - Get project milestones achieved
+2. Review all projects:
+   - For each work project: get status
+   - Identify: at risk, on track, completed
+3. Review area health:
+   - Work areas: current-job, team-management, technical-excellence
+   - Check: balance, attention needed
+4. Process work inbox:
+   - Review 00-inbox/work/ items
+   - File to appropriate work projects or areas
+5. Plan next week:
+   - Work priorities from Basecamp
+   - Project milestones to focus on
+   - Personal priorities from PARA areas
+```
+
+**Weekly review with work context:**
+```markdown
+# 📊 Weekly Review - W## (Mon DD-MMM to Sun DD-MMM)
+
+## Work Metrics
+- Basecamp tasks completed: 23
+- Projects progressed: 5
+- Meetings attended: 12
+- Documents created/updated: 8
+- Wiki exports: 3 decisions, 2 guides
+
+## Personal Metrics
+- Tasks completed: 15
+- Deep work hours: 8
+- Focus score: 7.5/10
+
+## Work Wins
+1. OAuth2 platform delivered 3 days early
+2. Team approved new architecture decision
+3. Security audit passed with minor findings
+
+## Personal Wins
+1. Maintained workout routine (5/5 days)
+2. Read 2 books
+3. Saved target amount
+
+## Work Challenges
+- Challenge 1: API integration delayed by dependency
+   Root cause: Waiting on security team approval
+   Solution: Parallel track started for next sprint
+
+## Work Patterns
+- Productivity: High on Mon-Tue, dropped on Fri (meeting-heavy)
+- Energy: Mornings best for deep work, afternoons for collaboration
+- Meetings: Average 2.4/day, need to reduce to 1-2
+
+## Project Status
+
+### Completed
+- [[Security Audit 2026]] - Passed with 2 minor findings
+
+### On Track
+- [[API Integration Platform]] - 65% complete, on track
+- [[Customer Portal Redesign]] - 40% complete, slightly behind
+- [[Data Analytics Dashboard]] - 70% complete, ahead of schedule
+
+### Behind Schedule
+- [[Documentation Revamp]] - Delayed waiting for SME availability
+   Action: Book dedicated session next week
+
+### At Risk
+- [[Infrastructure Migration]] - Waiting on approval from ops team
+   Action: Escalate to manager tomorrow
+
+### Stalled
+- [[Mobile App v2.0]] - On hold, waiting for strategy decision
+   Action: Follow up with product owner
+
+## Work Area Health Review
+
+| Area | Health | Needs Attention |
+|-------|--------|----------------|
+| Current Job | 8/10 | Balance work/personal time better |
+| Professional Dev | 9/10 | On track with learning goals |
+| Team Management | 7/10 | Follow up on stalled mobile app |
+| Company Knowledge | 6/10 | Need to document more processes |
+| Technical Excellence | 8/10 | Good code quality, maintain standards |
+
+## Work Inbox Status
+- Items processed: 12
+- Items remaining: 3
+- Filed to Projects: 8
+- Filed to Resources: 2
+- Archived: 1
+
+## Next Week Work Priorities
+
+### Top 3
+1. Complete API endpoints (API Integration Platform) - Critical path
+2. User testing feedback (Customer Portal Redesign) - Milestone due
+3. Follow up on infrastructure approval (Infrastructure Migration) - Unblock project
+
+### Projects to Focus
+- [[API Integration Platform]] - Deliver MVP
+- [[Customer Portal Redesign]] - User testing phase
+- [[Data Analytics Dashboard]] - Performance optimization
+
+### Work Areas to Nurture
+- Team Management - Address mobile app stall
+- Company Knowledge - Document 3 key processes
+- Technical Excellence - Code review for new OAuth implementation
+
+## Next Week Personal Priorities
+
+### Top 3
+1. Health - 5 workouts, meal prep
+2. Finances - Monthly review, budget adjustment
+3. Learning - Complete TypeScript course module
+
+## Work Habits/Experiments
+- Try: 2-hour deep work blocks (instead of 1.5 hours)
+- Try: No meeting mornings (9-11 AM protected)
+- Try: End-of-day 15-min Basecamp review
+
+## Reflection Question
+[Weekly reflection from chiron-core references/reflection-questions.md]
+```
 
 ## Workflow Decision Tree
 
