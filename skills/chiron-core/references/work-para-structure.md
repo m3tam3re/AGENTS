@@ -1,393 +1,157 @@
-# PARA Structure Design for Work Integration
-
-## Vault Root Structure
-
-```
-~/CODEX/
-├── _chiron/
-│   ├── context.md              # Chiron system context
-│   └── templates/             # Note templates
-│       ├── daily-note.md
-│       ├── weekly-review.md
-│       ├── project.md
-│       ├── meeting.md
-│       ├── meeting-transcript.md   # New: For Teams transcripts
-│       ├── area.md
-│       └── resource.md
-│
-├── 00-inbox/                    # Quick captures
-│   ├── learnings/
-│   └── work-captures/
-│
-├── 01-projects/                 # Active projects
-│   ├── work/                    # WORK PROJECTS (10 Basecamp projects)
-│   │   ├── _basecamp-activity.md    # Basecamp sync log
-│   │   ├── _projects-index.md       # Master index of all work projects
-│   │   │
-│   │   ├── project-a/                # [PROJECT NAME 1]
-│   │   │   ├── _index.md            # Project MOC (links to Basecamp)
-│   │   │   ├── meetings/            # Teams meetings
-│   │   │   │   ├── standup-20260128.md
-│   │   │   │   └── planning-20260125.md
-│   │   │   │
-│   │   │   ├── decisions/           # Decision records
-│   │   │   │   ├── tech-stack-20260120.md
-│   │   │   │   └── feature-priority-20260115.md
-│   │   │   │
-│   │   │   ├── notes/              # Project notes
-│   │   │   │   ├── research-api.md
-│   │   │   │   └── design-ideas.md
-│   │   │   │
-│   │   │   └── basecamp-todos.md     # Reference to Basecamp todos
-│   │   │
-│   │   ├── project-b/                # [PROJECT NAME 2]
-│   │   │   ├── _index.md
-│   │   │   ├── meetings/
-│   │   │   ├── decisions/
-│   │   │   ├── notes/
-│   │   │   └── basecamp-todos.md
-│   │   │
-│   │   ├── project-c/                # [PROJECT NAME 3]
-│   │   ├── project-d/                # [PROJECT NAME 4]
-│   │   ├── project-e/                # [PROJECT NAME 5]
-│   │   ├── project-f/                # [PROJECT NAME 6]
-│   │   ├── project-g/                # [PROJECT NAME 7]
-│   │   ├── project-h/                # [PROJECT NAME 8]
-│   │   ├── project-i/                # [PROJECT NAME 9]
-│   │   └── project-j/                # [PROJECT NAME 10]
-│   │
-│   └── personal/                # Personal projects
-│       ├── learn-rust/
-│       ├── home-office/
-│       └── fitness-challenge/
-│
-├── 02-areas/                    # Ongoing responsibilities
-│   ├── work/                     # Work areas
-│   │   ├── current-job.md        # Current role and responsibilities
-│   │   ├── professional-dev.md   # Learning goals, certifications
-│   │   ├── team-management.md    # Team coordination, 1:1s
-│   │   ├── company-knowledge.md # Org-specific knowledge
-│   │   └── processes.md         # SOPs, workflows
-│   │
-│   └── personal/                 # Personal areas
-│       ├── health.md
-│       ├── finances.md
-│       ├── relationships.md
-│       ├── learning.md
-│       └── home.md
-│
-├── 03-resources/                # Reference material (tool-agnostic + tool-specific)
-│   ├── work/                     # Work resources
-│   │   ├── wiki-mirror/           # Outline wiki exports (REPLACEABLE)
-│   │   │   ├── outline-api-guide.md
-│   │   │   ├── outline-deployment-sop.md
-│   │   │   ├── outline-monitoring.md
-│   │   │   └── _wiki-index.md     # Master wiki index
-│   │   │
-│   │   ├── teams-archive/         # Teams recordings/notes (REPLACEABLE)
-│   │   │   └── _teams-index.md
-│   │   │
-│   │   ├── basecamp-references/   # Basecamp docs/guides (REPLACEABLE)
-│   │   │   └── _basecamp-docs.md
-│   │   │
-│   │   ├── company-procedures/     # SOPs, processes (KEEP)
-│   │   │   ├── code-review.md
-│   │   │   ├── deployment.md
-│   │   │   └── onboarding.md
-│   │   │
-│   │   ├── technical-stack/       # Tech documentation (KEEP)
-│   │   │   ├── backend.md
-│   │   │   ├── frontend.md
-│   │   │   └── infrastructure.md
-│   │   │
-│   │   └── _work-resources-index.md
-│   │
-│   └── personal/                 # Personal resources
-│       ├── recipes.md
-│       ├── books.md
-│       └── travel.md
-│
-├── 04-archive/                  # Completed/inactive
-│   ├── work/
-│   │   ├── old-job-2024/        # Archived employment
-│   │   └── projects/              # Completed projects
-│   │
-│   └── personal/
-│       └── projects/
-│
-├── daily/                       # Daily notes
-│   ├── YYYY/
-│   │   └── MM/
-│   │       └── DD/
-│   │           └── YYYY-MM-DD.md
-│   └── weekly-reviews/
-│       └── YYYY-W##.md
-│
-└── tasks/                       # Task management
-    ├── inbox.md                  # All incoming tasks
-    ├── recurring.md              # Recurring tasks
-    └── someday.md               # Backlog items
-```
-
+---
+title: "Work PARA Structure"
+type: index
+created: 2026-01-28
 ---
 
-## Work Project Template
-
-Each of the 10 Basecamp projects should follow this structure:
-
-### 1. Project _index.md (MOC)
-
-```markdown
----
-title: "[Project Name]"
-status: active | on-hold | completed
-deadline: YYYY-MM-DD
-priority: critical | high | medium | low
-source: basecamp
-basecamp_id: [BC_PROJECT_ID]
-basecamp_url: [BC_PROJECT_URL]
-tags: [work, basecamp, active]
----
-
-# [Project Name]
+# Work PARA Structure
 
 ## Overview
-[Brief description of project goals and scope]
+PARA structure for work-related projects, areas, and resources. Designed for tool-agnostic knowledge management.
 
-## Basecamp Link
-[View in Basecamp](basecamp_url)
+## Directory Tree
 
-## Related Areas
-- [[current-job]]
-- [[team-management]]
-
-## Resources
-- [[outline-api-guide]]
-- [[technical-stack-backend]]
-
-## Quick Links
-- [ ] Basecamp Todos
-- [ ] Basecamp Messages
-- [ ] Teams Channel
-- [ ] Wiki Documentation
-
-## Notes
-- [ ] Latest update (YYYY-MM-DD): [Summary]
-- [ ] Latest update (YYYY-MM-DD): [Summary]
-
-## Sub-Projects/Milestones
-- [ ] Milestone 1
-- [ ] Milestone 2
-- [ ] Milestone 3
-```
-
-### 2. meetings/ folder
-
-Naming pattern: `[type]-YYYYMMDD.md`
-
-Example: `standup-20260128.md`, `planning-20260125.md`, `review-20260120.md`
-
-### 3. decisions/ folder
-
-Naming pattern: `[topic]-YYYYMMDD.md`
-
-Example: `tech-stack-choice-20260120.md`, `feature-priority-20260115.md`
-
-### 4. notes/ folder
-
-Free-form project notes. Organize by topic or date.
-
-Example: `research-api.md`, `design-ideas.md`, `bug-analysis.md`
-
----
-
-## Tool-Specific vs Tool-Agnostic Folders
-
-### Keep These (Tool-Agnostic)
 ```
 ~/CODEX/
-├── 02-areas/work/           # Job-specific knowledge (stays with you)
-├── 03-resources/work/
-│   ├── company-procedures/   # Your documented processes
-│   ├── technical-stack/       # Tech knowledge
-│   └── learnings/          # What you learned
-└── 01-projects/work/         # Project structure (stays)
+├── 01-projects/work/              # Active work projects
+│   ├── api-integration-platform/
+│   │   ├── _index.md
+│   │   ├── meetings/
+│   │   ├── decisions/
+│   │   └── notes/
+│   ├── customer-portal-redesign/
+│   │   └── (same structure)
+│   ├── marketing-campaign-q1/
+│   ├── security-audit-2026/
+│   ├── infrastructure-migration/
+│   ├── mobile-app-v20/
+│   ├── team-onboarding-program/
+│   ├── data-analytics-dashboard/
+│   ├── documentation-revamp/
+│   └── api-gateway-upgrade/
+│
+├── 02-areas/work/               # Ongoing work responsibilities
+│   ├── current-job.md
+│   ├── professional-dev.md
+│   ├── team-management.md
+│   ├── company-knowledge.md
+│   └── technical-excellence.md
+│
+├── 03-resources/work/           # Work reference material
+│   └── wiki-mirror/             # Outline wiki exports
+│       └── _wiki-index.md
+│
+└── 04-archive/work/           # Completed work
+    ├── projects/              # Finished projects
+    └── employment/           # Job transitions
 ```
 
-### Replace These (Tool-Specific)
+## Project Mapping
+
+| Basecamp Project | PARA Path | Type | Status | Deadline |
+|----------------|-----------|-------|---------|-----------|
+| API Integration Platform | `01-projects/work/api-integration-platform` | Engineering | Active | 2026-03-15 |
+| Customer Portal Redesign | `01-projects/work/customer-portal-redesign` | Product/Design | Active | 2026-04-30 |
+| Marketing Campaign Q1 | `01-projects/work/marketing-campaign-q1` | Marketing | Active | 2026-02-28 |
+| Security Audit 2026 | `01-projects/work/security-audit-2026` | Security | Active | 2026-03-31 |
+| Infrastructure Migration | `01-projects/work/infrastructure-migration` | Operations | Active | 2026-06-30 |
+| Mobile App v2.0 | `01-projects/work/mobile-app-v20` | Product | On Hold | 2026-05-15 |
+| Team Onboarding Program | `01-projects/work/team-onboarding-program` | HR/Operations | Active | 2026-02-15 |
+| Data Analytics Dashboard | `01-projects/work/data-analytics-dashboard` | Engineering | Active | 2026-04-15 |
+| Documentation Revamp | `01-projects/work/documentation-revamp` | Documentation | Active | 2026-03-30 |
+| API Gateway Upgrade | `01-projects/work/api-gateway-upgrade` | Engineering | On Hold | 2026-07-31 |
+
+## Integration Points
+
+### Basecamp Integration
+- **Skill**: `basecamp` (MCP)
+- **Mapping**: See Basecamp project IDs → PARA paths
+- **Sync**: Manual sync via skill or future n8n automation
+- **Status Check**: "What's in [project]?" → Basecamp
+
+### Outline Wiki Integration
+- **Skill**: `outline` (MCP)
+- **Live Search**: "Search Outline for [topic]"
+- **Export**: "Export [document] to Obsidian"
+- **Location**: `03-resources/work/wiki-mirror/`
+
+### Teams Meeting Integration
+- **Skill**: `meeting-notes`
+- **Workflow**: DOCX → AI analysis → meeting note → Basecamp sync
+- **Location**: `01-projects/work/[project]/meetings/`
+- **Guide**: See `skills/meeting-notes/references/teams-transcript-workflow.md`
+
+## Workflows
+
+### Morning Planning with Work Context
 ```
-~/CODEX/03-resources/work/
-├── wiki-mirror/           # Delete when switching jobs (Outline)
-├── teams-archive/         # Delete when switching jobs (Teams)
-├── basecamp-references/   # Delete when switching jobs (Basecamp)
-└── [other-tools]/        # Delete when switching jobs
-```
-
----
-
-## Master Index Files
-
-### _projects-index.md
-
-```markdown
-# Work Projects Index
-
-Last updated: YYYY-MM-DD
-
-## Active Projects (10 total)
-
-| Project | Status | Deadline | Priority | Basecamp |
-|---------|--------|-----------|-----------|-----------|
-| [[project-a]] | Active | 2026-03-15 | High | [Link] |
-| [[project-b]] | On Hold | 2026-04-01 | Medium | [Link] |
-| [[project-c]] | Active | 2026-02-28 | Critical | [Link] |
-| ... | ... | ... | ... | ... |
-
-## By Priority
-
-### Critical (2 projects)
-- [[project-c]]
-- [[project-g]]
-
-### High (5 projects)
-- [[project-a]]
-- [[project-d]]
-- [[project-f]]
-- [[project-h]]
-- [[project-j]]
-
-### Medium (3 projects)
-- [[project-b]]
-- [[project-e]]
-- [[project-i]]
-
-## By Deadline
-
-### Due This Week
-- [[project-a]] (2026-02-01)
-
-### Due Next Week
-- [[project-c]] (2026-03-15)
-
-### Due This Month
-- [[project-b]] (2026-04-01)
+1. Read yesterday's daily note
+2. Check Basecamp: "Show my Basecamp todos due today"
+3. Check Outline: "Search Outline for [project topic]"
+4. Create integrated morning plan with:
+   - Work priorities (from Basecamp)
+   - Personal priorities (from PARA)
+   - Meeting schedule
+   - Deep work blocks
 ```
 
-### _basecamp-activity.md
-
-```markdown
-# Basecamp Activity Log
-
-Last sync: YYYY-MM-DD HH:mm
-
-## Today (YYYY-MM-DD)
-- [10:30] Created todo: "Implement feature X" in project-a
-- [11:45] Completed todo: "Review PR #123" in project-c
-- [14:00] Comment added to "API Design" message in project-a
-
-## Yesterday (YYYY-MM-DD)
-- [09:00] Created card: "Bug fix investigation" in project-b
-- [16:30] Completed todo: "Update documentation" in project-g
-
-## This Week
-- Total todos created: 23
-- Total todos completed: 18
-- Total messages: 5
-- Active projects: 10
-
-## Quick Stats
-- Project with most activity: [[project-a]] (8 items)
-- Overdue todos: 3
-- Cards in review: 5
+### Evening Reflection with Work Context
+```
+1. Review completed Basecamp tasks
+2. Review project progress
+3. Capture work learnings
+4. Export decisions to Outline (if applicable)
+5. Plan tomorrow's work priorities
 ```
 
----
+### Weekly Review with Work
+```
+1. Check all Basecamp project status
+2. Review work area health
+3. Identify at-risk projects
+4. Plan next week's priorities
+5. Process work inbox
+```
 
-## Migration Guide (Job Switch)
+## Job Transition Checklist
 
 When switching jobs:
 
-### Step 1: Archive Current Work
-```bash
-# Move entire work structure to archive
-mv ~/CODEX/01-projects/work/ ~/CODEX/04-archive/work/old-job-2024/
+1. **Archive Current Work**:
+   - Move `01-projects/work/` → `04-archive/work/[old-company]/`
+   - Move `02-areas/work/` → `04-archive/work/[old-company]/`
+   - Keep `03-resources/work/wiki-mirror/` (company knowledge)
 
-# Archive work areas (optional, if job-specific)
-mv ~/CODEX/02-areas/work/ ~/CODEX/04-archive/work/areas-old-job/
+2. **Update Tool Configurations**:
+   - Basecamp: Remove old projects, add new ones
+   - Outline: Update collections (if switching wikis)
+   - Keep work structure intact
 
-# Archive tool-specific resources
-rm -rf ~/CODEX/03-resources/work/wiki-mirror/
-rm -rf ~/CODEX/03-resources/work/teams-archive/
-rm -rf ~/CODEX/03-resources/work/basecamp-references/
-```
+3. **Create New Work Structure**:
+   - Create new `01-projects/work/` folders
+   - Update `02-areas/work/` areas
+   - Preserve PARA methodology
 
-### Step 2: Clean Areas (Keep What's Generic)
-```bash
-# Keep professional-dev.md (generic learning)
-# Keep processes.md (if generic)
-# Delete job-specific files in 02-areas/work/
-rm ~/CODEX/02-areas/work/current-job.md
-rm ~/CODEX/02-areas/work/team-management.md
-rm ~/CODEX/02-areas/work/company-knowledge.md
-```
+## Quick Commands
 
-### Step 3: Set Up New Job
-```bash
-# Create new work project structure
-mkdir -p ~/CODEX/01-projects/work/
-mkdir -p ~/CODEX/01-projects/work/_basecamp-activity.md
-mkdir -p ~/CODEX/01-projects/work/_projects-index.md
+| Action | Command |
+|--------|----------|
+| Start work day | "/chiron-start" → morning planning with Basecamp |
+| End work day | "/chiron-end" → reflection with work metrics |
+| Weekly review | "/chiron-review" → work project status review |
+| Check Basecamp | "Show my Basecamp projects" or "What's in [project]?" |
+| Search wiki | "Search Outline for [topic]" |
+| Process meeting | "Process transcript: [file.docx]" |
+| Project status | "What's status of [project name]?" |
 
-# Create new work areas
-echo "---\ntitle: \"Current Job\"\nstatus: active\n---\n# Current Job\n\n## Role\n[Your role]\n\n## Responsibilities\n- [Responsibility 1]\n- [Responsibility 2]\n" > ~/CODEX/02-areas/work/current-job.md
+## Notes
 
-# Set up new tool folders
-mkdir -p ~/CODEX/03-resources/work/wiki-mirror/
-mkdir -p ~/CODEX/03-resources/work/teams-archive/
-mkdir -p ~/CODEX/03-resources/work/basecamp-references/
-```
-
-### Step 4: Import Basecamp Projects
-Use `basecamp` skill:
-```
-User: "Show my Basecamp projects"
-# Review 10 projects
-
-User: "Create project notes for all Basecamp projects"
-# Generates _index.md for each project
-# Populates _projects-index.md
-```
-
-### Step 5: Configure n8n Workflows
-- Update Basecamp webhook URLs
-- Configure Outline API for new job
-- Update Teams transcript webhook
-- Test all automations
+- All work knowledge stored in Obsidian (tool-agnostic)
+- Basecamp used for real-time task tracking
+- Outline used for live wiki access
+- Teams transcripts processed with AI analysis
+- n8n automation ready for future implementation
 
 ---
 
-## Implementation Checklist
-
-### Initial Setup (One-time)
-- [ ] Create directory structure in ~/CODEX/
-- [ ] Create _projects-index.md template
-- [ ] Create _basecamp-activity.md
-- [ ] Configure basecamp skill with project IDs
-- [ ] Set up n8n workflows
-- [ ] Configure Outline MCP server
-- [ ] Create meeting-transcript.md template
-
-### Ongoing Maintenance
-- [ ] Weekly: Review project status and update _projects-index.md
-- [ ] Weekly: Archive completed projects to 04-archive/
-- [ ] Weekly: Process inbox items
-- [ ] Weekly: Review _basecamp-activity.md
-- [ ] Monthly: Review 02-areas/work/ health
-
-### Job Switch (When needed)
-- [ ] Archive 01-projects/work/ to 04-archive/work/
-- [ ] Archive tool-specific resources (wiki-mirror, teams-archive, basecamp-references/)
-- [ ] Clean up job-specific areas
-- [ ] Set up new project structure
-- [ ] Import new Basecamp projects
-- [ ] Configure new tool integrations
+**Last updated**: 2026-01-28
