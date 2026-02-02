@@ -168,6 +168,10 @@
     "temperature": 0.1,
     "prompt": "{file:./prompts/athena.txt}",
     "permission": {
+      "external_directory": {
+        "~/p/**": "allow",
+        "*": "ask"
+      },
       "read": {
         "*": "allow",
         "*.env": "deny",
@@ -180,11 +184,16 @@
         "*.pem": "deny",
         "*.key": "deny",
         "*/.aws/*": "deny",
-        "*/.kube/*": "deny"
+        "*/.kube/*": "deny",
+        "/run/agenix/*": "deny",
+        ".local/share/*": "deny",
+        ".cache/*": "deny",
+        "*.db": "deny",
+        "*.keychain": "deny",
+        "*.p12": "deny"
       },
       "edit": "deny",
       "bash": "deny",
-      "external_directory": "deny",
       "doom_loop": "deny"
     }
   }
