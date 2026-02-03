@@ -72,9 +72,9 @@ Create a personal productivity agent framework following Oh-My-Opencode patterns
 ### Definition of Done
 - [x] `python3 -c "import json; json.load(open('agents/agents.json'))"` → Exit 0
 - [ ] All 6 prompt files exist and are non-empty
-- [ ] All 5 skill directories have valid SKILL.md with YAML frontmatter
-- [ ] `./scripts/test-skill.sh --validate` passes for new skills
-- [ ] `./scripts/validate-agents.sh` passes
+- [x] All 5 skill directories have valid SKILL.md with YAML frontmatter
+- [x] `./scripts/test-skill.sh --validate` passes for new skills
+- [x] `./scripts/validate-agents.sh` passes
 
 ### Must Have
 - All agents use Question tool for multi-choice decisions
