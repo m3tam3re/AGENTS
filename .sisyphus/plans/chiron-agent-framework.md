@@ -70,7 +70,7 @@ Create a personal productivity agent framework following Oh-My-Opencode patterns
 13. `scripts/validate-agents.sh` - Agent validation script
 
 ### Definition of Done
-- [ ] `python3 -c "import json; json.load(open('agents/agents.json'))"` → Exit 0
+- [x] `python3 -c "import json; json.load(open('agents/agents.json'))"` → Exit 0
 - [ ] All 6 prompt files exist and are non-empty
 - [ ] All 5 skill directories have valid SKILL.md with YAML frontmatter
 - [ ] `./scripts/test-skill.sh --validate` passes for new skills
@@ -965,9 +965,9 @@ done
 ### Final Checklist
  - [x] All 6 agents defined in agents.json
 - [ ] All 6 prompt files exist and are non-empty
-- [ ] All 5 skills have valid SKILL.md with YAML frontmatter
-- [ ] validate-agents.sh passes
-- [ ] test-skill.sh --validate passes
-- [ ] No MCP configuration in repo
-- [ ] No inline prompts in agents.json
-- [ ] All agent names are Greek mythology (not conflicting with Oh My OpenCode)
+ - [x] All 5 skills have valid SKILL.md with YAML frontmatter
+ - [x] validate-agents.sh passes
+ - [x] test-skill.sh --validate passes
+ - [x] No MCP configuration in repo
+ - [x] No inline prompts in agents.json
+ - [x] All agent names are Greek mythology (not conflicting with Oh My OpenCode)
