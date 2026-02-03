@@ -963,7 +963,7 @@ done
 ```
 
 ### Final Checklist
-- [ ] All 6 agents defined in agents.json
+ - [x] All 6 agents defined in agents.json
 - [ ] All 6 prompt files exist and are non-empty
 - [ ] All 5 skills have valid SKILL.md with YAML frontmatter
 - [ ] validate-agents.sh passes
