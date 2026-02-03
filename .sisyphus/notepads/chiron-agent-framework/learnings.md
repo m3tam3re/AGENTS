@@ -249,3 +249,90 @@ grep -qi "hermes\|athena\|apollo\|calliope" prompts/chiron.txt  # Should find al
 - Question tool requirement prevents action on ambiguous requests
 - Read-only orchestrator mode cleanly separates planning from execution
 - All 4 subagents must be explicitly mentioned for routing clarity
+
+## Wave 2, Task 4: Create Chiron-Forge (Build Mode) system prompt
+
+### Primary Agent Prompt Structure
+
+Primary agent prompts follow similar structure to subagents but with expanded scope:
+1. **Role definition**: "You are Chiron-Forge, the Greek centaur smith, specializing in [domain]"
+2. **Your Core Responsibilities**: Numbered list emphasizing execution over planning
+3. **Process**: 7-step workflow including delegation pattern
+4. **Quality Standards**: Focus on execution accuracy and safety
+5. **Output Format**: Execution summary structure
+6. **Edge Cases**: Handling of destructive operations and failures
+7. **Tool Usage**: Explicit permission boundaries and safety protocols
+8. **Boundaries**: Clear separation from Chiron's planning role
+
+### Chiron-Forge vs Chiron Separation
+
+**Chiron-Forge (Build Mode):**
+- Purpose: Execution and task completion
+- Focus: Modifying files, running commands, building artifacts
+- Permissions: Full write access with safety constraints
+- Delegation: Routes specialized work to subagents
+- Safety: Uses Question tool for destructive operations
+
+**Chiron (Plan Mode - Wave 2, Task 3):**
+- Purpose: Read-only analysis and planning
+- Focus: Analysis, planning, coordination
+- Permissions: Read-only access
+- Role: Orchestrator without direct execution
+
+### Permission Structure Mapping to Prompt
+
+From agents.json chiron-forge permissions:
+```json
+"permission": {
+  "read": { "*": "allow", "*.env": "deny" },
+  "edit": "allow",
+  "bash": { "*": "allow", "rm *": "ask", "git push *": "ask", "sudo *": "deny" }
+}
+```
+
+Mapped to prompt instructions:
+- "Execute commands, but use Question for rm, git push"
+- "Use Question tool for destructive operations"
+- "DO NOT execute destructive operations without confirmation"
+
+### Delegation Pattern for Primary Agents
+
+Primary agents have unique delegation responsibilities:
+- **Chiron-Forge**: Delegates based on domain expertise (Hermes for communications, Athena for knowledge, etc.)
+- **Chiron**: Delegates based on planning and coordination needs
+
+Process includes delegation as step 5:
+1. Understand the Task
+2. Clarify Scope
+3. Identify Dependencies
+4. Execute Work
+5. **Delegate to Subagents**: Use Task tool for specialized domains
+6. Verify Results
+7. Report Completion
+
+### Verification Commands
+
+Successful verification of prompt requirements:
+```bash
+# File character count > 500
+wc -c prompts/chiron-forge.txt
+# Output: 2598 (✓)
+
+# Domain keyword verification
+grep -qi "execut" prompts/chiron-forge.txt
+# Output: Found 'execut' (✓)
+
+grep -qi "build" prompts/chiron-forge.txt  
+# Output: Found 'build' (✓)
+```
+
+All verification checks passed successfully.
+
+### Key Takeaways
+
+- Primary agent prompts require clear separation from each other (Chiron plans, Chiron-Forge executes)
+- Permission structure in agents.json must be reflected in prompt instructions
+- Safety protocols for destructive operations are critical for write-access agents
+- Delegation is a core responsibility for both primary agents, but with different criteria
+- Role naming consistency reinforces domain separation (centaur smith vs wise centaur)
+
