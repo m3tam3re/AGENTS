@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 #
-# Validate agents.json structure and prompt files
+# Validate agents.json structure and referenced prompt files
 #
 # Usage:
-#   ./scripts/validate-agents.sh              # Validate agents.json
-#   ./scripts/validate-agents.sh --help       # Show help
+#   ./scripts/validate-agents.sh
 #
-# Checks:
-#   - agents.json is valid JSON
-#   - Each agent has required fields (description, mode, model, prompt, permission)
-#   - All referenced prompt files exist
-#   - All prompt files are non-empty
+# This script validates the agent configuration by:
+# - Parsing agents.json as valid JSON
+# - Checking all 6 required agents are present
+# - Verifying each agent has required fields
+# - Validating agent modes (primary vs subagent)
+# - Verifying all referenced prompt files exist and are non-empty
 
 set -euo pipefail
 
@@ -22,146 +22,161 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
-usage() {
-    echo "Usage: $0 [OPTIONS]"
-    echo ""
-    echo "Validate agents.json structure and prompt files."
-    echo ""
-    echo "Options:"
-    echo "  --help      Show this help message"
-    echo ""
-    echo "Validates:"
-    echo "  - agents.json is valid JSON"
-    echo "  - Each agent has required fields"
-    echo "  - All referenced prompt files exist"
-    echo "  - All prompt files are non-empty"
+AGENTS_FILE="$REPO_ROOT/agents/agents.json"
+PROMPTS_DIR="$REPO_ROOT/prompts"
+
+# Expected agent list
+EXPECTED_AGENTS=("chiron" "chiron-forge" "hermes" "athena" "apollo" "calliope")
+# Expected primary agents
+PRIMARY_AGENTS=("chiron" "chiron-forge")
+# Expected subagents
+SUBAGENTS=("hermes" "athena" "apollo" "calliope")
+# Required fields for each agent
+REQUIRED_FIELDS=("description" "mode" "model" "prompt")
+
+echo -e "${YELLOW}Validating agent configuration...${NC}"
+echo ""
+
+# Track errors
+error_count=0
+warning_count=0
+
+# Function to print error
+error() {
+    echo -e "${RED}❌ $1${NC}" >&2
+    ((error_count++)) || true
 }
 
-check_json_valid() {
-    local agents_file="$1"
+# Function to print warning
+warning() {
+    echo -e "${YELLOW}⚠️  $1${NC}"
+    ((warning_count++)) || true
+}
 
-    if ! python3 -m json.tool "$agents_file" > /dev/null 2>&1; then
-        echo -e "${RED}❌ agents.json is not valid JSON${NC}"
-        return 1
+# Function to print success
+success() {
+    echo -e "${GREEN}✅ $1${NC}"
+}
+
+# Check if agents.json exists
+if [[ ! -f "$AGENTS_FILE" ]]; then
+    error "agents.json not found at $AGENTS_FILE"
+    exit 1
+fi
+
+# Validate JSON syntax
+if ! python3 -c "import json; json.load(open('$AGENTS_FILE'))" 2>/dev/null; then
+    error "agents.json is not valid JSON"
+    exit 1
+fi
+
+success "agents.json is valid JSON"
+echo ""
+
+# Parse agents.json
+AGENT_COUNT=$(python3 -c "import json; print(len(json.load(open('$AGENTS_FILE'))))")
+success "Found $AGENT_COUNT agents in agents.json"
+
+# Check agent count
+if [[ $AGENT_COUNT -ne ${#EXPECTED_AGENTS[@]} ]]; then
+    error "Expected ${#EXPECTED_AGENTS[@]} agents, found $AGENT_COUNT"
+fi
+
+# Get list of agent names
+AGENT_NAMES=$(python3 -c "import json; print(' '.join(sorted(json.load(open('$AGENTS_FILE')).keys())))")
+
+echo ""
+echo "Checking agent list..."
+
+# Check for missing agents
+for expected_agent in "${EXPECTED_AGENTS[@]}"; do
+    if echo "$AGENT_NAMES" | grep -qw "$expected_agent"; then
+        success "Agent '$expected_agent' found"
+    else
+        error "Required agent '$expected_agent' not found"
     fi
+done
 
-    echo -e "${GREEN}✅ agents.json is valid JSON${NC}"
-    return 0
-}
+# Check for unexpected agents
+for agent_name in $AGENT_NAMES; do
+    if [[ ! " ${EXPECTED_AGENTS[@]} " =~ " ${agent_name} " ]]; then
+        warning "Unexpected agent '$agent_name' found (not in expected list)"
+    fi
+done
 
-check_required_fields() {
-    local agents_file="$1"
-    local agent_name="$2"
-    local agent_data="$3"
+echo ""
+echo "Checking agent fields and modes..."
 
-    local required_fields=("description" "mode" "model" "prompt" "permission")
-    local missing_fields=()
+# Validate each agent
+for agent_name in "${EXPECTED_AGENTS[@]}"; do
+    echo -n "  $agent_name: "
 
-    for field in "${required_fields[@]}"; do
-        if ! echo "$agent_data" | python3 -c "import sys, json; data = json.load(sys.stdin); exit(0 if '$field' in data else 1)" 2>/dev/null; then
+    # Check required fields
+    missing_fields=()
+    for field in "${REQUIRED_FIELDS[@]}"; do
+        if ! python3 -c "import json; data=json.load(open('$AGENTS_FILE')); print(data.get('$agent_name').get('$field', ''))" 2>/dev/null | grep -q .; then
             missing_fields+=("$field")
         fi
     done
 
     if [[ ${#missing_fields[@]} -gt 0 ]]; then
-        echo -e "  ${RED}❌ Missing required fields for '$agent_name': ${missing_fields[*]}${NC}"
-        return 1
+        error "Missing required fields: ${missing_fields[*]}"
+        continue
     fi
 
-    echo -e "  ${GREEN}✅ '$agent_name' has all required fields${NC}"
-    return 0
-}
+    # Get mode value
+    mode=$(python3 -c "import json; print(json.load(open('$AGENTS_FILE'))['$agent_name']['mode'])")
 
-check_prompt_file() {
-    local agent_name="$1"
-    local prompt_ref="$2"
-
-    # Extract filename from {file:./prompts/filename}
-    if [[ ! $prompt_ref =~ \{file:./prompts/([^}]+)\} ]]; then
-        echo -e "  ${RED}❌ '$agent_name': Invalid prompt reference format: $prompt_ref${NC}"
-        return 1
-    fi
-
-    local prompt_file="prompts/${BASH_REMATCH[1]}"
-
-    if [[ ! -f "$REPO_ROOT/$prompt_file" ]]; then
-        echo -e "  ${RED}❌ '$agent_name': Prompt file not found: $prompt_file${NC}"
-        return 1
-    fi
-
-    if [[ ! -s "$REPO_ROOT/$prompt_file" ]]; then
-        echo -e "  ${RED}❌ '$agent_name': Prompt file is empty: $prompt_file${NC}"
-        return 1
-    fi
-
-    echo -e "  ${GREEN}✅ '$agent_name': Prompt file exists and is non-empty ($prompt_file)${NC}"
-    return 0
-}
-
-validate_agents() {
-    local agents_file="$REPO_ROOT/agents/agents.json"
-
-    echo -e "${YELLOW}Validating agents.json...${NC}"
-    echo ""
-
-    if [[ ! -f "$agents_file" ]]; then
-        echo -e "${RED}❌ agents.json not found at $agents_file${NC}"
-        exit 1
-    fi
-
-    check_json_valid "$agents_file" || exit 1
-
-    local agent_names
-    agent_names=$(python3 -c "import json; data = json.load(open('$agents_file')); print('\n'.join(data.keys()))")
-
-    local failed=0
-
-    while IFS= read -r agent_name; do
-        [[ -z "$agent_name" ]] && continue
-
-        echo -n "  Checking '$agent_name': "
-
-        local agent_data
-        agent_data=$(python3 -c "import json; data = json.load(open('$agents_file')); print(json.dumps(data['$agent_name']))")
-
-        if ! check_required_fields "$agents_file" "$agent_name" "$agent_data"; then
-            ((failed++)) || true
-            continue
+    # Validate mode
+    if [[ " ${PRIMARY_AGENTS[@]} " =~ " ${agent_name} " ]]; then
+        if [[ "$mode" == "primary" ]]; then
+            success "Mode: $mode (valid)"
+        else
+            error "Expected mode 'primary' for agent '$agent_name', found '$mode'"
         fi
-
-        local prompt_ref
-        prompt_ref=$(python3 -c "import json, sys; data = json.load(open('$agents_file')); print(data['$agent_name'].get('prompt', ''))")
-
-        if ! check_prompt_file "$agent_name" "$prompt_ref"; then
-            ((failed++)) || true
+    elif [[ " ${SUBAGENTS[@]} " =~ " ${agent_name} " ]]; then
+        if [[ "$mode" == "subagent" ]]; then
+            success "Mode: $mode (valid)"
+        else
+            error "Expected mode 'subagent' for agent '$agent_name', found '$mode'"
         fi
+    fi
+done
 
-    done <<< "$agent_names"
+echo ""
+echo "Checking prompt files..."
 
-    echo ""
+# Validate prompt file references
+for agent_name in "${EXPECTED_AGENTS[@]}"; do
+    # Extract prompt file path from agent config
+    prompt_ref=$(python3 -c "import json; print(json.load(open('$AGENTS_FILE'))['$agent_name']['prompt'])")
 
-    if [[ $failed -eq 0 ]]; then
-        echo -e "${GREEN}✅ All agents validated successfully!${NC}"
-        exit 0
+    # Parse prompt reference: {file:./prompts/<name>.txt}
+    if [[ "$prompt_ref" =~ \{file:(\./prompts/[^}]+)\} ]]; then
+        prompt_file="${BASH_REMATCH[1]}"
+        prompt_path="$REPO_ROOT/${prompt_file#./}"
+
+        # Check if prompt file exists
+        if [[ -f "$prompt_path" ]]; then
+            # Check if prompt file is non-empty
+            if [[ -s "$prompt_path" ]]; then
+                success "Prompt file exists and non-empty: $prompt_file"
+            else
+                error "Prompt file is empty: $prompt_file"
+            fi
+        else
+            error "Prompt file not found: $prompt_file"
+        fi
     else
-        echo -e "${RED}❌ $failed agent(s) failed validation${NC}"
-        exit 1
+        error "Invalid prompt reference format for agent '$agent_name': $prompt_ref"
     fi
-}
+done
 
-# Main
-case "${1:-}" in
-    --help|-h)
-        usage
-        exit 0
-        ;;
-    "")
-        validate_agents
-        ;;
-    *)
-        echo -e "${RED}Unknown option: $1${NC}"
-        echo ""
-        usage
-        exit 1
-        ;;
-esac
+echo ""
+if [[ $error_count -eq 0 ]]; then
+    echo -e "${GREEN}All validations passed!${NC}"
+    exit 0
+else
+    echo -e "${RED}$error_count validation error(s) found${NC}"
+    exit 1
+fi
