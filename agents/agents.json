@@ -10,5 +10,53 @@
         "*": "ask"
       }
     }
+  },
+  "chiron-forge": {
+    "description": "Personal AI assistant (Build Mode). Full execution and task completion capabilities with safety prompts.",
+    "mode": "primary",
+    "model": "zai-coding-plan/glm-4.7",
+    "prompt": "{file:./prompts/chiron-forge.txt}",
+    "permission": {
+      "external_directory": {
+        "~/p/**": "allow",
+        "*": "ask"
+      }
+    }
+  },
+  "hermes": {
+    "description": "Work communication specialist. Handles Basecamp tasks, Outlook email, and MS Teams meetings.",
+    "mode": "subagent",
+    "model": "zai-coding-plan/glm-4.7",
+    "prompt": "{file:./prompts/hermes.txt}",
+    "permission": {
+      "question": "allow"
+    }
+  },
+  "athena": {
+    "description": "Work knowledge specialist. Manages Outline wiki, documentation, and knowledge organization.",
+    "mode": "subagent",
+    "model": "zai-coding-plan/glm-4.7",
+    "prompt": "{file:./prompts/athena.txt}",
+    "permission": {
+      "question": "allow"
+    }
+  },
+  "apollo": {
+    "description": "Private knowledge specialist. Manages Obsidian vault, personal notes, and private knowledge graph.",
+    "mode": "subagent",
+    "model": "zai-coding-plan/glm-4.7",
+    "prompt": "{file:./prompts/apollo.txt}",
+    "permission": {
+      "question": "allow"
+    }
+  },
+  "calliope": {
+    "description": "Writing specialist. Creates documentation, reports, meeting notes, and prose.",
+    "mode": "subagent",
+    "model": "zai-coding-plan/glm-4.7",
+    "prompt": "{file:./prompts/calliope.txt}",
+    "permission": {
+      "question": "allow"
+    }
   }
 }
