@@ -31,6 +31,8 @@ options: ["This page only", "This page + all linked sub-pages", "Let me pick spe
 
 4. **Target collection** - Use `Outline_list_collections` to show available collections, then ask which one to publish to
 
+**CRITICAL:** NEVER auto-select collection. Always present collection list to user and wait for explicit selection before proceeding with document creation.
+
 If URL fetch fails, use `question` to ask for an alternative URL or manual content paste.
 
 ### 2. Fetch & Parse Content
@@ -70,9 +72,14 @@ If an image download fails, log it and continue. Use a placeholder in the final 
 
 ### 4. Upload Images to Outline
 
-mcp-outline cannot create attachments. Use direct API calls via `bash`.
+**IMPORTANT:** Always use Outline MCP tools for all Outline operations. If Outline tools throw errors:
+1. Load the outline skill first: `skill name=outline`
+2. Retry with `skill_mcp` tool for outline operations
+3. Only fallback to direct API calls via `bash` after exhausting MCP options
 
-**Required env:** `OUTLINE_API_KEY`
+mcp-outline cannot create attachments. Use direct API calls via `bash` for image uploads only.
+
+**Required env:** `OUTLINE_API_KEY` (read from /run/agenix/outline-key)
 
 For each downloaded image:
 
@@ -146,10 +153,11 @@ Translate the entire document into each target language. Apply TEEM format to UI
 - Dialog/modal titles
 - Toolbar icons with text
 - Status messages from the app
+- **Headings containing UI terms** (example: "## [Adding a new To-do]" becomes "## [Ein neues **To-do** (Aufgabe) hinzufügen]")
 
 **Translate normally (no TEEM):**
 - Your own explanatory text
-- Document headings you create
+- Document headings you create (that don't contain UI terms)
 - General descriptions and conceptual explanations
 - Code blocks and technical identifiers
 
@@ -160,6 +168,9 @@ Click **Settings** (Einstellungen) to open preferences.
 Navigate to **Dashboard** (Übersicht) > **Reports** (Berichte).
 Press the **Submit** (Absenden) button.
 In the **File** (Datei) menu, select **Export** (Exportieren).
+
+# Heading with UI term: Create a new **To-do** (Aufgabe)
+## [Adding a new **To-do** (Aufgabe)]
 ```
 
 #### Czech Examples
@@ -169,6 +180,9 @@ Click **Settings** (Nastavení) to open preferences.
 Navigate to **Dashboard** (Přehled) > **Reports** (Sestavy).
 Press the **Submit** (Odeslat) button.
 In the **File** (Soubor) menu, select **Export** (Exportovat).
+
+# Heading with UI term: Create a new **To-do** (Úkol)
+## [Adding a new **To-do** (Úkol)]
 ```
 
 #### Ambiguous UI Terms
