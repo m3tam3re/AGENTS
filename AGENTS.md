@@ -31,7 +31,7 @@ bd ready && bd create "title" && bd close <id> && bd sync
 ├── prompts/         # System prompts (chiron*.txt)
 ├── context/         # User profiles
 ├── commands/        # Custom commands
-└── scripts/         # Repo utilities (test-skill.sh)
+└── scripts/         # Repo utilities (test-skill.sh, validate-agents.sh)
 ```
 
 ## Code Conventions
