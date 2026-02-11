@@ -8,7 +8,7 @@
 #   ./scripts/test-skill.sh --run        # Launch interactive opencode session
 #
 # This script creates a temporary XDG_CONFIG_HOME with symlinks to this
-# repository's skill/, context/, command/, and prompts/ directories,
+# repository's skills/, context/, command/, and prompts/ directories,
 # allowing you to test skill changes before deploying via home-manager.
 
 set -euo pipefail
@@ -72,17 +72,17 @@ list_skills() {
 
 validate_skill() {
     local skill_name="$1"
-    local skill_path="$REPO_ROOT/skill/$skill_name"
+    local skill_path="$REPO_ROOT/skills/$skill_name"
 
     if [[ ! -d "$skill_path" ]]; then
         echo -e "${RED}❌ Skill not found: $skill_name${NC}"
         echo "Available skills:"
-        ls -1 "$REPO_ROOT/skill/"
+        ls -1 "$REPO_ROOT/skills/"
         exit 1
     fi
 
     echo -e "${YELLOW}Validating skill: $skill_name${NC}"
-    if python3 "$REPO_ROOT/skill/skill-creator/scripts/quick_validate.py" "$skill_path"; then
+    if python3 "$REPO_ROOT/skills/skill-creator/scripts/quick_validate.py" "$skill_path"; then
         echo -e "${GREEN}✅ Skill '$skill_name' is valid${NC}"
     else
         echo -e "${RED}❌ Skill '$skill_name' has validation errors${NC}"
@@ -95,14 +95,14 @@ validate_all() {
     echo ""
 
     local failed=0
-    for skill_dir in "$REPO_ROOT/skill/"*/; do
+    for skill_dir in "$REPO_ROOT/skills/"*/; do
         local skill_name=$(basename "$skill_dir")
         echo -n "  $skill_name: "
-        if python3 "$REPO_ROOT/skill/skill-creator/scripts/quick_validate.py" "$skill_dir" > /dev/null 2>&1; then
+        if python3 "$REPO_ROOT/skills/skill-creator/scripts/quick_validate.py" "$skill_dir" > /dev/null 2>&1; then
             echo -e "${GREEN}✅${NC}"
         else
             echo -e "${RED}❌${NC}"
-            python3 "$REPO_ROOT/skill/skill-creator/scripts/quick_validate.py" "$skill_dir" 2>&1 | sed 's/^/    /'
+            python3 "$REPO_ROOT/skills/skill-creator/scripts/quick_validate.py" "$skill_dir" 2>&1 | sed 's/^/    /'
             ((failed++)) || true
         fi
     done

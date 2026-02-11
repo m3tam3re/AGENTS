@@ -6,8 +6,8 @@ Usage:
     init_skill.py <skill-name> --path <path>
 
 Examples:
-    init_skill.py my-new-skill --path ~/.config/opencode/skill
-    init_skill.py my-api-helper --path .opencode/skill
+    init_skill.py my-new-skill --path ~/.config/opencode/skills
+    init_skill.py my-api-helper --path .opencode/skills
     init_skill.py custom-skill --path /custom/location
 """
 

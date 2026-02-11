@@ -72,75 +72,71 @@ If an image download fails, log it and continue. Use a placeholder in the final 
 
 ### 4. Upload Images to Outline
 
-**IMPORTANT:** Always use Outline MCP tools for all Outline operations. If Outline tools throw errors:
-1. Load the outline skill first: `skill name=outline`
-2. Retry with `skill_mcp` tool for outline operations
-3. Only fallback to direct API calls via `bash` after exhausting MCP options
-
-mcp-outline cannot create attachments. Use direct API calls via `bash` for image uploads only.
-
-**Required env:** `OUTLINE_API_KEY` (read from /run/agenix/outline-key)
-
-For each downloaded image:
+MCP-outline does not support attachment creation. Use the bundled script for image uploads:
 
 ```bash
-#!/usr/bin/env bash
-set -euo pipefail
+# Upload with optional document association
+bash scripts/upload_image_to_outline.sh "/tmp/doc-images/screenshot.png" "$DOCUMENT_ID"
 
-IMAGE_PATH="/tmp/doc-images/screenshot.png"
-IMAGE_NAME="$(basename "$IMAGE_PATH")"
-CONTENT_TYPE="image/png"  # Detect from extension: png->image/png, jpg/jpeg->image/jpeg, gif->image/gif, svg->image/svg+xml, webp->image/webp
-
-# 1. Get file size (cross-platform)
-FILESIZE=$(stat -f%z "$IMAGE_PATH" 2>/dev/null || stat -c%s "$IMAGE_PATH")
-
-# 2. Create attachment record
-RESPONSE=$(curl -s -X POST "https://wiki.az-gruppe.com/api/attachments.create" \
-  -H "Authorization: Bearer $OUTLINE_API_KEY" \
-  -H "Content-Type: application/json" \
-  -d "{
-    \"name\": \"$IMAGE_NAME\",
-    \"contentType\": \"$CONTENT_TYPE\",
-    \"size\": $FILESIZE
-  }")
-
-# 3. Extract URLs from response
-UPLOAD_URL=$(echo "$RESPONSE" | jq -r '.data.uploadUrl')
-ATTACHMENT_URL=$(echo "$RESPONSE" | jq -r '.data.attachment.url')
-
-# 4. Check for errors
-if [ "$UPLOAD_URL" = "null" ] || [ -z "$UPLOAD_URL" ]; then
-  echo "ERROR: Failed to create attachment. Response: $RESPONSE" >&2
-  exit 1
-fi
-
-# 5. Upload binary to signed URL
-curl -s -X PUT "$UPLOAD_URL" \
-  -H "Content-Type: $CONTENT_TYPE" \
-  --data-binary "@$IMAGE_PATH"
-
-# 6. Output the attachment URL for use in markdown
-echo "$ATTACHMENT_URL"
+# Upload without document (attach later)
+bash scripts/upload_image_to_outline.sh "/tmp/doc-images/screenshot.png"
 ```
 
-Replace image references in the translated markdown:
+The script handles API key loading from `/run/agenix/outline-key`, content-type detection, the two-step presigned POST flow, and retries. Output is JSON: `{"success": true, "attachment_url": "https://..."}`.
+
+Replace image references in the translated markdown with the returned `attachment_url`:
 ```markdown
 ![description](ATTACHMENT_URL)
 ```
 
-**Content-Type detection by extension:**
-
-| Extension | Content-Type |
-|-----------|-------------|
-| `.png` | `image/png` |
-| `.jpg`, `.jpeg` | `image/jpeg` |
-| `.gif` | `image/gif` |
-| `.svg` | `image/svg+xml` |
-| `.webp` | `image/webp` |
+For all other Outline operations (documents, collections, search), use MCP tools (`Outline_*`).
 
 ### 5. Translate with TEEM Format
 
 Translate the entire document into each target language. Apply TEEM format to UI elements.
+
+#### Address Form (CRITICAL)
+
+**Always use the informal "you" form** in ALL target languages:
+- **German**: Use **"Du"** (informal), NEVER "Sie" (formal)
+- **Czech**: Use **"ty"** (informal), NEVER "vy" (formal)
+- This applies to all translations — documentation should feel approachable and direct
+
+#### Infobox / Callout Formatting
+
+Source documentation often uses admonitions, callouts, or info boxes (e.g., GitHub-style `> [!NOTE]`, Docusaurus `:::note`, or custom HTML boxes). **Convert ALL such elements** to Outline's callout syntax:
+
+```markdown
+:::tip
+Tip or best practice content here.
+
+:::
+
+:::info
+Informational content here.
+
+:::
+
+:::warning
+Warning or caution content here.
+
+:::
+
+:::success
+Success message or positive outcome here.
+
+:::
+```
+
+**Mapping rules** (source → Outline):
+| Source pattern | Outline syntax |
+|---|---|
+| Note, Info, Information | `:::info` |
+| Tip, Hint, Best Practice | `:::tip` |
+| Warning, Caution, Danger, Important | `:::warning` |
+| Success, Done, Check | `:::success` |
+
+**CRITICAL formatting**: The closing `:::` MUST be on its own line with an empty line before it. Content goes directly after the opening line.
 
 #### TEEM Rules
 
@@ -217,7 +213,7 @@ Use mcp-outline tools to publish:
 |-------|--------|
 | URL fetch fails | Use `question` to ask for alternative URL or manual paste |
 | Image download fails | Continue with placeholder, note in completion report |
-| Outline API error (attachments) | Save markdown to `/tmp/doc-translator-backup-TIMESTAMP.md`, report error |
+| Outline API error (attachments) | Script retries 3x with backoff; on final failure save markdown to `/tmp/doc-translator-backup-TIMESTAMP.md`, report error |
 | Outline API error (document) | Save markdown to `/tmp/doc-translator-backup-TIMESTAMP.md`, report error |
 | Ambiguous UI term | Use `question` to ask user for correct translation |
 | Large document (>5000 words) | Ask user if splitting into multiple docs is preferred |
@@ -254,9 +250,9 @@ Items Needing Review:
 
 ## Environment Variables
 
-| Variable | Purpose |
-|----------|---------|
-| `OUTLINE_API_KEY` | Bearer token for wiki.az-gruppe.com API |
+| Variable | Purpose | Source |
+|----------|---------|--------|
+| `OUTLINE_API_KEY` | Bearer token for wiki.az-gruppe.com API | Auto-loaded from `/run/agenix/outline-key` by upload script |
 
 ## Integration with Other Skills
 
