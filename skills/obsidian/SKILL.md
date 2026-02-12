@@ -218,6 +218,7 @@ curl -X POST "http://127.0.0.1:27124/create-note" \
 | Research note | research | Save research findings with tags |
 | Project note | task-management | Link tasks to project notes |
 | Plan document | plan-writing | Save generated plan to vault |
+| Memory note | memory | Create/read memory notes in 80-memory/ |
 
 ## Best Practices
 
@@ -228,6 +229,102 @@ curl -X POST "http://127.0.0.1:27124/create-note" \
 5. **Handle errors** - API may return 404 for non-existent files
 6. **Escape special characters** - URL-encode paths with spaces or symbols
 7. **Backup vault** - REST API operations modify files directly
+
+---
+
+## Memory Folder Conventions
+
+The `80-memory/` folder stores dual-layer memories synced with Mem0.
+
+### Structure
+
+```
+80-memory/
+├── preferences/    # Personal preferences (UI, workflow, communication)
+├── facts/          # Objective information (role, tech stack, constraints)
+├── decisions/      # Choices with rationale (tool selections, architecture)
+├── entities/       # People, organizations, systems, concepts
+└── other/          # Everything else
+```
+
+### Naming Convention
+
+Memory notes use kebab-case: `prefers-dark-mode.md`, `uses-typescript.md`
+
+### Required Frontmatter
+
+```yaml
+---
+type: memory
+category:        # preference | fact | decision | entity | other
+mem0_id:         # Mem0 memory ID (e.g., "mem_abc123")
+source: explicit # explicit | auto-capture
+importance:      # critical | high | medium | low
+created: 2026-02-12
+updated: 2026-02-12
+tags:
+  - memory
+sync_targets: []
+---
+```
+
+### Key Fields
+
+| Field | Purpose |
+|-------|---------|
+| `mem0_id` | Links to Mem0 entry for semantic search |
+| `category` | Determines subfolder and classification |
+| `source` | How memory was captured (explicit request vs auto) |
+| `importance` | Priority for recall ranking |
+
+---
+
+## Memory Note Workflows
+
+### Create Memory Note
+
+When creating a memory note in the vault:
+
+```bash
+# Using REST API
+curl -X POST "http://127.0.0.1:27124/create-note" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "path": "80-memory/preferences/prefers-dark-mode.md",
+    "content": "---\ntype: memory\ncategory: preference\nmem0_id: mem_abc123\nsource: explicit\nimportance: medium\ncreated: 2026-02-12\nupdated: 2026-02-12\ntags:\n  - memory\nsync_targets: []\n---\n\n# Prefers Dark Mode\n\n## Content\n\nUser prefers dark mode in all applications.\n\n## Context\n\nStated during UI preferences discussion on 2026-02-12.\n\n## Related\n\n- [[UI Settings]]\n"
+  }'
+```
+
+### Read Memory Note
+
+Read by path with URL encoding:
+
+```bash
+curl -X GET "http://127.0.0.1:27124/read-note?path=80-memory%2Fpreferences%2Fprefers-dark-mode.md"
+```
+
+### Search Memories
+
+Search within memory folder:
+
+```bash
+curl -X GET "http://127.0.0.1:27124/search?q=dark%20mode&path=80-memory"
+```
+
+### Update Memory Note
+
+Update content and frontmatter:
+
+```bash
+curl -X PUT "http://127.0.0.1:27124/update-note" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "path": "80-memory/preferences/prefers-dark-mode.md",
+    "content": "# Updated content..."
+  }'
+```
+
+---
 
 ## Error Handling
 
