@@ -108,6 +108,36 @@ Combine scopes for fine-grained control:
 }
 ```
 
+## Memory Categories
+
+Memories are classified into 5 categories for organization:
+
+| Category | Definition | Obsidian Path | Example |
+|----------|------------|---------------|---------|
+| `preference` | Personal preferences | `80-memory/preferences/` | UI settings, workflow styles |
+| `fact` | Objective information | `80-memory/facts/` | Tech stack, role, constraints |
+| `decision` | Choices with rationale | `80-memory/decisions/` | Tool selections, architecture |
+| `entity` | People, orgs, systems | `80-memory/entities/` | Contacts, APIs, concepts |
+| `other` | Everything else | `80-memory/other/` | General learnings |
+
+### Metadata Pattern
+
+Include category in metadata when storing:
+
+```json
+{
+  "messages": [...],
+  "user_id": "user123",
+  "metadata": {
+    "category": "preference",
+    "source": "explicit"
+  }
+}
+```
+
+- `category`: One of preference, fact, decision, entity, other
+- `source`: "explicit" (user requested) or "auto-capture" (automatic)
+
 ## Workflow Patterns
 
 ### Pattern 1: Remember User Preferences
@@ -137,6 +167,43 @@ curl -X POST http://localhost:8000/memories \
   -d '{"messages":[...], "run_id":"SESSION_ID"}'
 ```
 
+## Dual-Layer Sync
+
+Memories are stored in BOTH Mem0 AND the Obsidian CODEX vault for redundancy and accessibility.
+
+### Sync Pattern
+
+1. **Store in Mem0 first** - Get `mem0_id` from response
+2. **Create Obsidian note** - In `80-memory/<category>/` using memory template
+3. **Cross-reference**:
+   - Add `mem0_id` to Obsidian note frontmatter
+   - Update Mem0 metadata with `obsidian_ref` (file path)
+
+### Example Flow
+
+```bash
+# 1. Store in Mem0
+RESPONSE=$(curl -s -X POST http://localhost:8000/memories \
+  -d '{"messages":[{"role":"user","content":"I prefer dark mode"}],"user_id":"m3tam3re","metadata":{"category":"preference","source":"explicit"}}')
+
+# 2. Extract mem0_id
+MEM0_ID=$(echo $RESPONSE | jq -r '.id')
+
+# 3. Create Obsidian note (via REST API or MCP)
+# Path: 80-memory/preferences/prefers-dark-mode.md
+# Frontmatter includes: mem0_id: $MEM0_ID
+
+# 4. Update Mem0 with Obsidian reference
+curl -X PUT http://localhost:8000/memories/$MEM0_ID \
+  -d '{"metadata":{"obsidian_ref":"80-memory/preferences/prefers-dark-mode.md"}}'
+```
+
+### When Obsidian Unavailable
+
+- Store in Mem0 only
+- Log sync failure
+- Retry on next access
+
 ## Response Format
 
 Memory objects include:
@@ -160,6 +227,45 @@ Verify API is running:
 ```bash
 curl http://localhost:8000/health
 ```
+
+### Pre-Operation Check
+
+Before any memory operation, verify Mem0 is running:
+
+```bash
+if ! curl -s http://localhost:8000/health > /dev/null 2>&1; then
+  echo "WARNING: Mem0 unavailable. Memory operations skipped."
+  # Continue without memory features
+fi
+```
+
+## Error Handling
+
+### Mem0 Unavailable
+
+When `curl http://localhost:8000/health` fails:
+- Skip all memory operations
+- Warn user: "Memory system unavailable. Mem0 not running at localhost:8000"
+- Continue with degraded functionality
+
+### Obsidian Unavailable
+
+When vault sync fails:
+- Store in Mem0 only
+- Log: "Obsidian sync failed for memory [id]"
+- Do not block user workflow
+
+### API Errors
+
+| Status | Meaning | Action |
+|--------|---------|--------|
+| 400 | Bad request | Check JSON format, required fields |
+| 404 | Memory not found | Memory may have been deleted |
+| 500 | Server error | Retry, check Mem0 logs |
+
+### Graceful Degradation
+
+Always continue core functionality even if memory system fails. Memory is enhancement, not requirement.
 
 ## API Reference
 
