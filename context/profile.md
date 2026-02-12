@@ -104,3 +104,44 @@
 - Batch related information together
 - Remember my preferences across sessions
 - Proactively surface relevant information
+
+---
+
+## Memory System
+
+AI agents have access to a dual-layer memory system for persistent context across sessions.
+
+### Configuration
+
+| Setting | Value |
+|---------|-------|
+| **Mem0 Endpoint** | `http://localhost:8000` |
+| **Mem0 User ID** | `m3tam3re` |
+| **Obsidian Vault** | `~/CODEX` |
+| **Memory Folder** | `80-memory/` |
+| **Auto-Capture** | Enabled (max 3 per session) |
+| **Auto-Recall** | Enabled (top 5, score > 0.7) |
+
+### Memory Categories
+
+| Category | Purpose | Example |
+|----------|---------|---------|
+| `preference` | Personal preferences | UI settings, workflow styles |
+| `fact` | Objective information | Tech stack, role, constraints |
+| `decision` | Choices with rationale | Tool selections, architecture |
+| `entity` | People, orgs, systems | Key contacts, important APIs |
+| `other` | Everything else | General learnings |
+
+### MCP Server
+
+| Setting | Value |
+|---------|-------|
+| **Server** | `cyanheads/obsidian-mcp-server` |
+| **Config** | See `skills/memory/references/mcp-config.md` |
+
+### Usage Notes
+
+- Memories are stored in BOTH Mem0 and Obsidian for redundancy
+- Use explicit "remember this" to store important information
+- Auto-capture happens at session end with user confirmation
+- Relevant memories are injected at session start based on context
