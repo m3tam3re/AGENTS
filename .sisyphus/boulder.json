@@ -1,7 +1,9 @@
 {
-  "active_plan": "/home/m3tam3re/p/AI/AGENTS/.sisyphus/plans/chiron-agent-framework.md",
-  "started_at": "2026-02-03T19:07:36.011Z",
-  "session_ids": ["ses_3db18d3abffeIjqxbVVqNCz5As", "ses_3db16c6daffeKLCdiQiDREMZ3C"],
-  "plan_name": "chiron-agent-framework",
-  "completed_at": "2026-02-03T20:09:00.000Z"
+  "active_plan": "/home/m3tam3re/p/AI/AGENTS/.sisyphus/plans/opencode-memory.md",
+  "started_at": "2026-02-14T04:43:37.746Z",
+  "session_ids": [
+    "ses_3a5a47a05ffeoNYfz2RARYsHX9"
+  ],
+  "plan_name": "opencode-memory",
+  "agent": "atlas"
 }

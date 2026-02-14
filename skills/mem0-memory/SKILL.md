@@ -1,10 +1,16 @@
 ---
 name: mem0-memory
-description: "Store and retrieve memories using Mem0 REST API. Use when: (1) storing information for future recall, (2) searching past conversations or facts, (3) managing user/agent memory contexts, (4) building conversational AI with persistent memory. Triggers on keywords like 'remember', 'recall', 'memory', 'store for later', 'what did I say about'."
+description: "DEPRECATED: Replaced by opencode-memory plugin. See skills/memory/SKILL.md for current memory system."
 compatibility: opencode
 ---
 
-# Mem0 Memory
+> ⚠️ **DEPRECATED**
+>
+> This skill is deprecated. The memory system has been replaced by the opencode-memory plugin.
+>
+> **See:** `skills/memory/SKILL.md` for the current memory system.
+
+# Mem0 Memory (Legacy)
 
 Store and retrieve memories via Mem0 REST API at `http://localhost:8000`.
 

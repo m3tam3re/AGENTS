@@ -109,18 +109,19 @@
 
 ## Memory System
 
-AI agents have access to a dual-layer memory system for persistent context across sessions.
+AI agents have access to a persistent memory system for context across sessions via the opencode-memory plugin.
 
 ### Configuration
 
 | Setting | Value |
 |---------|-------|
-| **Mem0 Endpoint** | `http://localhost:8000` |
-| **Mem0 User ID** | `m3tam3re` |
+| **Plugin** | `opencode-memory` |
 | **Obsidian Vault** | `~/CODEX` |
 | **Memory Folder** | `80-memory/` |
-| **Auto-Capture** | Enabled (max 3 per session) |
-| **Auto-Recall** | Enabled (top 5, score > 0.7) |
+| **Database** | `~/.local/share/opencode-memory/index.db` |
+| **Auto-Capture** | Enabled (session.idle event) |
+| **Auto-Recall** | Enabled (session.created event) |
+| **Token Budget** | 2000 tokens |
 
 ### Memory Categories
 
@@ -132,16 +133,19 @@ AI agents have access to a dual-layer memory system for persistent context acros
 | `entity` | People, orgs, systems | Key contacts, important APIs |
 | `other` | Everything else | General learnings |
 
-### MCP Server
+### Available Tools
 
-| Setting | Value |
-|---------|-------|
-| **Server** | `cyanheads/obsidian-mcp-server` |
-| **Config** | See `skills/memory/references/mcp-config.md` |
+| Tool | Purpose |
+|------|---------|
+| `memory_search` | Hybrid search (vector + BM25) over vault + sessions |
+| `memory_store` | Store new memory as markdown file |
+| `memory_get` | Read specific file/lines from vault |
 
 ### Usage Notes
 
-- Memories are stored in BOTH Mem0 and Obsidian for redundancy
+- Memories are stored as markdown files in Obsidian (source of truth)
+- SQLite provides fast hybrid search (vector similarity + keyword BM25)
 - Use explicit "remember this" to store important information
-- Auto-capture happens at session end with user confirmation
-- Relevant memories are injected at session start based on context
+- Auto-recall injects relevant memories at session start
+- Auto-capture extracts preferences/decisions at session idle
+- See `skills/memory/SKILL.md` for full documentation
