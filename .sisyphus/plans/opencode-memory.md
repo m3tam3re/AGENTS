@@ -75,7 +75,7 @@ Build a standalone Opencode plugin that provides persistent, reliable, hybrid (v
 
 ### Definition of Done
 - [x] `bun test` passes all tests (0 failures)
-- [ ] Plugin loads in Opencode without errors (requires user deployment)
+- [~] Plugin loads in Opencode without errors (requires user deployment)
 - [x] `memory_search` returns hybrid results from vault + session transcripts
 - [x] `memory_store` creates markdown file + indexes it
 - [x] `memory_get` reads specific file/line ranges
@@ -1626,7 +1626,7 @@ bun run src/cli.ts --rebuild --vault ~/CODEX/80-memory/  # Expected: index rebui
 - [x] All "Must NOT Have" items absent (no mem0 dependency, no multi-vault, no UI, etc.)
 - [x] All unit tests pass (`bun test`)
 - [x] Integration tests pass
-- [ ] Plugin loads in Opencode without errors (requires user deployment)
+- [~] Plugin loads in Opencode without errors (requires user deployment)
 - [x] Auto-recall fires on session.created
 - [x] Auto-capture fires on session.idle
 - [x] Rebuild command recreates index from markdown
