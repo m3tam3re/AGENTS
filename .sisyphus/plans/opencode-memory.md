@@ -74,16 +74,16 @@ Build a standalone Opencode plugin that provides persistent, reliable, hybrid (v
 - Updated AGENTS repo: `skills/memory/SKILL.md` + deprecation notes
 
 ### Definition of Done
-- [ ] `bun test` passes all tests (0 failures)
-- [ ] Plugin loads in Opencode without errors
-- [ ] `memory_search` returns hybrid results from vault + session transcripts
-- [ ] `memory_store` creates markdown file + indexes it
-- [ ] `memory_get` reads specific file/line ranges
-- [ ] Auto-recall injects relevant memories on session.created
-- [ ] Auto-capture stores conversation insights on session.idle
-- [ ] Embedding cache avoids re-embedding unchanged content
-- [ ] SQLite can be rebuilt from markdown files alone (`--rebuild`)
-- [ ] Plugin fails gracefully (no crashes) when OpenAI is unavailable
+- [x] `bun test` passes all tests (0 failures)
+- [ ] Plugin loads in Opencode without errors (requires user deployment)
+- [x] `memory_search` returns hybrid results from vault + session transcripts
+- [x] `memory_store` creates markdown file + indexes it
+- [x] `memory_get` reads specific file/line ranges
+- [x] Auto-recall injects relevant memories on session.created
+- [x] Auto-capture stores conversation insights on session.idle
+- [x] Embedding cache avoids re-embedding unchanged content
+- [x] SQLite can be rebuilt from markdown files alone (`--rebuild`)
+- [x] Plugin fails gracefully (no crashes) when OpenAI is unavailable
 
 ### Must Have
 - Hybrid search (vector 0.7 + BM25 0.3 weights, configurable)
@@ -1133,7 +1133,7 @@ Wave 6 (After Wave 5):
 
 ---
 
-- [ ] 11. Agent Tools — memory_search, memory_store, memory_get
+- [x] 11. Agent Tools — memory_search, memory_store, memory_get
 
   **What to do**:
   - **RED**: Write `src/__tests__/tools.test.ts`:
@@ -1255,7 +1255,7 @@ Wave 6 (After Wave 5):
 
 ---
 
-- [ ] 12. Plugin Entry Point — Hooks + Lifecycle
+- [x] 12. Plugin Entry Point — Hooks + Lifecycle
 
   **What to do**:
   - **RED**: Write `src/__tests__/plugin.test.ts`:
@@ -1411,7 +1411,7 @@ Wave 6 (After Wave 5):
 
 ---
 
-- [ ] 13. Integration Testing + Error Handling + Rebuild Command
+- [x] 13. Integration Testing + Error Handling + Rebuild Command
 
   **What to do**:
   - **RED**: Write `src/__tests__/integration.test.ts`:
@@ -1508,7 +1508,7 @@ Wave 6 (After Wave 5):
 
 ---
 
-- [ ] 14. AGENTS Repo Skill Updates + Deployment Config
+- [x] 14. AGENTS Repo Skill Updates + Deployment Config
 
   **What to do**:
   - Update `skills/memory/SKILL.md` in the AGENTS repo:
@@ -1622,13 +1622,13 @@ bun run src/cli.ts --rebuild --vault ~/CODEX/80-memory/  # Expected: index rebui
 ```
 
 ### Final Checklist
-- [ ] All "Must Have" items present (hybrid search, caching, graceful degradation, etc.)
-- [ ] All "Must NOT Have" items absent (no mem0 dependency, no multi-vault, no UI, etc.)
-- [ ] All unit tests pass (`bun test`)
-- [ ] Integration tests pass
-- [ ] Plugin loads in Opencode without errors
-- [ ] Auto-recall fires on session.created
-- [ ] Auto-capture fires on session.idle
-- [ ] Rebuild command recreates index from markdown
-- [ ] OpenAI failure doesn't crash plugin
-- [ ] AGENTS repo skills updated and validated
+- [x] All "Must Have" items present (hybrid search, caching, graceful degradation, etc.)
+- [x] All "Must NOT Have" items absent (no mem0 dependency, no multi-vault, no UI, etc.)
+- [x] All unit tests pass (`bun test`)
+- [x] Integration tests pass
+- [ ] Plugin loads in Opencode without errors (requires user deployment)
+- [x] Auto-recall fires on session.created
+- [x] Auto-capture fires on session.idle
+- [x] Rebuild command recreates index from markdown
+- [x] OpenAI failure doesn't crash plugin
+- [x] AGENTS repo skills updated and validated
