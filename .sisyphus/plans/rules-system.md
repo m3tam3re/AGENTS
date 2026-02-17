@@ -746,19 +746,19 @@ Max Concurrent: 11 (Wave 2)
 
 > 4 review agents run in PARALLEL. ALL must APPROVE. Rejection → fix → re-run.
 
-- [ ] F1. **Plan Compliance Audit** — `oracle`
+- [x] F1. **Plan Compliance Audit** — `oracle`
   For each "Must Have": verify implementation exists. For each "Must NOT Have": search for violations. Check evidence files. Compare deliverables across all 3 repos.
   Output: `Must Have [N/N] | Must NOT Have [N/N] | Tasks [N/N] | VERDICT`
 
-- [ ] F2. **Code Quality Review** — `unspecified-high`
+- [x] F2. **Code Quality Review** — `unspecified-high`
   Rule files: no generic advice, has examples, consistent tone, under limits. Nix: valid syntax, correct paths, edge cases. USAGE.md: accurate.
   Output: `Files [N clean/N issues] | VERDICT`
 
-- [ ] F3. **Real Manual QA** — `unspecified-high`
+- [x] F3. **Real Manual QA** — `unspecified-high`
   Run `nix eval` on opencode-rules.nix via full lib import with various configs. Verify JSON. Check rule content quality. Save to `.sisyphus/evidence/final-qa/`.
   Output: `Scenarios [N/N pass] | VERDICT`
 
-- [ ] F4. **Scope Fidelity Check** — `deep`
+- [x] F4. **Scope Fidelity Check** — `deep`
   For each task: "What to do" vs actual file. 1:1 match. No creep. Check "Must NOT do". Flag unaccounted changes across all 3 repos.
   Output: `Tasks [N/N compliant] | Unaccounted [CLEAN/N files] | VERDICT`
 
