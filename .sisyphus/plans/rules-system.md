@@ -495,7 +495,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 6. Create `rules/concerns/coding-style.md`
+- [x] 6. Create `rules/concerns/coding-style.md`
 
   **What to do**:
   - Write coding style rules: code formatting, patterns/anti-patterns, error handling, type safety, function design, DRY/SOLID
@@ -526,7 +526,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 7. Create `rules/concerns/naming.md`
+- [x] 7. Create `rules/concerns/naming.md`
 
   **What to do**:
   - Naming conventions: files, variables, functions, classes, modules, constants
@@ -549,7 +549,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 8. Create `rules/concerns/documentation.md`
+- [x] 8. Create `rules/concerns/documentation.md`
 
   **What to do**: When to document, docstring formats, inline comment philosophy (WHY not WHAT), README standards. Under 150 lines.
   **Recommended Agent Profile**: `writing`
@@ -560,7 +560,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 9. Create `rules/concerns/testing.md`
+- [x] 9. Create `rules/concerns/testing.md`
 
   **What to do**: Arrange-act-assert, behavior vs implementation testing, mocking philosophy, coverage, TDD. Under 200 lines.
   **Recommended Agent Profile**: `writing`
@@ -571,7 +571,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 10. Create `rules/concerns/git-workflow.md`
+- [x] 10. Create `rules/concerns/git-workflow.md`
 
   **What to do**: Conventional commits, branch naming, PR descriptions, squash vs merge. Under 120 lines.
   **Recommended Agent Profile**: `writing`, Skills: [`git-master`]
@@ -582,7 +582,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 11. Create `rules/concerns/project-structure.md`
+- [x] 11. Create `rules/concerns/project-structure.md`
 
   **What to do**: Directory layout, module organization, entry points, config placement. Per-type: Python (src layout), TS (src/), Nix (modules/). Under 120 lines.
   **Recommended Agent Profile**: `writing`
@@ -593,7 +593,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 12. Create `rules/languages/python.md`
+- [x] 12. Create `rules/languages/python.md`
 
   **What to do**:
   - Deep Python patterns: `uv` (pkg mgmt), `ruff` (lint/fmt), `pyright` (types), `pytest` + `hypothesis`, Pydantic for data boundaries
@@ -616,7 +616,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 13. Create `rules/languages/typescript.md`
+- [x] 13. Create `rules/languages/typescript.md`
 
   **What to do**:
   - Strict mode (`strict: true`, `noUncheckedIndexedAccess`), discriminated unions, branded types, `satisfies`, `as const`
@@ -634,7 +634,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 14. Create `rules/languages/nix.md`
+- [x] 14. Create `rules/languages/nix.md`
 
   **What to do**:
   - Flake structure, module patterns (`{ config, lib, pkgs, ... }:`), `mkIf`/`mkMerge`
@@ -655,7 +655,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 15. Create `rules/languages/shell.md`
+- [x] 15. Create `rules/languages/shell.md`
 
   **What to do**: `set -euo pipefail`, shellcheck, quoting, local vars, POSIX portability, `#!/usr/bin/env bash`. Under 120 lines.
   **Recommended Agent Profile**: `writing`
@@ -666,7 +666,7 @@ Max Concurrent: 11 (Wave 2)
 
 ---
 
-- [ ] 16. Create `rules/frameworks/n8n.md`
+- [x] 16. Create `rules/frameworks/n8n.md`
 
   **What to do**: Workflow design, node patterns, naming, Error Trigger, data patterns, security. Under 120 lines.
   **Recommended Agent Profile**: `writing`
