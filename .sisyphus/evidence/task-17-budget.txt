@@ -1,0 +1,6 @@
+=== Context Budget ===
+Concerns: 751
+Python: 224
+Total (concerns + python): 975
+Limit: 1500
+RESULT: PASS (under 1500)

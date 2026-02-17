@@ -1,0 +1,13 @@
+=== Path Resolution Check ===
+OK: rules/concerns/coding-style.md exists
+OK: rules/concerns/naming.md exists
+OK: rules/concerns/documentation.md exists
+OK: rules/concerns/testing.md exists
+OK: rules/concerns/git-workflow.md exists
+OK: rules/concerns/project-structure.md exists
+OK: rules/languages/python.md exists
+OK: rules/languages/typescript.md exists
+OK: rules/languages/nix.md exists
+OK: rules/languages/shell.md exists
+OK: rules/frameworks/n8n.md exists
+RESULT: All paths resolve

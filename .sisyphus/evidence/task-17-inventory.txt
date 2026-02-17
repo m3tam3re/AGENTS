@@ -1,0 +1,16 @@
+=== Task 17 Integration Test ===
+
+File Line Counts:
+  163 /home/m3tam3re/p/AI/AGENTS/rules/concerns/coding-style.md
+  149 /home/m3tam3re/p/AI/AGENTS/rules/concerns/documentation.md
+  118 /home/m3tam3re/p/AI/AGENTS/rules/concerns/git-workflow.md
+  105 /home/m3tam3re/p/AI/AGENTS/rules/concerns/naming.md
+   82 /home/m3tam3re/p/AI/AGENTS/rules/concerns/project-structure.md
+  134 /home/m3tam3re/p/AI/AGENTS/rules/concerns/testing.md
+  129 /home/m3tam3re/p/AI/AGENTS/rules/languages/nix.md
+  224 /home/m3tam3re/p/AI/AGENTS/rules/languages/python.md
+  100 /home/m3tam3re/p/AI/AGENTS/rules/languages/shell.md
+  150 /home/m3tam3re/p/AI/AGENTS/rules/languages/typescript.md
+   42 /home/m3tam3re/p/AI/AGENTS/rules/frameworks/n8n.md
+ 1396 total
+RESULT: All 11 files present
