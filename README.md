@@ -1,6 +1,6 @@
 # Opencode Agent Skills & Configurations
 
-Central repository for [Opencode](https://opencode.dev) Agent Skills, AI agent configurations, custom commands, and AI-assisted workflows. This is an extensible framework for building productivity systems, automations, knowledge management, and specialized AI capabilities.
+Central repository for [Opencode](https://opencode.ai) Agent Skills, AI agent configurations, custom commands, and AI-assisted workflows. This is an extensible framework for building productivity systems, automations, knowledge management, and specialized AI capabilities.
 
 ## 🎯 What This Repository Provides
 
@@ -46,10 +46,9 @@ This repository serves as a **personal AI operating system** - a collection of s
 
 ### Prerequisites
 
-- **Opencode** - AI coding assistant ([opencode.dev](https://opencode.dev))
+- **Opencode** - AI coding assistant ([opencode.dev](https://opencode.ai))
 - **Nix** (optional) - For declarative deployment via home-manager
 - **Python 3** - For skill validation and creation scripts
-- **bd (beads)** (optional) - For issue tracking
 
 ### Installation
 
@@ -73,11 +72,12 @@ xdg.configFile = {
 };
 
 # Agent config is embedded into config.json, not deployed as files
-programs.opencode.settings.agent = builtins.fromJSON 
+programs.opencode.settings.agent = builtins.fromJSON
   (builtins.readFile "${inputs.agents}/agent/agents.json");
 ```
 
 Rebuild your system:
+
 ```bash
 home-manager switch
 ```
@@ -116,6 +116,7 @@ python3 skill/skill-creator/scripts/init_skill.py my-skill-name --path skill/
 ```
 
 This creates:
+
 - `skill/my-skill-name/SKILL.md` - Main skill documentation
 - `skill/my-skill-name/scripts/` - Executable code (optional)
 - `skill/my-skill-name/references/` - Reference documentation (optional)
@@ -131,7 +132,6 @@ name: my-skill-name
 description: What it does and when to use it. Include trigger keywords.
 compatibility: opencode
 ---
-
 # My Skill Name
 
 ## Overview
@@ -160,19 +160,19 @@ The test script creates a temporary config directory with symlinks to this repo'
 
 ## 📚 Available Skills
 
-| Skill | Purpose | Status |
-|-------|---------|--------|
-| **task-management** | PARA-based productivity with Obsidian Tasks integration | ✅ Active |
-| **skill-creator** | Guide for creating new Opencode skills | ✅ Active |
-| **reflection** | Conversation analysis and skill improvement | ✅ Active |
-| **communications** | Email drafts, follow-ups, message management | ✅ Active |
-| **calendar-scheduling** | Time blocking, meeting management | ✅ Active |
-| **mem0-memory** | Persistent memory storage and retrieval | ✅ Active |
-| **research** | Investigation workflows, source management | ✅ Active |
-| **knowledge-management** | Note capture, knowledge organization | ✅ Active |
-| **basecamp** | Basecamp project & todo management via MCP | ✅ Active |
-| **brainstorming** | General-purpose ideation with Obsidian save | ✅ Active |
-| **plan-writing** | Project plans with templates (kickoff, tasks, risks) | ✅ Active |
+| Skill                    | Purpose                                                 | Status    |
+| ------------------------ | ------------------------------------------------------- | --------- |
+| **task-management**      | PARA-based productivity with Obsidian Tasks integration | ✅ Active |
+| **skill-creator**        | Guide for creating new Opencode skills                  | ✅ Active |
+| **reflection**           | Conversation analysis and skill improvement             | ✅ Active |
+| **communications**       | Email drafts, follow-ups, message management            | ✅ Active |
+| **calendar-scheduling**  | Time blocking, meeting management                       | ✅ Active |
+| **mem0-memory**          | Persistent memory storage and retrieval                 | ✅ Active |
+| **research**             | Investigation workflows, source management              | ✅ Active |
+| **knowledge-management** | Note capture, knowledge organization                    | ✅ Active |
+| **basecamp**             | Basecamp project & todo management via MCP              | ✅ Active |
+| **brainstorming**        | General-purpose ideation with Obsidian save             | ✅ Active |
+| **plan-writing**         | Project plans with templates (kickoff, tasks, risks)    | ✅ Active |
 
 ## 🤖 AI Agents
 
@@ -188,24 +188,13 @@ Chiron is a personal AI assistant focused on productivity and task management. N
 - Integration with productivity tools (Obsidian, ntfy, n8n)
 
 **Modes**:
+
 - **Chiron** (Plan Mode) - Read-only analysis and planning (`prompts/chiron.txt`)
 - **Chiron-Forge** (Worker Mode) - Full write access with safety prompts (`prompts/chiron-forge.txt`)
 
 **Triggers**: Personal productivity requests, task management, reviews, planning
 
 ## 🛠️ Development Workflow
-
-### Issue Tracking with Beads
-
-This project uses [beads](https://github.com/steveyegge/beads) for AI-native issue tracking:
-
-```bash
-bd ready              # Find available work
-bd create "title"     # Create new issue
-bd update <id> --status in_progress
-bd close <id>         # Complete work
-bd sync               # Sync with git
-```
 
 ### Quality Gates
 
@@ -215,23 +204,6 @@ Before committing:
 2. **Test locally**: `./scripts/test-skill.sh --run` to launch opencode with dev skills
 3. **Check formatting**: Ensure YAML frontmatter is valid
 4. **Update docs**: Keep README and AGENTS.md in sync
-
-### Session Completion
-
-When ending a work session:
-
-1. File beads issues for remaining work
-2. Run quality gates
-3. Update issue status
-4. **Push to remote** (mandatory):
-   ```bash
-   git pull --rebase
-   bd sync
-   git push
-   ```
-5. Verify changes are pushed
-
-See `AGENTS.md` for complete developer documentation.
 
 ## 🎓 Learning Resources
 
@@ -263,6 +235,7 @@ See `AGENTS.md` for complete developer documentation.
 ### Modify Agent Behavior
 
 Edit `agent/agents.json` for agent definitions and `prompts/*.txt` for system prompts:
+
 - `agent/agents.json` - Agent names, models, permissions
 - `prompts/chiron.txt` - Chiron (Plan Mode) system prompt
 - `prompts/chiron-forge.txt` - Chiron-Forge (Worker Mode) system prompt
@@ -272,6 +245,7 @@ Edit `agent/agents.json` for agent definitions and `prompts/*.txt` for system pr
 ### Update User Context
 
 Edit `context/profile.md` to configure:
+
 - Work style preferences
 - PARA areas and projects
 - Communication preferences
@@ -286,6 +260,7 @@ Create new command definitions in `command/` directory following the pattern in 
 ### Personal Productivity
 
 Use the PARA methodology with Obsidian Tasks integration:
+
 - Capture tasks and notes quickly
 - Run daily/weekly reviews
 - Prioritize work based on impact
@@ -294,6 +269,7 @@ Use the PARA methodology with Obsidian Tasks integration:
 ### Knowledge Management
 
 Build a personal knowledge base:
+
 - Capture research findings
 - Organize notes and references
 - Link related concepts
@@ -302,6 +278,7 @@ Build a personal knowledge base:
 ### AI-Assisted Development
 
 Extend Opencode for specialized domains:
+
 - Create company-specific skills (finance, legal, engineering)
 - Integrate with APIs and databases
 - Build custom automation workflows
@@ -310,6 +287,7 @@ Extend Opencode for specialized domains:
 ### Team Collaboration
 
 Share skills and agents across teams:
+
 - Document company processes as skills
 - Create shared knowledge bases
 - Standardize communication templates
