@@ -8,3 +8,7 @@
 .sidecar-start.sh
 .sidecar-base
 .td-root
+
+# Nix / direnv
+.direnv/
+result

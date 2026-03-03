@@ -1,15 +1,5 @@
 # Opencode Skills Repository
 
-## MANDATORY: Use td for Task Management
-
-Run td usage --new-session at conversation start (or after /clear). This tells you what to work on next.
-
-Sessions are automatic (based on terminal/agent context). Optional:
-- td session "name" to label the current session
-- td session --new to force a new session in the same context
-
-Use td usage -q after first read.
-
 Configuration repository for Opencode Agent Skills, context files, and agent configurations. Deployed via Nix home-manager to `~/.config/opencode/`.
 
 ## Quick Commands
@@ -22,21 +12,22 @@ Configuration repository for Opencode Agent Skills, context files, and agent con
 
 # Skill creation
 python3 skills/skill-creator/scripts/init_skill.py <name> --path skills/
-
-# Issue tracking (beads)
-bd ready && bd create "title" && bd close <id> && bd sync
 ```
 
 ## Directory Structure
 
 ```
 .
-├── skills/          # Agent skills (25 modules)
+├── skills/          # Agent skills (15 modules)
 │   └── skill-name/
 │       ├── SKILL.md         # Required: YAML frontmatter + workflows
 │       ├── scripts/         # Executable code (optional)
 │       ├── references/      # Domain docs (optional)
-│       └── assets/         # Templates/files (optional)
+│       └── assets/          # Templates/files (optional)
+├── rules/           # AI coding rules (languages, concerns, frameworks)
+│   ├── languages/   # Python, TypeScript, Nix, Shell
+│   ├── concerns/    # Testing, naming, documentation, etc.
+│   └── frameworks/  # Framework-specific rules (n8n, etc.)
 ├── agents/          # Agent definitions (agents.json)
 ├── prompts/         # System prompts (chiron*.txt)
 ├── context/         # User profiles
@@ -68,7 +59,7 @@ compatibility: opencode
 ## Anti-Patterns (CRITICAL)
 
 **Frontend Design**: NEVER use generic AI aesthetics, NEVER converge on common choices
-**Excalidraw**: NEVER use diamond shapes (broken arrows), NEVER use `label` property
+**Excalidraw**: NEVER use `label` property (use boundElements + text element pairs instead)
 **Debugging**: NEVER fix just symptom, ALWAYS find root cause first
 **Excel**: ALWAYS respect existing template conventions over guidelines
 **Structure**: NEVER place scripts/docs outside scripts/references/ directories
@@ -87,13 +78,17 @@ compatibility: opencode
 
 ## Deployment
 
-**Nix pattern** (non-flake input):
+**Nix flake pattern**:
 ```nix
 agents = {
   url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
-  flake = false;  # Files only, not a Nix flake
+  inputs.nixpkgs.follows = "nixpkgs";  # Optional but recommended
 };
 ```
+
+**Exports:**
+- `packages.skills-runtime` — composable runtime with all skill dependencies
+- `devShells.default` — dev environment for working on skills
 
 **Mapping** (via home-manager):
 - `skills/`, `context/`, `commands/`, `prompts/` → symlinks
@@ -101,13 +96,28 @@ agents = {
 - Agent changes: require `home-manager switch`
 - Other changes: visible immediately
 
+## Rules System
+
+Centralized AI coding rules consumed via `mkOpencodeRules` from m3ta-nixpkgs:
+
+```nix
+# In project flake.nix
+m3taLib.opencode-rules.mkOpencodeRules {
+  inherit agents;
+  languages = [ "python" "typescript" ];
+  frameworks = [ "n8n" ];
+};
+```
+
+See `rules/USAGE.md` for full documentation.
+
 ## Notes for AI Agents
 
 1. **Config-only repo** - No compilation, no build, manual validation only
 2. **Skills are documentation** - Write for AI consumption, progressive disclosure
 3. **Consistent structure** - All skills follow 4-level deep pattern (skills/name/ + optional subdirs)
 4. **Cross-cutting concerns** - Standardized SKILL.md, workflow patterns, delegation rules
-5. **Always push** - Session completion workflow: commit + bd sync + git push
+5. **Always push** - Session completion workflow: commit + git push
 
 ## Quality Gates
 
@@ -115,4 +125,5 @@ Before committing:
 1. `./scripts/test-skill.sh --validate`
 2. Python shebang + docstrings check
 3. No extraneous files (README.md, CHANGELOG.md in skills/)
-4. Git status clean
+4. If skill has scripts with external dependencies → verify `flake.nix` is updated (see skill-creator Step 4)
+5. Git status clean

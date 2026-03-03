@@ -8,7 +8,6 @@ This repository serves as a **personal AI operating system** - a collection of s
 
 - **Productivity & Task Management** - PARA methodology, GTD workflows, project tracking
 - **Knowledge Management** - Note-taking, research workflows, information organization
-- **Communications** - Email management, meeting scheduling, follow-up tracking
 - **AI Development** - Tools for creating new skills and agent configurations
 - **Memory & Context** - Persistent memory systems, conversation analysis
 - **Document Processing** - PDF manipulation, spreadsheet handling, diagram generation
@@ -24,7 +23,7 @@ This repository serves as a **personal AI operating system** - a collection of s
 │   └── profile.md   # Work style, PARA areas, preferences
 ├── commands/        # Custom command definitions
 │   └── reflection.md
-├── skills/          # Opencode Agent Skills (18 skills)
+├── skills/          # Opencode Agent Skills (15 skills)
 │   ├── agent-development/    # Agent creation and configuration
 │   ├── basecamp/             # Basecamp project management
 │   ├── brainstorming/        # Ideation & strategic thinking
@@ -32,11 +31,8 @@ This repository serves as a **personal AI operating system** - a collection of s
 │   ├── excalidraw/           # Architecture diagrams
 │   ├── frontend-design/      # UI/UX design patterns
 │   ├── memory/               # Persistent memory system
-│   ├── mem0-memory/          # DEPRECATED (use memory)
-│   ├── msteams/              # Microsoft Teams integration
 │   ├── obsidian/             # Obsidian vault management
 │   ├── outline/              # Outline wiki integration
-│   ├── outlook/              # Outlook email & calendar
 │   ├── pdf/                  # PDF manipulation toolkit
 │   ├── prompt-engineering-patterns/   # Prompt patterns
 │   ├── reflection/           # Conversation analysis
@@ -45,8 +41,12 @@ This repository serves as a **personal AI operating system** - a collection of s
 │   └── xlsx/                 # Spreadsheet handling
 ├── scripts/         # Repository utility scripts
 │   └── test-skill.sh # Test skills without deploying
-├── rules/           # Development rules and conventions
-├── tools/           # Utility tools
+├── rules/           # AI coding rules
+│   ├── languages/   # Python, TypeScript, Nix, Shell
+│   ├── concerns/    # Testing, naming, documentation
+│   └── frameworks/  # Framework-specific rules (n8n)
+├── flake.nix        # Nix flake: dev shell + skills-runtime export
+├── .envrc           # direnv config (use flake)
 ├── AGENTS.md        # Developer documentation
 └── README.md        # This file
 ```
@@ -55,21 +55,26 @@ This repository serves as a **personal AI operating system** - a collection of s
 
 ### Prerequisites
 
-- **Opencode** - AI coding assistant ([opencode.dev](https://opencode.ai))
-- **Nix** (optional) - For declarative deployment via home-manager
-- **Python 3** - For skill validation and creation scripts
+- **Nix** with flakes enabled — for reproducible dependency management and deployment
+- **direnv** (recommended) — auto-activates the development environment when entering the repo
+- **Opencode** — AI coding assistant ([opencode.ai](https://opencode.ai))
 
 ### Installation
 
 #### Option 1: Nix Flake (Recommended)
 
-This repository is consumed as a **non-flake input** by your NixOS configuration:
+This repository is a **Nix flake** that exports:
+
+- **`devShells.default`** — development environment for working on skills (activated via direnv)
+- **`packages.skills-runtime`** — composable runtime with all skill script dependencies (Python packages + system tools)
+
+**Consume in your system flake:**
 
 ```nix
-# In your flake.nix
+# flake.nix
 inputs.agents = {
   url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
-  flake = false;  # Pure files, not a Nix flake
+  inputs.nixpkgs.follows = "nixpkgs";
 };
 
 # In your home-manager module (e.g., opencode.nix)
@@ -85,7 +90,55 @@ programs.opencode.settings.agent = builtins.fromJSON
   (builtins.readFile "${inputs.agents}/agents/agents.json");
 ```
 
-Rebuild your system:
+**Deploy skills via home-manager:**
+
+```nix
+# home-manager module (e.g., opencode.nix)
+{ inputs, system, ... }:
+{
+  # Skill files — symlinked, changes visible immediately
+  xdg.configFile = {
+    "opencode/skills".source = "${inputs.agents}/skills";
+    "opencode/context".source = "${inputs.agents}/context";
+    "opencode/commands".source = "${inputs.agents}/commands";
+    "opencode/prompts".source = "${inputs.agents}/prompts";
+  };
+
+  # Agent config — embedded into config.json (requires home-manager switch)
+  programs.opencode.settings.agent = builtins.fromJSON
+    (builtins.readFile "${inputs.agents}/agents/agents.json");
+
+  # Skills runtime — ensures opencode always has script dependencies
+  home.packages = [ inputs.agents.packages.${system}.skills-runtime ];
+}
+```
+
+**Compose into project flakes** (so opencode has skill deps in any project):
+
+```nix
+# Any project's flake.nix
+{
+  inputs.agents.url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
+  inputs.agents.inputs.nixpkgs.follows = "nixpkgs";
+
+  outputs = { self, nixpkgs, agents, ... }:
+    let
+      system = "x86_64-linux";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      devShells.${system}.default = pkgs.mkShell {
+        packages = [
+          # project-specific tools
+          pkgs.nodejs
+          # skill script dependencies
+          agents.packages.${system}.skills-runtime
+        ];
+      };
+    };
+}
+```
+
+Rebuild:
 
 ```bash
 home-manager switch
@@ -151,24 +204,34 @@ compatibility: opencode
 [Your skill instructions for Opencode]
 ```
 
-### 3. Validate the Skill
+### 3. Register Dependencies
+
+If your skill includes scripts with external dependencies, add them to `flake.nix`:
+
+```nix
+# Python packages — add to pythonEnv:
+# my-skill: my_script.py
+some-python-package
+
+# System tools — add to skills-runtime paths:
+# my-skill: needed by my_script.py
+pkgs.some-tool
+```
+
+Verify: `nix develop --command python3 -c "import some_package"`
+
+### 4. Validate the Skill
 
 ```bash
 python3 skills/skill-creator/scripts/quick_validate.py skills/my-skill-name
 ```
 
-### 4. Test the Skill
-
-Test your skill without deploying via home-manager:
+### 5. Test the Skill
 
 ```bash
-# Use the test script to validate and list skills
 ./scripts/test-skill.sh my-skill-name    # Validate specific skill
-./scripts/test-skill.sh --list           # List all dev skills
-./scripts/test-skill.sh --run            # Launch opencode with dev skills
+./scripts/test-skill.sh --run             # Launch opencode with dev skills
 ```
-
-The test script creates a temporary config directory with symlinks to this repo's skills, allowing you to test changes before committing.
 
 ## 📚 Available Skills
 
@@ -181,11 +244,8 @@ The test script creates a temporary config directory with symlinks to this repo'
 | **excalidraw**              | Architecture diagrams from codebase analysis                   | ✅ Active    |
 | **frontend-design**         | Production-grade UI/UX with high design quality                | ✅ Active    |
 | **memory**                  | SQLite-based persistent memory with hybrid search              | ✅ Active    |
-| **mem0-memory**             | Legacy memory system (deprecated)                              | ⚠️ Deprecated |
-| **msteams**                 | Microsoft Teams integration via Graph API                      | ✅ Active    |
 | **obsidian**                | Obsidian vault management via Local REST API                   | ✅ Active    |
 | **outline**                 | Outline wiki integration for team documentation                | ✅ Active    |
-| **outlook**                 | Outlook email, calendar, and contact management                | ✅ Active    |
 | **pdf**                     | PDF manipulation, extraction, creation, and forms              | ✅ Active    |
 | **prompt-engineering-patterns** | Advanced prompt engineering techniques                     | ✅ Active    |
 | **reflection**              | Conversation analysis and skill improvement                    | ✅ Active    |
@@ -213,7 +273,23 @@ The test script creates a temporary config directory with symlinks to this repo'
 
 **Configuration**: `agents/agents.json` + `prompts/*.txt`
 
-## 🛠️ Development Workflow
+## 🛠️ Development
+
+### Environment
+
+The repository includes a Nix flake with a development shell. With [direnv](https://direnv.net/) installed, the environment activates automatically:
+
+```bash
+cd AGENTS/
+# → direnv: loading .envrc
+# → 🔧 AGENTS dev shell active — Python 3.13.x, jq-1.x
+
+# All skill script dependencies are now available:
+python3 -c "import pypdf, openpyxl, yaml"  # ✔️
+pdftoppm -v                                 # ✔️
+```
+
+Without direnv, activate manually: `nix develop`
 
 ### Quality Gates
 
@@ -232,6 +308,7 @@ Before committing:
 - **skills/skill-creator/SKILL.md** - Comprehensive skill creation guide
 - **skills/skill-creator/references/workflows.md** - Workflow pattern library
 - **skills/skill-creator/references/output-patterns.md** - Output formatting patterns
+- **rules/USAGE.md** - AI coding rules integration guide
 
 ### Skill Design Principles
 
@@ -247,6 +324,7 @@ Before committing:
 - **basecamp/** - MCP server integration with multiple tool categories
 - **brainstorming/** - Framework-based ideation with Obsidian markdown save
 - **memory/** - SQLite-based hybrid search implementation
+- **excalidraw/** - Diagram generation with JSON templates and Python renderer
 
 ## 🔧 Customization
 
@@ -276,6 +354,21 @@ Edit `context/profile.md` to configure:
 ### Add Custom Commands
 
 Create new command definitions in `commands/` directory following the pattern in `commands/reflection.md`.
+
+### Add Project Rules
+
+Use the rules system to inject AI coding rules into projects:
+
+```nix
+# In project flake.nix
+m3taLib.opencode-rules.mkOpencodeRules {
+  inherit agents;
+  languages = [ "python" "typescript" ];
+  frameworks = [ "n8n" ];
+};
+```
+
+See `rules/USAGE.md` for full documentation.
 
 ## 🌟 Use Cases
 

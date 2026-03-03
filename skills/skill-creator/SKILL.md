@@ -79,6 +79,7 @@ Executable code (Python/Bash/etc.) for tasks that require deterministic reliabil
 - **Example**: `scripts/rotate_pdf.py` for PDF rotation tasks
 - **Benefits**: Token efficient, deterministic, may be executed without loading into context
 - **Note**: Scripts may still need to be read by Opencode for patching or environment-specific adjustments
+- **Dependencies**: Scripts with external dependencies (Python packages, system tools) require those dependencies to be registered in the repository's `flake.nix`. See Step 4 for details.
 
 ##### References (`references/`)
 
@@ -301,6 +302,37 @@ These files contain established best practices for effective skill design.
 To begin implementation, start with the reusable resources identified above: `scripts/`, `references/`, and `assets/` files. Note that this step may require user input. For example, when implementing a `brand-guidelines` skill, the user may need to provide brand assets or templates to store in `assets/`, or documentation to store in `references/`.
 
 Added scripts must be tested by actually running them to ensure there are no bugs and that the output matches what is expected. If there are many similar scripts, only a representative sample needs to be tested to ensure confidence that they all work while balancing time to completion.
+
+#### Register Dependencies in flake.nix
+
+When scripts introduce external dependencies (Python packages or system tools), add them to the repository's `flake.nix`. Dependencies are defined once in `pythonEnv` (Python packages) or `packages` (system tools) inside the `skills-runtime` buildEnv. This runtime is exported as `packages.${system}.skills-runtime` and consumed by project flakes and home-manager — ensuring opencode always has the correct environment regardless of which project it runs in.
+
+**Python packages** — add to the `pythonEnv` block with a comment referencing the skill:
+
+```nix
+pythonEnv = pkgs.python3.withPackages (ps:
+  with ps; [
+    # <skill-name>: <script>.py
+    <package-name>
+  ]);
+```
+
+**System tools** (e.g. `poppler-utils`, `ffmpeg`, `imagemagick`) — add to the `paths` list in the `skills-runtime` buildEnv:
+
+```nix
+skills-runtime = pkgs.buildEnv {
+  name = "opencode-skills-runtime";
+  paths = [
+    pythonEnv
+    # <skill-name>: needed by <script>
+    pkgs.<tool-name>
+  ];
+};
+```
+
+**Convention**: Each entry must include a comment with `# <skill-name>: <reason>` so dependencies remain traceable to their originating skill.
+
+After adding dependencies, verify they resolve: `nix develop --command python3 -c "import <package>"`
 
 Any example files and directories not needed for the skill should be deleted. The initialization script creates example files in `scripts/`, `references/`, and `assets/` to demonstrate structure, but most skills won't need all of them.
 
