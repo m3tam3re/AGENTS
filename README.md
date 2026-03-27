@@ -67,27 +67,20 @@ This repository is a **Nix flake** that exports:
 
 - **`devShells.default`** — development environment for working on skills (activated via direnv)
 - **`packages.skills-runtime`** — composable runtime with all skill script dependencies (Python packages + system tools)
+- **`lib.mkOpencodeSkills`** — compose custom skills with external [skills.sh](https://skills.sh) skills into a single directory
 
 **Consume in your system flake:**
 
 ```nix
 # flake.nix
-inputs.agents = {
-  url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
-  inputs.nixpkgs.follows = "nixpkgs";
+inputs = {
+  agents = {
+    url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+  # Optional: add external skill repositories (skills.sh / agentskills.io)
+  skills-anthropic = { url = "github:anthropics/skills"; flake = false; };
 };
-
-# In your home-manager module (e.g., opencode.nix)
-xdg.configFile = {
-  "opencode/skills".source = "${inputs.agents}/skills";
-  "opencode/context".source = "${inputs.agents}/context";
-  "opencode/commands".source = "${inputs.agents}/commands";
-  "opencode/prompts".source = "${inputs.agents}/prompts";
-};
-
-# Agent config is embedded into config.json, not deployed as files
-programs.opencode.settings.agent = builtins.fromJSON
-  (builtins.readFile "${inputs.agents}/agents/agents.json");
 ```
 
 **Deploy skills via home-manager:**
@@ -95,14 +88,26 @@ programs.opencode.settings.agent = builtins.fromJSON
 ```nix
 # home-manager module (e.g., opencode.nix)
 { inputs, system, ... }:
-{
-  # Skill files — symlinked, changes visible immediately
-  xdg.configFile = {
-    "opencode/skills".source = "${inputs.agents}/skills";
-    "opencode/context".source = "${inputs.agents}/context";
-    "opencode/commands".source = "${inputs.agents}/commands";
-    "opencode/prompts".source = "${inputs.agents}/prompts";
-  };
+let
+  pkgs = inputs.nixpkgs.legacyPackages.${system};
+in {
+  # Skills — composed from custom + external sources
+  xdg.configFile."opencode/skills".source =
+    inputs.agents.lib.mkOpencodeSkills {
+      inherit pkgs;
+      customSkills = "${inputs.agents}/skills";
+      externalSkills = [
+        # Include all skills from anthropics/skills
+        { src = inputs.skills-anthropic; }
+        # Or cherry-pick specific skills:
+        # { src = inputs.skills-anthropic; selectSkills = [ "mcp-builder" ]; }
+      ];
+    };
+
+  # Other config — symlinked directly
+  xdg.configFile."opencode/context".source = "${inputs.agents}/context";
+  xdg.configFile."opencode/commands".source = "${inputs.agents}/commands";
+  xdg.configFile."opencode/prompts".source = "${inputs.agents}/prompts";
 
   # Agent config — embedded into config.json (requires home-manager switch)
   programs.opencode.settings.agent = builtins.fromJSON
@@ -113,24 +118,39 @@ programs.opencode.settings.agent = builtins.fromJSON
 }
 ```
 
-**Compose into project flakes** (so opencode has skill deps in any project):
+> **Note**: If you don't use external skills, you can still use the simple form:
+> ```nix
+> xdg.configFile."opencode/skills".source = "${inputs.agents}/skills";
+> ```
+
+**Compose into project flakes** (project-level skills for a specific repo):
 
 ```nix
 # Any project's flake.nix
 {
-  inputs.agents.url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
-  inputs.agents.inputs.nixpkgs.follows = "nixpkgs";
+  inputs = {
+    agents.url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
+    agents.inputs.nixpkgs.follows = "nixpkgs";
+    skills-anthropic = { url = "github:anthropics/skills"; flake = false; };
+  };
 
-  outputs = { self, nixpkgs, agents, ... }:
+  outputs = { self, nixpkgs, agents, skills-anthropic, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
+      # Project-level skills (placed in .agents/skills/)
+      ".agents/skills".source =
+        agents.lib.mkOpencodeSkills {
+          inherit pkgs;
+          externalSkills = [
+            { src = skills-anthropic; selectSkills = [ "mcp-builder" ]; }
+          ];
+        };
+
       devShells.${system}.default = pkgs.mkShell {
         packages = [
-          # project-specific tools
           pkgs.nodejs
-          # skill script dependencies
           agents.packages.${system}.skills-runtime
         ];
       };
@@ -143,6 +163,8 @@ Rebuild:
 ```bash
 home-manager switch
 ```
+
+**Collision handling**: When a custom skill and an external skill share the same name, the custom skill always wins. Among external sources, earlier entries in the `externalSkills` list take priority.
 
 **Note**: The `agents/` directory is NOT deployed as files. Instead, `agents.json` is read at Nix evaluation time and embedded into the opencode `config.json`.
 

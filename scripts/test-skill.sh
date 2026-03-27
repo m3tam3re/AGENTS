@@ -6,10 +6,15 @@
 #   ./scripts/test-skill.sh              # List all development skills
 #   ./scripts/test-skill.sh <skill>      # Validate specific skill
 #   ./scripts/test-skill.sh --run        # Launch interactive opencode session
+#   ./scripts/test-skill.sh --run --external /path/to/skills-repo/skills
 #
 # This script creates a temporary XDG_CONFIG_HOME with symlinks to this
 # repository's skills/, context/, command/, and prompts/ directories,
 # allowing you to test skill changes before deploying via home-manager.
+#
+# The --external flag allows testing with external skills.sh repositories.
+# Point it to the skills/ subdirectory of a cloned skills.sh repo.
+# Custom skills take priority over external ones with the same name.
 
 set -euo pipefail
 
@@ -21,12 +26,49 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m'
 
+EXTERNAL_SKILLS_DIRS=()
+
 setup_test_config() {
     local tmp_base="${TMPDIR:-/tmp}/opencode-test-$$"
     local tmp_config="$tmp_base/opencode"
+    local tmp_skills="$tmp_config/skills"
 
     mkdir -p "$tmp_config"
-    ln -sf "$REPO_ROOT/skills" "$tmp_config/skills"
+
+    if [[ ${#EXTERNAL_SKILLS_DIRS[@]} -gt 0 ]]; then
+        # Merge mode: create a real directory with symlinks to individual skills.
+        # Custom skills take priority (linked first), externals fill gaps.
+        mkdir -p "$tmp_skills"
+
+        # Link custom skills first (they always win).
+        for skill_dir in "$REPO_ROOT/skills/"*/; do
+            local skill_name
+            skill_name=$(basename "$skill_dir")
+            ln -sf "$skill_dir" "$tmp_skills/$skill_name"
+        done
+
+        # Link external skills (skip if name already exists from custom).
+        for ext_dir in "${EXTERNAL_SKILLS_DIRS[@]}"; do
+            if [[ ! -d "$ext_dir" ]]; then
+                echo -e "${RED}❌ External skills directory not found: $ext_dir${NC}" >&2
+                continue
+            fi
+            for skill_dir in "$ext_dir/"*/; do
+                [[ -d "$skill_dir" ]] || continue
+                local skill_name
+                skill_name=$(basename "$skill_dir")
+                if [[ ! -e "$tmp_skills/$skill_name" ]]; then
+                    ln -sf "$skill_dir" "$tmp_skills/$skill_name"
+                else
+                    echo -e "${YELLOW}  ⚠ Skipping external '$skill_name' (custom takes priority)${NC}" >&2
+                fi
+            done
+        done
+    else
+        # Simple mode: symlink entire directory.
+        ln -sf "$REPO_ROOT/skills" "$tmp_skills"
+    fi
+
     ln -sf "$REPO_ROOT/context" "$tmp_config/context"
     ln -sf "$REPO_ROOT/commands" "$tmp_config/commands"
     ln -sf "$REPO_ROOT/prompts" "$tmp_config/prompts"
@@ -48,6 +90,7 @@ usage() {
     echo "  --run       Launch interactive opencode session with dev skills"
     echo "  --list      List all skills (default if no args)"
     echo "  --validate  Validate all skills"
+    echo "  --external <path>  Add external skills directory (repeatable)"
     echo "  --help      Show this help message"
     echo ""
     echo "Arguments:"
@@ -58,6 +101,7 @@ usage() {
     echo "  $0 task-management    # Validate task-management skill"
     echo "  $0 --validate         # Validate all skills"
     echo "  $0 --run              # Launch interactive session"
+    echo "  $0 --run --external ~/src/anthropics-skills/skills"
 }
 
 list_skills() {
@@ -127,25 +171,55 @@ run_opencode() {
     XDG_CONFIG_HOME="$tmp_base" opencode
 }
 
-# Main
-case "${1:-}" in
-    --help|-h)
-        usage
-        exit 0
-        ;;
-    --run)
+# Main — parse arguments
+ACTION=""
+SKILL_NAME=""
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --help|-h)
+            usage
+            exit 0
+            ;;
+        --run)
+            ACTION="run"
+            shift
+            ;;
+        --list)
+            ACTION="list"
+            shift
+            ;;
+        --validate)
+            ACTION="validate"
+            shift
+            ;;
+        --external)
+            if [[ -z "${2:-}" ]]; then
+                echo -e "${RED}❌ --external requires a path argument${NC}" >&2
+                exit 1
+            fi
+            EXTERNAL_SKILLS_DIRS+=("$2")
+            shift 2
+            ;;
+        *)
+            SKILL_NAME="$1"
+            ACTION="validate_one"
+            shift
+            ;;
+    esac
+done
+
+case "${ACTION:-list}" in
+    run)
         run_opencode
         ;;
-    --list)
+    list)
         list_skills
         ;;
-    --validate)
+    validate)
         validate_all
         ;;
-    "")
-        list_skills
-        ;;
-    *)
-        validate_skill "$1"
+    validate_one)
+        validate_skill "$SKILL_NAME"
         ;;
 esac

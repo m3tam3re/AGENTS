@@ -87,14 +87,60 @@ agents = {
 ```
 
 **Exports:**
+- `lib.mkOpencodeSkills` — compose custom + external [skills.sh](https://skills.sh) skills into one directory
 - `packages.skills-runtime` — composable runtime with all skill dependencies
 - `devShells.default` — dev environment for working on skills
 
 **Mapping** (via home-manager):
-- `skills/`, `context/`, `commands/`, `prompts/` → symlinks
+- `skills/` → composed via `mkOpencodeSkills` (custom + external merged)
+- `context/`, `commands/`, `prompts/` → symlinks
 - `agents/agents.json` → embedded into config.json
 - Agent changes: require `home-manager switch`
 - Other changes: visible immediately
+
+### External Skills (skills.sh)
+
+This repo supports composing skills from external [skills.sh](https://skills.sh) repositories
+alongside custom skills. External repos follow the [Agent Skills](https://agentskills.io)
+standard (same `SKILL.md` format).
+
+**`lib.mkOpencodeSkills` parameters:**
+- `pkgs` (required) — nixpkgs package set
+- `customSkills` (optional) — path to custom skills directory (e.g., `"${inputs.agents}/skills"`)
+- `externalSkills` (optional) — list of external sources, each with:
+  - `src` — flake input or path to repo root
+  - `skillsDir` — subdirectory containing skills (default: `"skills"`)
+  - `selectSkills` — list of skill names to include (default: all)
+
+**Collision handling:** Custom skills always win. Among externals, earlier entries take priority.
+
+**Home-manager example:**
+```nix
+inputs = {
+  agents.url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
+  skills-anthropic = { url = "github:anthropics/skills"; flake = false; };
+};
+
+xdg.configFile."opencode/skills".source =
+  inputs.agents.lib.mkOpencodeSkills {
+    pkgs = nixpkgs.legacyPackages.${system};
+    customSkills = "${inputs.agents}/skills";
+    externalSkills = [
+      { src = inputs.skills-anthropic; }
+    ];
+  };
+```
+
+**Project flake example (selective):**
+```nix
+".agents/skills".source =
+  inputs.agents.lib.mkOpencodeSkills {
+    pkgs = nixpkgs.legacyPackages.${system};
+    externalSkills = [
+      { src = inputs.skills-anthropic; selectSkills = [ "mcp-builder" ]; }
+    ];
+  };
+```
 
 ## Rules System
 
