@@ -15,7 +15,7 @@ Knowledge management integration via Obsidian Local REST API for vault operation
 - **Vault path** configured in plugin settings
 - **API key** set (optional, if authentication enabled)
 
-API endpoints available at `http://127.0.0.1:27124` by default.
+API endpoints available at `http://127.0.0.1:27123` by default.
 
 ## Core Workflows
 
@@ -24,7 +24,7 @@ API endpoints available at `http://127.0.0.1:27124` by default.
 Get list of all files in vault:
 
 ```bash
-curl -X GET "http://127.0.0.1:27124/list"
+curl -X GET "http://127.0.0.1:27123/list"
 ```
 
 Returns array of file objects with `path`, `mtime`, `ctime`, `size`.
@@ -34,7 +34,7 @@ Returns array of file objects with `path`, `mtime`, `ctime`, `size`.
 Retrieve metadata for a specific file:
 
 ```bash
-curl -X GET "http://127.0.0.1:27124/get-file-info?path=Note%20Title.md"
+curl -X GET "http://127.0.0.1:27123/get-file-info?path=Note%20Title.md"
 ```
 
 Returns file metadata including tags, links, frontmatter.
@@ -44,12 +44,13 @@ Returns file metadata including tags, links, frontmatter.
 Create a new note in the vault:
 
 ```bash
-curl -X POST "http://127.0.0.1:27124/create-note" \
+curl -X POST "http://127.0.0.1:27123/create-note" \
   -H "Content-Type: application/json" \
   -d '{"content": "# Note Title\n\nNote content..."}'
 ```
 
 Use `path` parameter for specific location:
+
 ```json
 {
   "content": "# Note Title\n\nNote content...",
@@ -62,7 +63,7 @@ Use `path` parameter for specific location:
 Read note content by path:
 
 ```bash
-curl -X GET "http://127.0.0.1:27124/read-note?path=Note%20Title.md"
+curl -X GET "http://127.0.0.1:27123/read-note?path=Note%20Title.md"
 ```
 
 Returns note content as plain text or structured JSON with frontmatter parsing.
@@ -72,7 +73,7 @@ Returns note content as plain text or structured JSON with frontmatter parsing.
 Modify existing note:
 
 ```bash
-curl -X PUT "http://127.0.0.1:27124/update-note" \
+curl -X PUT "http://127.0.0.1:27123/update-note" \
   -H "Content-Type: application/json" \
   -d '{"path": "Note Title.md", "content": "# Updated Title\n\nNew content..."}'
 ```
@@ -82,7 +83,7 @@ curl -X PUT "http://127.0.0.1:27124/update-note" \
 Remove note from vault:
 
 ```bash
-curl -X DELETE "http://127.0.0.1:27124/delete-note?path=Note%20Title.md"
+curl -X DELETE "http://127.0.0.1:27123/delete-note?path=Note%20Title.md"
 ```
 
 **Warning**: This operation is irreversible. Confirm with user before executing.
@@ -93,10 +94,10 @@ Find notes by content, title, or tags:
 
 ```bash
 # Content search
-curl -X GET "http://127.0.0.1:27124/search?q=search%20term"
+curl -X GET "http://127.0.0.1:27123/search?q=search%20term"
 
 # Search with parameters
-curl -X GET "http://127.0.0.1:27124/search?q=search%20term&path=subdirectory&context-length=100"
+curl -X GET "http://127.0.0.1:27123/search?q=search%20term&path=subdirectory&context-length=100"
 ```
 
 Returns array of matches with file path and context snippets.
@@ -109,10 +110,10 @@ Retrieve or create daily note for specific date:
 
 ```bash
 # Today
-curl -X GET "http://127.0.0.1:27124/daily-note"
+curl -X GET "http://127.0.0.1:27123/daily-note"
 
 # Specific date (YYYY-MM-DD)
-curl -X GET "http://127.0.0.1:27124/daily-note?date=2026-02-03"
+curl -X GET "http://127.0.0.1:27123/daily-note?date=2026-02-03"
 ```
 
 Returns daily note content or creates using Obsidian's Daily Notes template.
@@ -122,7 +123,7 @@ Returns daily note content or creates using Obsidian's Daily Notes template.
 Modify today's daily note:
 
 ```bash
-curl -X PUT "http://127.0.0.1:27124/daily-note" \
+curl -X PUT "http://127.0.0.1:27123/daily-note" \
   -H "Content-Type: application/json" \
   -d '{"content": "## Journal\n\nToday I learned..."}'
 ```
@@ -132,7 +133,7 @@ curl -X PUT "http://127.0.0.1:27124/daily-note" \
 Retrieve vault metadata:
 
 ```bash
-curl -X GET "http://127.0.0.1:27124/vault-info"
+curl -X GET "http://127.0.0.1:27123/vault-info"
 ```
 
 Returns vault path, file count, and configuration details.
@@ -156,6 +157,7 @@ status: active
 ### WikiLinks
 
 Reference other notes using Obsidian WikiLinks:
+
 - `[[Note Title]]` - Link to note by title
 - `[[Note Title|Alias]]` - Link with custom display text
 - `[[Note Title#Heading]]` - Link to specific heading
@@ -164,6 +166,7 @@ Reference other notes using Obsidian WikiLinks:
 ### Tagging
 
 Use tags for categorization:
+
 - `#tag` - Single-word tag
 - `#nested/tag` - Hierarchical tags
 - Tags in frontmatter for metadata
@@ -174,7 +177,7 @@ Use tags for categorization:
 ### Create Brainstorm Note
 
 ```bash
-curl -X POST "http://127.0.0.1:27124/create-note" \
+curl -X POST "http://127.0.0.1:27123/create-note" \
   -H "Content-Type: application/json" \
   -d '{
     "path": "03-resources/brainstorms/2026-02-03-Topic.md",
@@ -186,10 +189,10 @@ curl -X POST "http://127.0.0.1:27124/create-note" \
 
 ```bash
 # Get current daily note
-NOTE=$(curl -s "http://127.0.0.1:27124/daily-note")
+NOTE=$(curl -s "http://127.0.0.1:27123/daily-note")
 
 # Append content
-curl -X PUT "http://127.0.0.1:27124/daily-note" \
+curl -X PUT "http://127.0.0.1:27123/daily-note" \
   -H "Content-Type: application/json" \
   -d "{\"content\": \"${NOTE}\n\n## Journal Entry\n\nLearned about Obsidian API integration.\"}"
 ```
@@ -198,10 +201,10 @@ curl -X PUT "http://127.0.0.1:27124/daily-note" \
 
 ```bash
 # Search for related notes
-curl -s "http://127.0.0.1:27124/search?q=Obsidian"
+curl -s "http://127.0.0.1:27123/search?q=Obsidian"
 
 # Create note with WikiLinks to found notes
-curl -X POST "http://127.0.0.1:27124/create-note" \
+curl -X POST "http://127.0.0.1:27123/create-note" \
   -H "Content-Type: application/json" \
   -d '{
     "path": "02-areas/Obsidian API Guide.md",
@@ -211,15 +214,15 @@ curl -X POST "http://127.0.0.1:27124/create-note" \
 
 ## Integration with Other Skills
 
-| From Obsidian | To skill | Handoff pattern |
-|--------------|----------|----------------|
-| Note created | brainstorming | Create brainstorm note with frontmatter |
-| Daily note updated | reflection | Append conversation analysis to journal |
-| Research note | research | Save research findings with tags |
-| Project note | task-management | Link tasks to project notes |
-| Plan document | plan-writing | Save generated plan to vault |
-| Vault search | qmd | Search vault content via qmd hybrid search |
-| Memory note | qmd | Create/read memory notes in 80-memory/ |
+| From Obsidian      | To skill        | Handoff pattern                            |
+| ------------------ | --------------- | ------------------------------------------ |
+| Note created       | brainstorming   | Create brainstorm note with frontmatter    |
+| Daily note updated | reflection      | Append conversation analysis to journal    |
+| Research note      | research        | Save research findings with tags           |
+| Project note       | task-management | Link tasks to project notes                |
+| Plan document      | plan-writing    | Save generated plan to vault               |
+| Vault search       | qmd             | Search vault content via qmd hybrid search |
+| Memory note        | qmd             | Create/read memory notes in 80-memory/     |
 
 ## Best Practices
 
@@ -248,6 +251,7 @@ See the qmd skill for memory workflows, session summaries, and auto-recall patte
 ## Error Handling
 
 Common HTTP status codes:
+
 - `200 OK` - Success
 - `404 Not Found` - File or resource doesn't exist
 - `400 Bad Request` - Invalid parameters or malformed JSON

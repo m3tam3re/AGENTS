@@ -9,7 +9,7 @@ This repository serves as a **personal AI operating system** - a collection of s
 - **Productivity & Task Management** - PARA methodology, GTD workflows, project tracking
 - **Knowledge Management** - Note-taking, research workflows, information organization
 - **AI Development** - Tools for creating new skills and agent configurations
-- **Memory & Context** - Persistent memory systems, conversation analysis
+- **Memory & Context** - Knowledge retrieval via QMD, conversation analysis
 - **Document Processing** - PDF manipulation, spreadsheet handling, diagram generation
 - **Custom Workflows** - Domain-specific automation and specialized agents
 
@@ -23,18 +23,17 @@ This repository serves as a **personal AI operating system** - a collection of s
 │   └── profile.md   # Work style, PARA areas, preferences
 ├── commands/        # Custom command definitions
 │   └── reflection.md
-├── skills/          # Opencode Agent Skills (15 skills)
+├── skills/          # Opencode Agent Skills (14 skills)
 │   ├── agent-development/    # Agent creation and configuration
-│   ├── basecamp/             # Basecamp project management
 │   ├── brainstorming/        # Ideation & strategic thinking
 │   ├── doc-translator/       # Documentation translation
 │   ├── excalidraw/           # Architecture diagrams
-│   ├── frontend-design/      # UI/UX design patterns
-│   ├── memory/               # Persistent memory system
+│   ├── mem0-memory/          # DEPRECATED — replaced by opencode-memory plugin
 │   ├── obsidian/             # Obsidian vault management
 │   ├── outline/              # Outline wiki integration
 │   ├── pdf/                  # PDF manipulation toolkit
 │   ├── prompt-engineering-patterns/   # Prompt patterns
+│   ├── qmd/                  # Knowledge retrieval via QMD
 │   ├── reflection/           # Conversation analysis
 │   ├── skill-creator/        # Meta-skill for creating skills
 │   ├── systematic-debugging/ # Debugging methodology
@@ -257,42 +256,42 @@ python3 skills/skill-creator/scripts/quick_validate.py skills/my-skill-name
 
 ## 📚 Available Skills
 
-| Skill                       | Purpose                                                        | Status       |
-| --------------------------- | -------------------------------------------------------------- | ------------ |
-| **agent-development**       | Create and configure Opencode agents                           | ✅ Active    |
-| **basecamp**                | Basecamp project & todo management via MCP                     | ✅ Active    |
-| **brainstorming**           | General-purpose ideation and strategic thinking                | ✅ Active    |
-| **doc-translator**          | Documentation translation to German/Czech with Outline publish | ✅ Active    |
-| **excalidraw**              | Architecture diagrams from codebase analysis                   | ✅ Active    |
-| **frontend-design**         | Production-grade UI/UX with high design quality                | ✅ Active    |
-| **memory**                  | SQLite-based persistent memory with hybrid search              | ✅ Active    |
-| **obsidian**                | Obsidian vault management via Local REST API                   | ✅ Active    |
-| **outline**                 | Outline wiki integration for team documentation                | ✅ Active    |
-| **pdf**                     | PDF manipulation, extraction, creation, and forms              | ✅ Active    |
-| **prompt-engineering-patterns** | Advanced prompt engineering techniques                     | ✅ Active    |
-| **reflection**              | Conversation analysis and skill improvement                    | ✅ Active    |
-| **skill-creator**           | Guide for creating new Opencode skills                         | ✅ Active    |
-| **systematic-debugging**    | Debugging methodology for bugs and test failures               | ✅ Active    |
-| **xlsx**                    | Spreadsheet creation, editing, and analysis                    | ✅ Active    |
+| Skill                           | Purpose                                                        | Status          |
+| ------------------------------- | -------------------------------------------------------------- | --------------- |
+| **agent-development**           | Create and configure Opencode agents                           | ✅ Active       |
+| **brainstorming**               | General-purpose ideation and strategic thinking                | ✅ Active       |
+| **doc-translator**              | Documentation translation to German/Czech with Outline publish | ✅ Active       |
+| **excalidraw**                  | Architecture diagrams from codebase analysis                   | ✅ Active       |
+| **obsidian**                    | Obsidian vault management via Local REST API                   | ✅ Active       |
+| **outline**                     | Outline wiki integration for team documentation                | ✅ Active       |
+| **pdf**                         | PDF manipulation, extraction, creation, and forms              | ✅ Active       |
+| **prompt-engineering-patterns** | Advanced prompt engineering techniques                         | ✅ Active       |
+| **qmd**                         | Knowledge retrieval and memory via Query Markup Documents      | ✅ Active       |
+| **reflection**                  | Conversation analysis and skill improvement                    | ✅ Active       |
+| **skill-creator**               | Guide for creating new Opencode skills                         | ✅ Active       |
+| **systematic-debugging**        | Debugging methodology for bugs and test failures               | ✅ Active       |
+| **xlsx**                        | Spreadsheet creation, editing, and analysis                    | ✅ Active       |
+| **mem0-memory**                 | Legacy memory skill (deprecated — use opencode-memory plugin)  | ⚠️ Deprecated  |
 
 ## 🤖 AI Agents
 
 ### Primary Agents
 
-| Agent               | Mode    | Purpose                                              |
-| ------------------- | ------- | ---------------------------------------------------- |
-| **Chiron**          | Plan    | Read-only analysis, planning, and guidance           |
-| **Chiron Forge**    | Build   | Full execution and task completion with safety       |
+| Agent                      | Mode    | Purpose                                              |
+| -------------------------- | ------- | ---------------------------------------------------- |
+| **Chiron (Assistant)**     | primary | Read-only analysis, planning, and guidance           |
+| **Chiron Forge (Builder)** | primary | Full execution and task completion with safety       |
 
 ### Subagents (Specialists)
 
-| Agent               | Domain           | Purpose                                    |
-| ------------------- | ---------------- | ------------------------------------------ |
-| **Hermes**          | Communication    | Basecamp, Outlook, MS Teams                |
-| **Athena**          | Research         | Outline wiki, documentation, knowledge     |
-| **Apollo**          | Private Knowledge| Obsidian vault, personal notes             |
-| **Calliope**        | Writing          | Documentation, reports, prose              |
+| Agent                           | Domain            | Purpose                                    |
+| ------------------------------- | ----------------- | ------------------------------------------ |
+| **Hermes (Communication)**      | Communication     | Basecamp, Outlook, MS Teams                |
+| **Athena (Researcher)**         | Research          | Outline wiki, documentation, knowledge     |
+| **Apollo (Knowledge Management)** | Private Knowledge | Obsidian vault, personal notes           |
+| **Calliope (Writer)**           | Writing           | Documentation, reports, prose              |
 
+**Model**: All agents use `zai-coding-plan/glm-5`.  
 **Configuration**: `agents/agents.json` + `prompts/*.txt`
 
 ## 🛠️ Development
@@ -343,9 +342,8 @@ Before committing:
 
 - **skill-creator/** - Meta-skill with bundled resources
 - **reflection/** - Conversation analysis with rating system
-- **basecamp/** - MCP server integration with multiple tool categories
-- **brainstorming/** - Framework-based ideation with Obsidian markdown save
-- **memory/** - SQLite-based hybrid search implementation
+- **qmd/** - Knowledge retrieval with QMD query documents
+- **brainstorming/** - Framework-based ideation
 - **excalidraw/** - Diagram generation with JSON templates and Python renderer
 
 ## 🔧 Customization

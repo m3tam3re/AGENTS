@@ -2,174 +2,239 @@
 
 Configuration repository for Opencode Agent Skills, context files, and agent configurations. Deployed via Nix home-manager to `~/.config/opencode/`.
 
-## Quick Commands
+## Build / Lint / Test Commands
 
 ```bash
-# Skill validation
-./scripts/test-skill.sh --validate   # Validate all skills
-./scripts/test-skill.sh <skill-name>  # Validate specific skill
-./scripts/test-skill.sh --run        # Test interactively
+# Validate a single skill (PRIMARY quality gate)
+./scripts/test-skill.sh <skill-name>
+python3 skills/skill-creator/scripts/quick_validate.py skills/<skill-name>
 
-# Skill creation
+# Validate all skills
+./scripts/test-skill.sh --validate
+
+# Validate agent configuration (agents.json + prompt files)
+./scripts/validate-agents.sh
+
+# Launch interactive opencode with dev skills (test without deploying)
+./scripts/test-skill.sh --run
+
+# Test with external skills.sh repos merged in
+./scripts/test-skill.sh --run --external /path/to/external/skills
+
+# Scaffold a new skill
 python3 skills/skill-creator/scripts/init_skill.py <name> --path skills/
+
+# Enter dev shell (provides Python, jq, poppler, playwright)
+nix develop
+# or with direnv:
+direnv allow
 ```
+
+**No automated CI.** All validation is manual via the scripts above.
 
 ## Directory Structure
 
 ```
 .
-├── skills/          # Agent skills (15 modules)
+├── skills/          # Agent skills (one subdirectory per skill)
 │   └── skill-name/
 │       ├── SKILL.md         # Required: YAML frontmatter + workflows
 │       ├── scripts/         # Executable code (optional)
 │       ├── references/      # Domain docs (optional)
 │       └── assets/          # Templates/files (optional)
-├── rules/           # AI coding rules (languages, concerns, frameworks)
-│   ├── languages/   # Python, TypeScript, Nix, Shell
-│   ├── concerns/    # Testing, naming, documentation, etc.
-│   └── frameworks/  # Framework-specific rules (n8n, etc.)
-├── agents/          # Agent definitions (agents.json)
-├── prompts/         # System prompts (chiron*.txt)
-├── context/         # User profiles
-├── commands/        # Custom commands
-└── scripts/         # Repo utilities (test-skill.sh, validate-agents.sh)
+├── rules/           # AI coding rules consumed by mkOpencodeRules
+│   ├── languages/   # python.md, typescript.md, nix.md, shell.md
+│   ├── concerns/    # coding-style.md, naming.md, testing.md, git-workflow.md, etc.
+│   └── frameworks/  # Framework-specific rules (n8n.md)
+├── agents/          # agents.json — embedded into opencode config.json
+├── prompts/         # System prompts (chiron.txt, chiron-forge.txt, etc.)
+├── context/         # User profile (profile.md)
+├── commands/        # Custom command definitions (reflection.md)
+├── scripts/         # Repo utilities (test-skill.sh, validate-agents.sh)
+├── flake.nix        # Nix flake: devShells, packages, lib.mkOpencodeSkills
+└── .envrc           # direnv: activates nix develop automatically
 ```
 
-## Code Conventions
+## SKILL.md Structure (Required Format)
 
-**File naming**: hyphen-case (skills), snake_case (Python), UPPERCASE/sentence-case (MD)
-
-**SKILL.md structure**:
 ```yaml
 ---
 name: skill-name
-description: "Use when: (1) X, (2) Y. Triggers: a, b, c."
+description: "Use when: (1) X, (2) Y. Triggers: keyword-a, keyword-b."
 compatibility: opencode
 ---
 
-## Overview (1 line)
-## Core Workflows (step-by-step)
+## Overview
+One-line summary.
+
+## Core Workflows
+Step-by-step instructions for the AI agent.
+
 ## Integration with Other Skills
+When and how to delegate to other skills.
 ```
 
-**Python**: `#!/usr/bin/env python3` + docstrings + emoji feedback (✅/❌)
-**Bash**: `#!/usr/bin/env bash` + `set -euo pipefail`
-**Markdown**: YAML frontmatter, ATX headers, `-` lists, language in code blocks
+**YAML frontmatter is the primary quality gate.** The `quick_validate.py` script checks that `name`, `description`, and `compatibility` fields are present and well-formed.
 
-## Anti-Patterns (CRITICAL)
+## Code Style Guidelines
 
-**Frontend Design**: NEVER use generic AI aesthetics, NEVER converge on common choices
-**Excalidraw**: NEVER use `label` property (use boundElements + text element pairs instead)
-**Debugging**: NEVER fix just symptom, ALWAYS find root cause first
-**Excel**: ALWAYS respect existing template conventions over guidelines
-**Structure**: NEVER place scripts/docs outside scripts/references/ directories
+### General (All Languages)
+
+- Prioritize readability over cleverness
+- Fail fast and explicitly — never silently swallow errors
+- Keep functions under 20 lines; extract duplicated logic
+- Use guard clauses to reduce nesting (avoid arrow-shaped code)
+- Validate inputs at function boundaries
+- Write self-documenting code; comments explain **why**, not **what**
+- Never commit commented-out code
+
+### Python
+
+- **Shebang**: `#!/usr/bin/env python3`
+- **Docstrings**: Google-style (`Args:`, `Returns:`, `Raises:`)
+- **Formatting**: `ruff` with `line-length = 100`, `quote-style = "double"`
+- **Types**: Full type annotations; use `pyright` in strict mode
+- **Imports**: Explicit only — no `from module import *`; stdlib → third-party → local
+- **Error handling**: Catch specific exceptions; always log context, never `except: pass`
+- **Defaults**: Use `None` sentinel, not mutable defaults (`def f(x=None): if x is None: x = []`)
+- **State**: Avoid `global`; encapsulate state in classes
+- **Feedback**: Use emoji in user-facing output (`✅` success, `❌` error, `⚠️` warning)
+- **Package management**: `uv` for projects; `pyproject.toml` with `[tool.ruff]` and `[tool.pyright]`
+
+### Bash / Shell
+
+- **Shebang**: `#!/usr/bin/env bash` (never `/bin/bash`)
+- **Strict mode**: `set -euo pipefail` at the top of every script
+- **Variables**: Always quote: `"${var}"`, use arrays for lists
+- **Functions**: Parentheses style (`my_func() { local var; ... }`)
+- **Substitution**: Use `$()` not backticks
+- **Cleanup**: Use `trap cleanup EXIT` for temp files/dirs
+- **Indentation**: 2 spaces; lines ≤ 80 chars
+- **Lint**: Run `shellcheck` before committing
+- **Colors**: Define `RED`, `GREEN`, `YELLOW`, `NC` constants for terminal output
+
+### Nix
+
+- **Formatting**: `alejandra` (2-space indent, no trailing whitespace)
+- **Naming**: camelCase for variables, PascalCase for types, hyphen-case for files
+- **Packages**: Explicit `pkgs.vim` references — avoid `with pkgs;` namespace pollution
+- **Inputs**: Always use flake inputs, never `import <nixpkgs>` or `builtins.fetchTarball`
+- **Conditionals**: Use `lib.mkIf`, `lib.mkMerge`, `lib.mkOptionDefault`
+- **Attributes**: Use `lib.attrByPath`/`lib.optionalAttrs` instead of `builtins.getAttr`
+
+### Markdown
+
+- YAML frontmatter where required (skills, commands)
+- ATX-style headers (`##`, not underlines)
+- `-` for unordered lists (not `*`)
+- Always specify language in fenced code blocks
+
+## Naming Conventions
+
+| Context        | Python       | TypeScript   | Nix          | Shell           |
+| -------------- | ------------ | ------------ | ------------ | --------------- |
+| Variables      | `snake_case` | `camelCase`  | `camelCase`  | `UPPER_SNAKE`   |
+| Functions      | `snake_case` | `camelCase`  | `camelCase`  | `lower_case`    |
+| Classes        | `PascalCase` | `PascalCase` | —            | —               |
+| Constants      | `UPPER_SNAKE`| `UPPER_SNAKE`| `camelCase`  | `UPPER_SNAKE`   |
+| Files          | `snake_case` | `camelCase`  | `hyphen-case`| `hyphen-case`   |
+| Skill dirs     | `hyphen-case`| —            | —            | —               |
+| Markdown files | `UPPERCASE.md` or `sentence-case.md` | | | |
+
+Function names: verb-noun pattern (`get_user_data`, `validate_skill`). Classes: descriptive nouns, no abbreviations.
+
+## Anti-Patterns (CRITICAL — Never Do These)
+
+**Skills:**
+- NEVER place scripts or docs outside `scripts/` and `references/` subdirectories
+- NEVER add `README.md` or `CHANGELOG.md` inside a skill directory
+- NEVER create a skill without valid YAML frontmatter
+
+**Frontend Design:**
+- NEVER use generic AI aesthetics; NEVER converge on common design choices
+
+**Excalidraw:**
+- NEVER use the `label` property; use `boundElements` + separate text elements
+
+**Debugging:**
+- NEVER fix just the symptom; ALWAYS find and address the root cause first
+
+**Excel / Spreadsheets:**
+- ALWAYS respect existing template conventions over general guidelines
+
+**Python:**
+- NEVER use bare `except:` — always catch specific exception types
+- NEVER use mutable default arguments
+
+**Nix:**
+- NEVER use `with pkgs;` — always use explicit `pkgs.packageName` references
 
 ## Testing Patterns
 
-**Unique conventions** (skill-focused, not CI/CD):
-- Manual validation via `test-skill.sh`, no automated CI
-- Tests co-located with source (not separate test directories)
-- YAML frontmatter validation = primary quality gate
-- Mixed formats: Python unittest, markdown pressure tests, A/B prompt testing
+This repo is **documentation-only** (no compilation, no CI). Testing is skill-focused:
 
-**Known deviations**:
-- `systematic-debugging/test-*.md` - Academic/pressure testing in wrong location
-- `pdf/forms.md`, `pdf/reference.md` - Docs outside references/
+```bash
+# Validate single skill's YAML frontmatter and structure
+python3 skills/skill-creator/scripts/quick_validate.py skills/<skill-name>
+
+# Validate all skills
+./scripts/test-skill.sh --validate
+
+# Live integration test: launch opencode with dev skills
+./scripts/test-skill.sh --run
+```
+
+**Test structure for Python scripts** (when writing `scripts/*.py`):
+- Use `pytest` + `hypothesis` for property-based tests
+- Arrange-Act-Assert pattern; one behavior per test
+- Test public contracts and observable behavior, not internals
+- Mock external I/O (network, filesystem); don't mock internal logic
+
+**Known structural deviations** (do not replicate):
+- `systematic-debugging/test-*.md` — pressure tests in wrong location
+- `pdf/forms.md`, `pdf/reference.md` — docs outside `references/`
+
+## Git Workflow
+
+**Commit format**: `<type>(<scope>): <subject>` (Conventional Commits)
+- Types: `feat`, `fix`, `refactor`, `docs`, `chore`, `test`, `style`
+- Subject: imperative mood, ≤ 72 chars, no trailing period
+- Example: `feat(skill-creator): add YAML frontmatter auto-repair`
+
+**Branch naming**: `<type>/<short-description>` (lowercase, hyphens, ≤ 50 chars)
+
+**Session completion workflow**: commit + `git push` (always push at end of session)
 
 ## Deployment
 
-**Nix flake pattern**:
+**Agent changes** (`agents/agents.json`, `prompts/*.txt`) require `home-manager switch`.  
+**All other changes** (skills, context, commands) are visible immediately via symlinks.
+
 ```nix
-agents = {
-  url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
-  inputs.nixpkgs.follows = "nixpkgs";  # Optional but recommended
-};
-```
-
-**Exports:**
-- `lib.mkOpencodeSkills` — compose custom + external [skills.sh](https://skills.sh) skills into one directory
-- `packages.skills-runtime` — composable runtime with all skill dependencies
-- `devShells.default` — dev environment for working on skills
-
-**Mapping** (via home-manager):
-- `skills/` → composed via `mkOpencodeSkills` (custom + external merged)
-- `context/`, `commands/`, `prompts/` → symlinks
-- `agents/agents.json` → embedded into config.json
-- Agent changes: require `home-manager switch`
-- Other changes: visible immediately
-
-### External Skills (skills.sh)
-
-This repo supports composing skills from external [skills.sh](https://skills.sh) repositories
-alongside custom skills. External repos follow the [Agent Skills](https://agentskills.io)
-standard (same `SKILL.md` format).
-
-**`lib.mkOpencodeSkills` parameters:**
-- `pkgs` (required) — nixpkgs package set
-- `customSkills` (optional) — path to custom skills directory (e.g., `"${inputs.agents}/skills"`)
-- `externalSkills` (optional) — list of external sources, each with:
-  - `src` — flake input or path to repo root
-  - `skillsDir` — subdirectory containing skills (default: `"skills"`)
-  - `selectSkills` — list of skill names to include (default: all)
-
-**Collision handling:** Custom skills always win. Among externals, earlier entries take priority.
-
-**Home-manager example:**
-```nix
-inputs = {
-  agents.url = "git+https://code.m3ta.dev/m3tam3re/AGENTS";
-  skills-anthropic = { url = "github:anthropics/skills"; flake = false; };
-};
-
+# Minimal home-manager setup
 xdg.configFile."opencode/skills".source =
   inputs.agents.lib.mkOpencodeSkills {
     pkgs = nixpkgs.legacyPackages.${system};
     customSkills = "${inputs.agents}/skills";
-    externalSkills = [
-      { src = inputs.skills-anthropic; }
-    ];
   };
 ```
 
-**Project flake example (selective):**
-```nix
-".agents/skills".source =
-  inputs.agents.lib.mkOpencodeSkills {
-    pkgs = nixpkgs.legacyPackages.${system};
-    externalSkills = [
-      { src = inputs.skills-anthropic; selectSkills = [ "mcp-builder" ]; }
-    ];
-  };
-```
+See `README.md` for full deployment examples including external skill composition.
 
-## Rules System
+## Quality Gates (Before Committing)
 
-Centralized AI coding rules consumed via `mkOpencodeRules` from m3ta-nixpkgs:
-
-```nix
-# In project flake.nix
-m3taLib.opencode-rules.mkOpencodeRules {
-  inherit agents;
-  languages = [ "python" "typescript" ];
-  frameworks = [ "n8n" ];
-};
-```
-
-See `rules/USAGE.md` for full documentation.
+1. `./scripts/test-skill.sh --validate` — all skills pass
+2. `./scripts/validate-agents.sh` — agent config is valid (if agents/ changed)
+3. Python scripts have `#!/usr/bin/env python3` shebang + Google-style docstrings
+4. No extraneous files (`README.md`, `CHANGELOG.md`) inside skill directories
+5. If skill scripts have new dependencies → update `flake.nix` `pythonEnv` or `paths`
+6. Git status clean before pushing
 
 ## Notes for AI Agents
 
-1. **Config-only repo** - No compilation, no build, manual validation only
-2. **Skills are documentation** - Write for AI consumption, progressive disclosure
-3. **Consistent structure** - All skills follow 4-level deep pattern (skills/name/ + optional subdirs)
-4. **Cross-cutting concerns** - Standardized SKILL.md, workflow patterns, delegation rules
-5. **Always push** - Session completion workflow: commit + git push
-
-## Quality Gates
-
-Before committing:
-1. `./scripts/test-skill.sh --validate`
-2. Python shebang + docstrings check
-3. No extraneous files (README.md, CHANGELOG.md in skills/)
-4. If skill has scripts with external dependencies → verify `flake.nix` is updated (see skill-creator Step 4)
-5. Git status clean
+1. **Config-only repo** — no compilation step; `./scripts/test-skill.sh --validate` is the build
+2. **Skills are documentation** — write for AI consumption with progressive disclosure
+3. **Consistent 4-level structure** — `skills/name/{SKILL.md,scripts/,references/,assets/}`
+4. **Delegation model** — `Chiron (Assistant)` (plan-only), `Chiron Forge (Builder)` (execute), `Hermes (Communication)` (comms), `Athena (Researcher)` (research), `Apollo (Knowledge Management)` (private knowledge), `Calliope (Writer)` (writing). All use model `zai-coding-plan/glm-5`.
+5. **Always push** — end every session with commit + `git push`
+6. **Rules system** — `rules/` contains language + concern rules injected into projects via `mkOpencodeRules`; edit these when updating cross-repo coding standards
