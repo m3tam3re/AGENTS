@@ -1,0 +1,31 @@
+# agents/apollo/agent.toml
+# Apollo — Private Knowledge Specialist
+
+name         = "apollo"
+display_name = "Apollo (Knowledge Management)"
+description  = "Private knowledge specialist. Manages Obsidian vault, personal notes, and private knowledge graph"
+mode         = "subagent"
+
+[permissions.question]
+intent = "allow"
+
+[permissions.edit]
+intent = "allow"
+rules = [
+  "/run/agenix/**:deny",
+]
+
+[permissions.bash]
+intent = "ask"
+rules = [
+  "cat *:allow",
+]
+
+[permissions.external_directory]
+intent = "ask"
+rules = [
+  "~/p/**:allow",
+  "~/.config/opencode/**:allow",
+  "/tmp/**:allow",
+  "/run/agenix/**:allow",
+]

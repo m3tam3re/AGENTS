@@ -1,0 +1,41 @@
+# agents/chiron-forge/agent.toml
+# Chiron Forge — Personal AI Assistant (Build Mode)
+
+name         = "chiron-forge"
+display_name = "Chiron Forge (Builder)"
+description  = "Personal AI assistant (Build Mode). Full execution and task completion capabilities with safety prompts"
+mode         = "primary"
+
+[permissions.question]
+intent = "allow"
+
+[permissions.webfetch]
+intent = "allow"
+
+[permissions.websearch]
+intent = "allow"
+
+[permissions.edit]
+intent = "allow"
+rules = [
+  "/run/agenix/**:deny",
+]
+
+[permissions.bash]
+intent = "allow"
+rules = [
+  "rm -rf *:ask",
+  "git reset --hard*:ask",
+  "git push*:ask",
+  "git push --force*:deny",
+  "git push -f *:deny",
+]
+
+[permissions.external_directory]
+intent = "ask"
+rules = [
+  "~/p/**:allow",
+  "~/.config/opencode/**:allow",
+  "/tmp/**:allow",
+  "/run/agenix/**:allow",
+]

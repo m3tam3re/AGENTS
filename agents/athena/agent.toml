@@ -1,0 +1,38 @@
+# agents/athena/agent.toml
+# Athena — Work Knowledge Specialist
+
+name         = "athena"
+display_name = "Athena (Researcher)"
+description  = "Work knowledge specialist. Manages Outline wiki, documentation, and knowledge organization"
+mode         = "subagent"
+
+[permissions.question]
+intent = "allow"
+
+[permissions.webfetch]
+intent = "allow"
+
+[permissions.websearch]
+intent = "allow"
+
+[permissions.edit]
+intent = "allow"
+rules = [
+  "/run/agenix/**:deny",
+]
+
+[permissions.bash]
+intent = "ask"
+rules = [
+  "grep *:allow",
+  "cat *:allow",
+]
+
+[permissions.external_directory]
+intent = "ask"
+rules = [
+  "~/p/**:allow",
+  "~/.config/opencode/**:allow",
+  "/tmp/**:allow",
+  "/run/agenix/**:allow",
+]

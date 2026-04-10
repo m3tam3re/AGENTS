@@ -1,0 +1,35 @@
+# agents/calliope/agent.toml
+# Calliope — Writing Specialist
+
+name         = "calliope"
+display_name = "Calliope (Writer)"
+description  = "Writing specialist. Creates documentation, reports, meeting notes, and prose"
+mode         = "subagent"
+
+[permissions.question]
+intent = "allow"
+
+[permissions.webfetch]
+intent = "allow"
+
+[permissions.edit]
+intent = "allow"
+rules = [
+  "/run/agenix/**:deny",
+]
+
+[permissions.bash]
+intent = "ask"
+rules = [
+  "cat *:allow",
+  "wc *:allow",
+]
+
+[permissions.external_directory]
+intent = "ask"
+rules = [
+  "~/p/**:allow",
+  "~/.config/opencode/**:allow",
+  "/tmp/**:allow",
+  "/run/agenix/**:allow",
+]
