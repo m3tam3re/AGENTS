@@ -1,0 +1,53 @@
+# agents/chiron/agent.toml
+# Chiron — Personal AI Assistant (Plan Mode)
+
+name        = "chiron"
+display_name = "Chiron (Assistant)"
+description = "Personal AI assistant (Plan Mode). Read-only analysis, planning, and guidance"
+mode        = "primary"
+tags        = ["assistant", "plan-mode", "read-only"]
+max_turns   = 50
+
+skills  = ["systematic-debugging", "git-master", "brainstorming"]
+context = ["../../context/profile.md"]
+rules   = ["languages/nix", "languages/python", "concerns/testing"]
+
+[permissions.question]
+intent = "allow"
+
+[permissions.webfetch]
+intent = "allow"
+
+[permissions.websearch]
+intent = "allow"
+
+[permissions.edit]
+intent = "deny"
+
+[permissions.bash]
+intent = "ask"
+rules = [
+  "git status*:allow",
+  "git log*:allow",
+  "git diff*:allow",
+  "git branch*:allow",
+  "git show*:allow",
+  "grep *:allow",
+  "ls *:allow",
+  "cat *:allow",
+  "head *:allow",
+  "tail *:allow",
+  "wc *:allow",
+  "which *:allow",
+  "echo *:allow",
+  "nix *:allow",
+]
+
+[permissions.external_directory]
+intent = "ask"
+rules = [
+  "~/p/**:allow",
+  "~/.config/opencode/**:allow",
+  "/tmp/**:allow",
+  "/run/agenix/**:allow",
+]

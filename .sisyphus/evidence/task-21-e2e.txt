@@ -1,0 +1,34 @@
+=== Task 21: End-to-End Integration Test ===
+
+--- 1. AGENTS repo flake check ---
+PASS: nix flake check passes
+
+--- 2. nixpkgs flake check ---
+PASS: nix flake check passes (21 checks, formatting clean)
+
+--- 3. loadAgents returns 6 agents ---
+PASS: 6 agents (chiron, chiron-forge, hermes, athena, apollo, calliope)
+
+--- 4. OpenCode renderer ---
+PASS: 6 .md files with correct YAML frontmatter
+
+--- 5. Claude Code renderer ---
+PASS: 6 .md files in .claude/agents/ + settings.json with permission DSL
+
+--- 6. Pi renderer ---
+PASS: AGENTS.md + SYSTEM.md, SYSTEM.md byte-identical to chiron prompt
+
+--- 7. Skills composition ---
+PASS: 18 skills in linkFarm output, mkOpencodeSkills unchanged
+
+--- 8. Backward-compat bridge ---
+PASS: agentsJson output matches golden file (zero diff)
+
+--- 9. Coding rules backward compat ---
+PASS: mkCodingRules == mkOpencodeRules (identical instructions output)
+
+--- 10. Formatting ---
+PASS: alejandra formatting clean on both repos (verified via flake check)
+
+--- Summary ---
+All checks PASS.

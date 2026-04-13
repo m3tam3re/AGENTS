@@ -1,0 +1,45 @@
+=== Task 18: Flake exports + Aggregator imports ===
+homeManagerModule keys:
+["agents","default","opencode","ports","zellij-ps"]
+
+coding/default.nix imports:
+# Coding-related Home Manager modules
+{
+  imports = [
+    ./editors.nix
+    ./opencode.nix
+    ./agents
+  ];
+}
+
+coding/agents/default.nix:
+# Per-tool agent sub-modules
+# Each module handles rendering canonical agent.toml definitions
+# for a specific AI coding tool.
+{
+  imports = [
+    ./opencode.nix
+    ./claude-code.nix
+    ./pi.nix
+  ];
+}
+
+lib/default.nix:
+# Library of helper functions for m3ta-nixpkgs
+# Usage in your configuration:
+#   let
+#     m3taLib = inputs.m3ta-nixpkgs.lib.${system};
+#   in ...
+{lib}: {
+  # Port management utilities
+  ports = import ./ports.nix {inherit lib;};
+
+  # Coding rules injection utilities (renamed from opencode-rules)
+  coding-rules = import ./coding-rules.nix {inherit lib;};
+
+  # Backward-compat alias: opencode-rules → coding-rules
+  opencode-rules = import ./coding-rules.nix {inherit lib;};
+
+  # Agent configuration management utilities
+  agents = import ./agents.nix {inherit lib;};
+}

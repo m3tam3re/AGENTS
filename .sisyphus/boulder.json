@@ -1,0 +1,77 @@
+{
+  "active_plan": "/home/m3tam3re/p/AI/AGENTS/.sisyphus/plans/harness-agnostic-migration.md",
+  "started_at": "2026-04-10T13:53:14.227Z",
+  "session_ids": [
+    "ses_28877ce54ffepCBENqWBi0fQr4"
+  ],
+  "session_origins": {
+    "ses_28877ce54ffepCBENqWBi0fQr4": "direct"
+  },
+  "plan_name": "harness-agnostic-migration",
+  "agent": "atlas",
+  "task_sessions": {
+    "todo:1": {
+      "task_key": "todo:1",
+      "task_label": "1",
+      "task_title": "Capture Golden File Baseline",
+      "session_id": "ses_28852d166ffea2zvkAFvqhH7OX",
+      "agent": "Sisyphus-Junior",
+      "category": "quick",
+      "updated_at": "2026-04-10T13:56:10.927Z"
+    },
+    "todo:3": {
+      "task_key": "todo:3",
+      "task_label": "3",
+      "task_title": "Design Canonical agent.toml Schema",
+      "session_id": "ses_288508bf9ffeDi2kwwOT95s78z",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-04-10T13:59:52.937Z"
+    },
+    "todo:5": {
+      "task_key": "todo:5",
+      "task_label": "5",
+      "task_title": "Create All 6 agent.toml + system-prompt.md Files",
+      "session_id": "ses_2884d3d77ffeP8WZCH8MXK02Hv",
+      "agent": "Sisyphus-Junior",
+      "category": "unspecified-high",
+      "updated_at": "2026-04-10T14:04:28.811Z"
+    },
+    "todo:6": {
+      "task_key": "todo:6",
+      "task_label": "6",
+      "task_title": "Update AGENTS flake.nix with loadAgents + agentsJson Bridge",
+      "session_id": "ses_28840426bffeLNACasCLDil1oX",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-04-10T14:21:02.937Z"
+    },
+    "todo:7": {
+      "task_key": "todo:7",
+      "task_label": "7",
+      "task_title": "Create lib/agents.nix in nixpkgs with loadCanonical",
+      "session_id": "ses_288254a44ffer60bcJY7yAKtqh",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-04-10T14:46:28.743Z"
+    },
+    "todo:9": {
+      "task_key": "todo:9",
+      "task_label": "9",
+      "task_title": "Implement OpenCode Renderer in lib/agents.nix",
+      "session_id": "ses_2881e8981ffe8ZZZjBOJ60wU5O",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-04-10T15:07:43.465Z"
+    },
+    "todo:10": {
+      "task_key": "todo:10",
+      "task_label": "10",
+      "task_title": "Implement Claude Code Renderer in lib/agents.nix",
+      "session_id": "ses_2880cbb8affe03hwPbOGZKEFDC",
+      "agent": "Sisyphus-Junior",
+      "category": "deep",
+      "updated_at": "2026-04-10T15:42:05.656Z"
+    }
+  }
+}

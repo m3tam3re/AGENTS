@@ -1,0 +1,6 @@
+diff chiron: exit 0
+diff chiron-forge: exit 0
+diff hermes: exit 0
+diff athena: exit 0
+diff apollo: exit 0
+diff calliope: exit 0

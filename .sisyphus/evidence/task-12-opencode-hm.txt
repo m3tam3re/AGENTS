@@ -1,0 +1,6 @@
+=== Task 12: OpenCode HM Sub-Module ===
+Module file: modules/home-manager/coding/agents/opencode.nix
+Options: coding.agents.opencode.{enable, agentsInput, modelOverrides, externalSkills}
+Config: renders agents to ~/.config/opencode/agents/
+
+Use '--all-systems' to check all.

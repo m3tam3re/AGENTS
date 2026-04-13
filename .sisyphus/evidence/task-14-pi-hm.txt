@@ -1,0 +1,6 @@
+=== Task 14: Pi HM Sub-Module ===
+Module file: modules/home-manager/coding/agents/pi.nix
+Options: coding.agents.pi.{enable, agentsInput}
+Config: renders AGENTS.md + SYSTEM.md to ~/.pi/agent/
+
+Use '--all-systems' to check all.

@@ -1,0 +1,2568 @@
+{
+  "success": true,
+  "clones": [
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_38/patches/gradle-flutter-tools-wrapper.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/gradle-flutter-tools-wrapper.patch",
+      "startB": 1,
+      "lines": 219,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_38/patches/fix-macos-build-macos-assemble-sh.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/fix-macos-build-macos-assemble-sh.patch",
+      "startB": 1,
+      "lines": 59,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_38/patches/fix-ios-build-xcode-backend-sh.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/fix-ios-build-xcode-backend-sh.patch",
+      "startB": 1,
+      "lines": 68,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_38/patches/disable-auto-update.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/disable-auto-update.patch",
+      "startB": 1,
+      "lines": 29,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_35/patches/gradle-flutter-tools-wrapper.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/gradle-flutter-tools-wrapper.patch",
+      "startB": 1,
+      "lines": 219,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_35/patches/fix-macos-build-macos-assemble-sh.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/fix-macos-build-macos-assemble-sh.patch",
+      "startB": 1,
+      "lines": 59,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_35/patches/fix-ios-build-xcode-backend-sh.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/fix-ios-build-xcode-backend-sh.patch",
+      "startB": 1,
+      "lines": 68,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_35/patches/disable-auto-update.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/disable-auto-update.patch",
+      "startB": 1,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_32/patches/gradle-flutter-tools-wrapper.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/gradle-flutter-tools-wrapper.patch",
+      "startB": 1,
+      "lines": 59,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_32/patches/gradle-flutter-tools-wrapper.patch",
+      "startA": 155,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/gradle-flutter-tools-wrapper.patch",
+      "startB": 155,
+      "lines": 32,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_32/patches/fix-ios-build-xcode-backend-sh.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/fix-ios-build-xcode-backend-sh.patch",
+      "startB": 1,
+      "lines": 38,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_32/patches/disable-auto-update.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/disable-auto-update.patch",
+      "startB": 1,
+      "lines": 30,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_29/patches/gradle-flutter-tools-wrapper.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/gradle-flutter-tools-wrapper.patch",
+      "startB": 1,
+      "lines": 219,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_29/patches/fix-ios-build-xcode-backend-sh.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/fix-ios-build-xcode-backend-sh.patch",
+      "startB": 1,
+      "lines": 68,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_29/patches/disable-auto-update.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/versions/3_41/patches/disable-auto-update.patch",
+      "startB": 1,
+      "lines": 30,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ca/calamares-nixos-extensions/src/branding/nixos/nix-snowflake.svg",
+      "startA": 149,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ca/calamares-nixos-extensions/src/branding/nixos/nix-snowflake.svg",
+      "startB": 139,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ca/calamares-nixos-extensions/src/branding/nixos/nix-snowflake.svg",
+      "startA": 169,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ca/calamares-nixos-extensions/src/branding/nixos/nix-snowflake.svg",
+      "startB": 159,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/pkgs-lib/formats/libconfig/src/src/main.rs",
+      "startA": 148,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/pkgs-lib/formats/libconfig/src/src/main.rs",
+      "startB": 134,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/pkgs-lib/formats/hocon/src/src/main.rs",
+      "startA": 133,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/pkgs-lib/formats/libconfig/src/src/main.rs",
+      "startB": 177,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/pkgs-lib/formats/hocon/src/src/main.rs",
+      "startA": 230,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/pkgs-lib/formats/libconfig/src/src/main.rs",
+      "startB": 252,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/darwin/apple-source-releases/dyld/patches/0005-Add-OpenSSL-based-CoreCrypto-digest-functions.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/darwin/apple-source-releases/network_cmds/patches/0007-Add-OpenSSL-based-CoreCrypto-digest-functions.patch",
+      "startB": 1,
+      "lines": 74,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/darwin/apple-source-releases/dyld/patches/0005-Add-OpenSSL-based-CoreCrypto-digest-functions.patch",
+      "startA": 88,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/darwin/apple-source-releases/network_cmds/patches/0007-Add-OpenSSL-based-CoreCrypto-digest-functions.patch",
+      "startB": 86,
+      "lines": 224,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/14.2/sys-no-explicit-intrinsics-dep.patch",
+      "startA": 5,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/15.0/sys-no-explicit-intrinsics-dep.patch",
+      "startB": 4,
+      "lines": 38,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/14.2/stand-label.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/15.0/stand-label.patch",
+      "startB": 1,
+      "lines": 37,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/14.2/stand-label.patch",
+      "startA": 45,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/15.0/stand-label.patch",
+      "startB": 45,
+      "lines": 345,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/14.2/rc-user.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/15.0/rc-user.patch",
+      "startB": 1,
+      "lines": 17,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/14.2/mount-use-path.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/15.0/mount-use-path.patch",
+      "startB": 1,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/14.2/mk.patch",
+      "startA": 30,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/15.0/bsd-lib-mk-force-static.patch",
+      "startB": 2,
+      "lines": 48,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/14.2/localedef.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/15.0/localedef.patch",
+      "startB": 1,
+      "lines": 31,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/14.2/localedef.patch",
+      "startA": 48,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/15.0/localedef.patch",
+      "startB": 47,
+      "lines": 111,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/13.1/compat-install-dirs.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/14.2/compat-install-dirs.patch",
+      "startB": 1,
+      "lines": 40,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/13.1/compat-fix-typedefs-locations.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/bsd/freebsd/patches/14.2/compat-fix-typedefs-locations.patch",
+      "startB": 1,
+      "lines": 32,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tcl-modules/by-name/ti/tix/fix-clang16.patch",
+      "startA": 161,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tcl-modules/by-name/ti/tix/fix-clang16.patch",
+      "startB": 133,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/python/cpython/3.12/no-ldconfig.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/python/cpython/3.13/no-ldconfig.patch",
+      "startB": 1,
+      "lines": 51,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/python/cpython/3.11/no-ldconfig.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/python/cpython/3.13/no-ldconfig.patch",
+      "startB": 1,
+      "lines": 51,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/python/cpython/2.7/python-2.7-distutils-C++.patch",
+      "startA": 124,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/python/cpython/3.11/python-3.x-distutils-C++.patch",
+      "startB": 119,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/python/cpython/2.7/python-2.7-distutils-C++.patch",
+      "startA": 159,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/python/cpython/3.11/python-3.x-distutils-C++.patch",
+      "startB": 156,
+      "lines": 26,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/openjdk/11/patches/swing-use-gtk-jdk10.patch",
+      "startA": 3,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/openjdk/8/patches/swing-use-gtk-jdk8.patch",
+      "startB": 4,
+      "lines": 22,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/openjdk/11/patches/read-truststore-from-env-jdk10.patch",
+      "startA": 3,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/openjdk/8/patches/read-truststore-from-env-jdk8.patch",
+      "startB": 3,
+      "lines": 28,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/llvm/21/llvm/gnu-install-dirs.patch",
+      "startA": 79,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/llvm/22/llvm/gnu-install-dirs.patch",
+      "startB": 79,
+      "lines": 56,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/llvm/20/llvm/gnu-install-dirs.patch",
+      "startA": 41,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/llvm/21/llvm/gnu-install-dirs.patch",
+      "startB": 41,
+      "lines": 72,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/llvm/18/llvm/gnu-install-dirs.patch",
+      "startA": 38,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/llvm/21/llvm/gnu-install-dirs.patch",
+      "startB": 41,
+      "lines": 15,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/llvm/18/llvm/gnu-install-dirs.patch",
+      "startA": 100,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/llvm/20/llvm/gnu-install-dirs.patch",
+      "startB": 102,
+      "lines": 23,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/llvm/18/compiler-rt/armv6-scudo-libatomic.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/llvm/19/compiler-rt/armv6-scudo-libatomic.patch",
+      "startB": 1,
+      "lines": 25,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/dart/package-source-builders/flutter_discord_rpc/cargokit.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/dart/package-source-builders/rhttp/cargokit.patch",
+      "startB": 1,
+      "lines": 90,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/commonmark.py",
+      "startA": 61,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/manpage.py",
+      "startB": 130,
+      "lines": 7,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/commonmark.py",
+      "startA": 95,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/manpage.py",
+      "startB": 183,
+      "lines": 7,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/commonmark.py",
+      "startA": 121,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/manpage.py",
+      "startB": 221,
+      "lines": 22,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/commonmark.py",
+      "startA": 182,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/manpage.py",
+      "startB": 283,
+      "lines": 6,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/asciidoc.py",
+      "startA": 133,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/commonmark.py",
+      "startB": 104,
+      "lines": 6,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/asciidoc.py",
+      "startA": 202,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nixos-render-docs/src/nixos_render_docs/html.py",
+      "startB": 171,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/split_paths_test.py",
+      "startA": 13,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/subcomponent_test.py",
+      "startB": 14,
+      "lines": 20,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/split_paths_test.py",
+      "startA": 138,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/subcomponent_test.py",
+      "startB": 149,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/popularity_contest_test.py",
+      "startA": 65,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/split_paths_test.py",
+      "startB": 29,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/php/builders/v2/hooks/php-script-utils.bash",
+      "startA": 59,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/php/builders/v2/hooks/php-script-utils.bash",
+      "startB": 32,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/php/builders/v2/hooks/composer-install-hook.sh",
+      "startA": 8,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/php/builders/v2/hooks/composer-vendor-hook.sh",
+      "startB": 8,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/php/builders/v1/hooks/composer-install-hook.sh",
+      "startA": 23,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/php/builders/v1/hooks/composer-repository-hook.sh",
+      "startB": 19,
+      "lines": 35,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/editors/jetbrains/updater/jetbrains_nix_updater/update_src.py",
+      "startA": 60,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/editors/jetbrains/updater/jetbrains_nix_updater/update_src.py",
+      "startB": 37,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/limine/limine-install.py",
+      "startA": 59,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/refind/refind-install.py",
+      "startB": 29,
+      "lines": 23,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/limine/limine-install.py",
+      "startA": 81,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/refind/refind-install.py",
+      "startB": 51,
+      "lines": 15,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/limine/limine-install.py",
+      "startA": 95,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/refind/refind-install.py",
+      "startB": 65,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/limine/limine-install.py",
+      "startA": 141,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/refind/refind-install.py",
+      "startB": 91,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/limine/limine-install.py",
+      "startA": 325,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/refind/refind-install.py",
+      "startB": 143,
+      "lines": 7,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/limine/limine-install.py",
+      "startA": 354,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/refind/refind-install.py",
+      "startB": 160,
+      "lines": 39,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/limine/limine-install.py",
+      "startA": 458,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/refind/refind-install.py",
+      "startB": 214,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/limine/limine-install.py",
+      "startA": 513,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/refind/refind-install.py",
+      "startB": 241,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/limine/limine-install.py",
+      "startA": 578,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/refind/refind-install.py",
+      "startB": 275,
+      "lines": 16,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/limine/limine-install.py",
+      "startA": 615,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/refind/refind-install.py",
+      "startB": 312,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/grub/install-grub.pl",
+      "startA": 595,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/grub/install-grub.pl",
+      "startB": 544,
+      "lines": 6,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startA": 5,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-wrapped-settings-constructor-patched/main.c",
+      "startB": 5,
+      "lines": 9,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startA": 40,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startB": 4,
+      "lines": 8,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startA": 64,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startB": 52,
+      "lines": 8,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startA": 81,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startB": 30,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startA": 92,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startB": 29,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startA": 104,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startB": 91,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched/main.c",
+      "startA": 4,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startB": 4,
+      "lines": 74,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched/main.c",
+      "startA": 77,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startB": 77,
+      "lines": 16,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched/main.c",
+      "startA": 92,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched-with-exists-fn/main.c",
+      "startB": 29,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched/main.c",
+      "startA": 105,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-hardcode-gsettings-patch/fixtures/example-project-patched/main.c",
+      "startB": 92,
+      "lines": 25,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/stdenv/linux/bootstrap-tools/glibc/unpack-bootstrap-tools.sh",
+      "startA": 56,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/stdenv/linux/bootstrap-tools/musl/unpack-bootstrap-tools.sh",
+      "startB": 43,
+      "lines": 22,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/sql/postgresql/patches/empty-pg-config-view-15+.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/sql/postgresql/patches/empty-pg-config-view.patch",
+      "startB": 1,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_8/oauth2-basic-secret-modify.patch",
+      "startA": 14,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_9/oauth2-basic-secret-modify.patch",
+      "startB": 14,
+      "lines": 54,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_8/oauth2-basic-secret-modify.patch",
+      "startA": 91,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_9/oauth2-basic-secret-modify.patch",
+      "startB": 91,
+      "lines": 41,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_8/oauth2-basic-secret-modify.patch",
+      "startA": 134,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_9/oauth2-basic-secret-modify.patch",
+      "startB": 134,
+      "lines": 25,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_7/oauth2-basic-secret-modify.patch",
+      "startA": 3,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_8/oauth2-basic-secret-modify.patch",
+      "startB": 3,
+      "lines": 65,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_7/oauth2-basic-secret-modify.patch",
+      "startA": 89,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_8/oauth2-basic-secret-modify.patch",
+      "startB": 89,
+      "lines": 43,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_7/oauth2-basic-secret-modify.patch",
+      "startA": 134,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_9/oauth2-basic-secret-modify.patch",
+      "startB": 134,
+      "lines": 25,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_6/recover-account.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_7/recover-account.patch",
+      "startB": 1,
+      "lines": 48,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_6/recover-account.patch",
+      "startA": 51,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_7/recover-account.patch",
+      "startB": 51,
+      "lines": 71,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_6/oauth2-basic-secret-modify.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_7/oauth2-basic-secret-modify.patch",
+      "startB": 1,
+      "lines": 158,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_5/oauth2-basic-secret-modify.patch",
+      "startA": 11,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_8/oauth2-basic-secret-modify.patch",
+      "startB": 11,
+      "lines": 57,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_5/oauth2-basic-secret-modify.patch",
+      "startA": 79,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/kanidm/provision-patches/1_7/oauth2-basic-secret-modify.patch",
+      "startB": 79,
+      "lines": 52,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/linux/sgx/psw/disable-downloads.patch",
+      "startA": 14,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/linux/sgx/sdk/disable-downloads.patch",
+      "startB": 12,
+      "lines": 9,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/linux/sgx/psw/cppmicroservices-no-mtime.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/linux/sgx/sdk/cppmicroservices-no-mtime.patch",
+      "startB": 1,
+      "lines": 26,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/linux/minimal-bootstrap/python/no-ldconfig.patch",
+      "startA": 69,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/python/cpython/3.13/no-ldconfig.patch",
+      "startB": 14,
+      "lines": 38,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/linux/minimal-bootstrap/gnumake/0001-No-impure-bin-sh.patch",
+      "startA": 4,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/build-managers/gnumake/patches/0001-No-impure-bin-sh.patch",
+      "startB": 4,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/darwin/apple-source-releases/libiconv/nixpkgs_test.c",
+      "startA": 50,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/darwin/apple-source-releases/libiconv/nixpkgs_test.c",
+      "startB": 17,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/darwin/apple-source-releases/libiconv/nixpkgs_test.c",
+      "startA": 59,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/darwin/apple-source-releases/libiconv/nixpkgs_test.c",
+      "startB": 26,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/darwin/apple-source-releases/libiconv/nixpkgs_test.c",
+      "startA": 92,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/darwin/apple-source-releases/libiconv/nixpkgs_test.c",
+      "startB": 26,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/misc/binutils/windres-locate-gcc.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/misc/binutils/2.38/windres-locate-gcc.patch",
+      "startB": 1,
+      "lines": 19,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/misc/binutils/always-search-rpath.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/misc/binutils/2.38/always-search-rpath.patch",
+      "startB": 1,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/misc/binutils/0001-Revert-libtool.m4-fix-nm-BSD-flag-detection.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/misc/binutils/2.38/0001-Revert-libtool.m4-fix-nm-BSD-flag-detection.patch",
+      "startB": 1,
+      "lines": 136,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/electron/binary/update.py",
+      "startA": 121,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/electron/binary/update.py",
+      "startB": 97,
+      "lines": 15,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/electron/binary/update.py",
+      "startA": 136,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/tools/electron/binary/update.py",
+      "startB": 112,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/torch/bin/prefetch.sh",
+      "startA": 29,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/science/math/libtorch/prefetch.sh",
+      "startB": 15,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-6/hooks/fix-qt-builtin-paths.sh",
+      "startA": 40,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-6/hooks/fix-qt-builtin-paths.sh",
+      "startB": 16,
+      "lines": 21,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-5/hooks/wrap-qt-apps-hook.sh",
+      "startA": 36,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-6/hooks/wrap-qt-apps-hook.sh",
+      "startB": 36,
+      "lines": 22,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-5/hooks/wrap-qt-apps-hook.sh",
+      "startA": 77,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-6/hooks/wrap-qt-apps-hook.sh",
+      "startB": 76,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-5/hooks/qmake-hook.sh",
+      "startA": 22,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-6/hooks/qmake-hook.sh",
+      "startB": 15,
+      "lines": 29,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-5/hooks/fix-qt-module-paths.sh",
+      "startA": 10,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-6/hooks/fix-qt-module-paths.sh",
+      "startB": 8,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-5/hooks/fix-qt-builtin-paths.sh",
+      "startA": 12,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-6/hooks/fix-qt-builtin-paths.sh",
+      "startB": 9,
+      "lines": 9,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-5/hooks/fix-qt-builtin-paths.sh",
+      "startA": 42,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-5/hooks/fix-qt-builtin-paths.sh",
+      "startB": 19,
+      "lines": 20,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-5/hooks/fix-qmake-libtool.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/qt-6/hooks/fix-qmake-libtool.sh",
+      "startB": 1,
+      "lines": 25,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/update/update.py",
+      "startA": 65,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/update/update.py",
+      "startB": 40,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/update/update.py",
+      "startA": 138,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/flutter/update/update.py",
+      "startB": 110,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ya/yarn-berry/fetcher/berry-3-offline.patch",
+      "startA": 84,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ya/yarn-berry/fetcher/berry-4-offline.patch",
+      "startB": 80,
+      "lines": 29,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gt/gtk3/hooks/drop-icon-theme-cache.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gt/gtk4/hooks/drop-icon-theme-cache.sh",
+      "startB": 1,
+      "lines": 19,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gt/gtk2/hooks/drop-icon-theme-cache.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gt/gtk4/hooks/drop-icon-theme-cache.sh",
+      "startB": 1,
+      "lines": 19,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/cn/cnijfilter_4_00/patches/cnijfilter-3.80-1-cups-1.6.patch",
+      "startA": 15,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/cn/cnijfilter_4_00/patches/cnijfilter-3.80-6-cups-1.6.patch",
+      "startB": 40,
+      "lines": 40,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/node/prefetch-npm-deps/src/main.rs",
+      "startA": 617,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/node/prefetch-npm-deps/src/main.rs",
+      "startB": 544,
+      "lines": 27,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/dotnet/build-dotnet-module/hook/dotnet-hook.sh",
+      "startA": 366,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/dotnet/build-dotnet-module/hook/dotnet-hook.sh",
+      "startB": 112,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/dotnet/build-dotnet-module/hook/dotnet-hook.sh",
+      "startA": 393,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/dotnet/build-dotnet-module/hook/dotnet-hook.sh",
+      "startB": 112,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/science/logic/satallax/minisat-fenv.patch",
+      "startA": 26,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/science/logic/satallax/minisat-fenv.patch",
+      "startB": 5,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/lib/test-driver/src/test_driver/logger.py",
+      "startA": 269,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/lib/test-driver/src/test_driver/logger.py",
+      "startB": 216,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/lib/test-driver/src/test_driver/logger.py",
+      "startA": 309,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/lib/test-driver/src/test_driver/logger.py",
+      "startB": 200,
+      "lines": 8,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/diffutils/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startA": 18,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/gnugrep/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startB": 18,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/diffutils/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startA": 30,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/gnugrep/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startB": 30,
+      "lines": 111,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/diffutils/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startA": 154,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/gnugrep/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startB": 154,
+      "lines": 77,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/misc/findutils/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startA": 32,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/gnugrep/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startB": 31,
+      "lines": 65,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/misc/findutils/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startA": 167,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/gnugrep/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startB": 165,
+      "lines": 44,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-binary-wrapper/overlength-strings/overlength-strings.c",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-binary-wrapper/prefix/prefix.c",
+      "startB": 1,
+      "lines": 22,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-binary-wrapper/combination/combination.c",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-binary-wrapper/prefix/prefix.c",
+      "startB": 1,
+      "lines": 21,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-binary-wrapper/combination/combination.c",
+      "startA": 21,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/make-binary-wrapper/suffix/suffix.c",
+      "startB": 9,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/dict/wiktionary/wiktionary2dict.py",
+      "startA": 168,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/dict/wiktionary/wiktionary2dict.py",
+      "startB": 153,
+      "lines": 9,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/linux/busybox/busybox-in-store.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/os-specific/linux/minimal-bootstrap/busybox/busybox-in-store.patch",
+      "startB": 1,
+      "lines": 23,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/kde/plasma/kwin/0001-NixOS-Unwrap-executable-name-for-.desktop-search.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/kde/plasma/kwin-x11/0001-NixOS-Unwrap-executable-name-for-.desktop-search.patch",
+      "startB": 1,
+      "lines": 114,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/kde/frameworks/extra-cmake-modules/ecm-hook.sh",
+      "startA": 72,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/kde-frameworks/extra-cmake-modules/setup-hook.sh",
+      "startB": 70,
+      "lines": 36,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/web/nodejs/gyp-patches-set-fallback-value-for-CLT-darwin.patch",
+      "startA": 39,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/web/nodejs/gyp-patches-set-fallback-value-for-CLT-darwin.patch",
+      "startB": 9,
+      "lines": 26,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/triton/prefetch.sh",
+      "startA": 21,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/science/math/libtorch/prefetch.sh",
+      "startB": 15,
+      "lines": 24,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/torchvision/prefetch.sh",
+      "startA": 28,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/science/math/libtorch/prefetch.sh",
+      "startB": 15,
+      "lines": 24,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/torchaudio/prefetch.sh",
+      "startA": 32,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/science/math/libtorch/prefetch.sh",
+      "startB": 18,
+      "lines": 21,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/pygame-ce/fix-dependency-finding.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/pygame-original/fix-dependency-finding.patch",
+      "startB": 1,
+      "lines": 41,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/pgpy/Fix-compat-with-current-cryptography.patch",
+      "startA": 16,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/pgpy-dtc/Fix-compat-with-current-cryptography.patch",
+      "startB": 4,
+      "lines": 31,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/ocrmypdf/use-pillow-heif.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/ocrmypdf_16/use-pillow-heif.patch",
+      "startB": 1,
+      "lines": 26,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/ocrmypdf/paths.patch",
+      "startA": 30,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/ocrmypdf_16/paths.patch",
+      "startB": 39,
+      "lines": 30,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/jupytext/fix-yarn-lock-typescript-offline-cache.patch",
+      "startA": 5,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/python-modules/jupytext/fix-yarn-lock-typescript.patch",
+      "startB": 5,
+      "lines": 54,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/mobile/androidenv/update.rb",
+      "startA": 391,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/mobile/androidenv/update.rb",
+      "startB": 349,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/mobile/androidenv/update.rb",
+      "startA": 399,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/mobile/androidenv/update.rb",
+      "startB": 312,
+      "lines": 8,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/mobile/androidenv/update.rb",
+      "startA": 425,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/mobile/androidenv/update.rb",
+      "startB": 325,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/mobile/androidenv/update.rb",
+      "startA": 429,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/mobile/androidenv/update.rb",
+      "startB": 371,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/tpm2-tss/no-dynamic-loader-path.patch",
+      "startA": 169,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/tpm2-tss/no-dynamic-loader-path.patch",
+      "startB": 126,
+      "lines": 44,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/tpm2-tss/no-dynamic-loader-path.patch",
+      "startA": 308,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/tpm2-tss/no-dynamic-loader-path.patch",
+      "startB": 276,
+      "lines": 33,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/tpm2-tss/no-dynamic-loader-path.patch",
+      "startA": 340,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/tpm2-tss/no-dynamic-loader-path.patch",
+      "startB": 276,
+      "lines": 33,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/tpm2-tss/no-dynamic-loader-path.patch",
+      "startA": 472,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/tpm2-tss/no-dynamic-loader-path.patch",
+      "startB": 438,
+      "lines": 33,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/intel-oneapi/test.c",
+      "startA": 5,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/mk/mkl/test/test.c",
+      "startB": 5,
+      "lines": 8,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/db/clang-4.8.patch",
+      "startA": 5,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/db/clang-5.3.patch",
+      "startB": 5,
+      "lines": 37,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/db/clang-4.8.patch",
+      "startA": 67,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/db/clang-5.3.patch",
+      "startB": 67,
+      "lines": 19,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/db/clang-4.8.patch",
+      "startA": 133,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/db/clang-5.3.patch",
+      "startB": 133,
+      "lines": 21,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/db/clang-4.8.patch",
+      "startA": 192,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/db/clang-5.3.patch",
+      "startB": 226,
+      "lines": 24,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-187.patch",
+      "startA": 5,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-189.patch",
+      "startB": 5,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-187.patch",
+      "startA": 20,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-189.patch",
+      "startB": 20,
+      "lines": 107,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-187.patch",
+      "startA": 161,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-189.patch",
+      "startB": 161,
+      "lines": 32,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-187.patch",
+      "startA": 192,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-189.patch",
+      "startB": 192,
+      "lines": 369,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-187.patch",
+      "startA": 598,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-189.patch",
+      "startB": 598,
+      "lines": 22,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-187.patch",
+      "startA": 646,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/boost/Fix-cygwin-build-189.patch",
+      "startB": 633,
+      "lines": 49,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/julia-modules/python/minimal_registry.py",
+      "startA": 17,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/julia-modules/python/project.py",
+      "startB": 12,
+      "lines": 9,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/julia-modules/python/dedup_overrides.py",
+      "startA": 2,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/julia-modules/python/format_overrides.py",
+      "startB": 2,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/spidermonkey/allow-system-s-nspr-and-icu-on-bootstrapped-sysroot-128.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/interpreters/spidermonkey/allow-system-s-nspr-and-icu-on-bootstrapped-sysroot.patch",
+      "startB": 1,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/squeak/squeak-squeaksh-nixpkgs.patch",
+      "startA": 29,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/squeak/squeak-squeaksh-nixpkgs.patch",
+      "startB": 9,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/semeru-bin/generate-sources.py",
+      "startA": 76,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/temurin-bin/generate-sources.py",
+      "startB": 64,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/sbcl/dynamic-space-size-envvar-2.5.2-tests.patch",
+      "startA": 57,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/sbcl/dynamic-space-size-envvar-2.5.3-tests.patch",
+      "startB": 96,
+      "lines": 17,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/sbcl/dynamic-space-size-envvar-2.5.2-feature.patch",
+      "startA": 15,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/sbcl/dynamic-space-size-envvar-2.5.3-feature.patch",
+      "startB": 14,
+      "lines": 31,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/ghc-9.4-llvm-use-new-pass-manager.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/ghc-9.6-llvm-use-new-pass-manager.patch",
+      "startB": 1,
+      "lines": 19,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/ghc-9.4-llvm-use-new-pass-manager.patch",
+      "startA": 56,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/ghc-9.6-llvm-use-new-pass-manager.patch",
+      "startB": 56,
+      "lines": 31,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/ghc-9.4-docs-sphinx-9.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/ghc-9.6-or-later-docs-sphinx-9.patch",
+      "startB": 1,
+      "lines": 17,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-3.16-paths-fix-cycle-aarch64-darwin.patch",
+      "startA": 30,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch",
+      "startB": 36,
+      "lines": 63,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-3.16-paths-fix-cycle-aarch64-darwin.patch",
+      "startA": 150,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch",
+      "startB": 156,
+      "lines": 54,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-3.12-paths-fix-cycle-aarch64-darwin.patch",
+      "startA": 18,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-3.16-paths-fix-cycle-aarch64-darwin.patch",
+      "startB": 18,
+      "lines": 89,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-3.12-paths-fix-cycle-aarch64-darwin.patch",
+      "startA": 148,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch",
+      "startB": 154,
+      "lines": 56,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-3.12-paths-fix-cycle-aarch64-darwin.patch",
+      "startA": 233,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch",
+      "startB": 239,
+      "lines": 39,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-3.12-paths-fix-cycle-aarch64-darwin.patch",
+      "startA": 271,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch",
+      "startB": 277,
+      "lines": 152,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-3.12-paths-fix-cycle-aarch64-darwin.patch",
+      "startA": 496,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/ghc/Cabal-at-least-3.6-paths-fix-cycle-aarch64-darwin.patch",
+      "startB": 502,
+      "lines": 101,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/dotnet/vmr-compiler-opt-v8.patch",
+      "startA": 25,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/dotnet/vmr-compiler-opt-v9.patch",
+      "startB": 211,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/corretto/corretto17-gradle8.patch",
+      "startA": 110,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/corretto/corretto21-gradle8.patch",
+      "startB": 128,
+      "lines": 40,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/corretto/corretto11-gradle8.patch",
+      "startA": 127,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/corretto/corretto21-gradle8.patch",
+      "startB": 116,
+      "lines": 52,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/corretto/corretto11-gradle8.patch",
+      "startA": 197,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/corretto/corretto21-gradle8.patch",
+      "startB": 202,
+      "lines": 48,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/wi/windmill/run.go.config.proto.patch",
+      "startA": 5,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/wi/windmill/run.rust.config.proto.patch",
+      "startB": 5,
+      "lines": 33,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/sw/sway-unwrapped/load-configuration-from-etc.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/sw/swayfx-unwrapped/load-configuration-from-etc.patch",
+      "startB": 1,
+      "lines": 48,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/su/super-slicer/0001-fix-assertion-using-hide-in-destroy.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/wx/wxGTK31/0001-fix-assertion-using-hide-in-destroy.patch",
+      "startB": 1,
+      "lines": 42,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/se/serious-sam-classic/tfe-force-using-system-path.patch",
+      "startA": 5,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/se/serious-sam-classic/tse-force-using-system-path.patch",
+      "startB": 5,
+      "lines": 56,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ru/rustdesk-flutter/build-runner.sh",
+      "startA": 2,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/dart/build-dart-application/hooks/dart-config-hook.sh",
+      "startB": 17,
+      "lines": 41,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/rs/rss2email/html2text-2025.4.15-compat.patch",
+      "startA": 228,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/rs/rss2email/html2text-2025.4.15-compat.patch",
+      "startB": 112,
+      "lines": 23,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/re/renameutils/install-exec.patch",
+      "startA": 17,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/re/renameutils/install-exec.patch",
+      "startB": 5,
+      "lines": 8,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ra/radicle-ci-broker/update.sh",
+      "startA": 9,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ra/radicle-native-ci/update.sh",
+      "startB": 9,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ra/radarr/update.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 1,
+      "lines": 46,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ra/radarr/update.py",
+      "startA": 46,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 46,
+      "lines": 27,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ra/radarr/update.py",
+      "startA": 77,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 76,
+      "lines": 15,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ra/radarr/update.py",
+      "startA": 91,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 90,
+      "lines": 92,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pr/prowlarr/update.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 1,
+      "lines": 46,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pr/prowlarr/update.py",
+      "startA": 46,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 46,
+      "lines": 27,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pr/prowlarr/update.py",
+      "startA": 77,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 76,
+      "lines": 15,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pr/prowlarr/update.py",
+      "startA": 91,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 90,
+      "lines": 92,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pl/plex-desktop/update.sh",
+      "startA": 29,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pl/plex-htpc/update.sh",
+      "startB": 29,
+      "lines": 16,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pl/plex-desktop/update.sh",
+      "startA": 45,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pl/plex-htpc/update.sh",
+      "startB": 45,
+      "lines": 26,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pl/platformsh/update.sh",
+      "startA": 12,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/up/upsun/update.sh",
+      "startB": 12,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pa/passage/set-correct-program-name-for-sleep.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/security/pass/set-correct-program-name-for-sleep.patch",
+      "startB": 1,
+      "lines": 49,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pa/pagefind/cargo-lock.patch",
+      "startA": 285,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pa/pagefind/web-cargo-lock.patch",
+      "startB": 3,
+      "lines": 83,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ov/oven-media-engine/support-ffmpeg-7.patch",
+      "startA": 352,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ov/oven-media-engine/support-ffmpeg-7.patch",
+      "startB": 168,
+      "lines": 20,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ov/oven-media-engine/support-ffmpeg-7.patch",
+      "startA": 376,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ov/oven-media-engine/support-ffmpeg-7.patch",
+      "startB": 168,
+      "lines": 20,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/op/openutau/update.sh",
+      "startA": 4,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonic-pi/update.sh",
+      "startB": 4,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/op/openutau/update.sh",
+      "startA": 18,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonic-pi/update.sh",
+      "startB": 18,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/od/odoo17/update.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/od/odoo18/update.sh",
+      "startB": 1,
+      "lines": 32,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/od/odoo/update.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/od/odoo18/update.sh",
+      "startB": 1,
+      "lines": 32,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/oc/ocis_5-bin/update.py",
+      "startA": 129,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ro/roon-server/update.py",
+      "startB": 58,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nim-unwrapped-1_0/extra-mangling.patch",
+      "startA": 23,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ni/nim-unwrapped-2_2/extra-mangling-2.patch",
+      "startB": 40,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/nd/ndi/update.py",
+      "startA": 25,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/nd/ndi-6/update.py",
+      "startB": 25,
+      "lines": 53,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ma/makeDBusConf/make-system-conf.xsl",
+      "startA": 9,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/fontconfig/make-fonts-conf.xsl",
+      "startB": 9,
+      "lines": 7,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ma/makeDBusConf/make-session-conf.xsl",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ma/makeDBusConf/make-system-conf.xsl",
+      "startB": 1,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ma/mailpit/update.sh",
+      "startA": 31,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pr/prometheus/update.sh",
+      "startB": 35,
+      "lines": 7,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ma/mailpit/update.sh",
+      "startA": 53,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pr/prometheus/update.sh",
+      "startB": 57,
+      "lines": 21,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/lightway/backport-darwin-address-calc-fix.patch",
+      "startA": 69,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/lightway/backport-darwin-address-calc-fix.patch",
+      "startB": 19,
+      "lines": 25,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/lightway/backport-darwin-address-calc-fix.patch",
+      "startA": 94,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/lightway/backport-darwin-address-calc-fix.patch",
+      "startB": 44,
+      "lines": 25,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/lidarr/update.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 1,
+      "lines": 46,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/lidarr/update.py",
+      "startA": 46,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 46,
+      "lines": 27,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/lidarr/update.py",
+      "startA": 76,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 76,
+      "lines": 15,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/lidarr/update.py",
+      "startA": 90,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonarr/update.py",
+      "startB": 90,
+      "lines": 92,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/libtins/cmake-3.10.patch",
+      "startA": 3,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/xs/xss-lock/cmake-3.10.patch",
+      "startB": 3,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/libredirect/libredirect.c",
+      "startA": 135,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/libredirect/libredirect.c",
+      "startB": 114,
+      "lines": 16,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/libproxy/hardcode-gsettings.patch",
+      "startA": 79,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/libproxy/hardcode-gsettings.patch",
+      "startB": 9,
+      "lines": 62,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/libfprint-2-tod1-broadcom/wrapper-lib.c",
+      "startA": 5,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/libfprint-2-tod1-broadcom-cv3plus/wrapper-lib.c",
+      "startB": 5,
+      "lines": 19,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/libad9361/cmake-3.10.patch",
+      "startA": 3,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/xs/xss-lock/cmake-3.10.patch",
+      "startB": 3,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ko/kodelife/update.sh",
+      "startA": 9,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/to/touchosc/update.sh",
+      "startB": 9,
+      "lines": 46,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ke/keepass/extractWinRscIconsToStdFreeDesktopDir.sh",
+      "startA": 41,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ic/iconConvTools/bin/extractWinRscIconsToStdFreeDesktopDir.sh",
+      "startB": 50,
+      "lines": 21,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ju/junicode/test-vf.tex",
+      "startA": 3,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ju/junicode/test.tex",
+      "startB": 3,
+      "lines": 19,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ju/junicode/test-vf.tex",
+      "startA": 30,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ju/junicode/test.tex",
+      "startB": 30,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/hq/hqplayerd/add-option-for-installation-sysconfdir.patch",
+      "startA": 16,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ry/rygel/add-option-for-installation-sysconfdir.patch",
+      "startB": 16,
+      "lines": 20,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gn/gnutls/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startA": 32,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/gnugrep/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startB": 30,
+      "lines": 110,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gn/gnutls/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startA": 156,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/gnugrep/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startB": 30,
+      "lines": 110,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gn/gnutls/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startA": 280,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/tools/text/gnugrep/gnulib-float-h-tests-port-to-C23-PowerPC-GCC.patch",
+      "startB": 154,
+      "lines": 64,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gn/gnome-shell-extensions/fix_gtop.patch",
+      "startA": 5,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/desktops/gnome/extensions/extensionOverridesPatches/system-monitor_at_gnome-shell-extensions.gcampax.github.com.patch",
+      "startB": 5,
+      "lines": 21,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gn/gnome-settings-daemon/add-gnome-session-ctl-option.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gn/gnome-settings-daemon48/add-gnome-session-ctl-option.patch",
+      "startB": 1,
+      "lines": 58,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gi/gitbeaker-cli/update.sh",
+      "startA": 15,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/up/uppy-companion/update.sh",
+      "startB": 14,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gi/gildas/clang.patch",
+      "startA": 2,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/im/imager/clang.patch",
+      "startB": 2,
+      "lines": 23,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gc/gclient2nix/gclient2nix.py",
+      "startA": 56,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/networking/browsers/chromium/depot_tools.py",
+      "startB": 39,
+      "lines": 27,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/gc/gclient2nix/gclient2nix.py",
+      "startA": 110,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/networking/browsers/chromium/depot_tools.py",
+      "startB": 69,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/et/etcd_3_5/update.sh",
+      "startA": 9,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/et/etcd_3_6/update.sh",
+      "startB": 9,
+      "lines": 22,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/et/etcd_3_5/update.sh",
+      "startA": 30,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/et/etcd_3_6/update.sh",
+      "startB": 30,
+      "lines": 45,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/cu/curl-impersonate/update.sh",
+      "startA": 21,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/so/sonic-pi/update.sh",
+      "startB": 17,
+      "lines": 15,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/cu/curl-impersonate/update.sh",
+      "startA": 54,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/op/openutau/update.sh",
+      "startB": 32,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/cu/cuneiform/gcc14-fix.patch",
+      "startA": 136,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/cu/cuneiform/gcc14-fix.patch",
+      "startB": 17,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ca/catppuccin-kde/color.sh",
+      "startA": 16,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ca/catppuccin-kde/color.sh",
+      "startB": 7,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/br/brioche/update-librusty.sh",
+      "startA": 12,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/wi/windmill/update-librusty.sh",
+      "startB": 12,
+      "lines": 9,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/br/brioche/update-librusty.sh",
+      "startA": 20,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/wi/windmill/update-librusty.sh",
+      "startB": 20,
+      "lines": 20,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ba/bazel_7/trim-last-argument-to-gcc-if-empty.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ba/bazel_8/patches/trim-last-argument-to-gcc-if-empty.patch",
+      "startB": 1,
+      "lines": 36,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ba/bazel_7/strict_action_env.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ba/bazel_8/patches/strict_action_env.patch",
+      "startB": 1,
+      "lines": 13,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ba/bazel_7/darwin_sleep.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ba/bazel_8/patches/darwin_sleep.patch",
+      "startB": 1,
+      "lines": 56,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/av/avy/minisat-fenv.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/science/logic/satallax/minisat-fenv.patch",
+      "startB": 1,
+      "lines": 57,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ar/ardour/default-plugin-search-paths.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ar/ardour_8/default-plugin-search-paths.patch",
+      "startB": 1,
+      "lines": 54,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/al/althttpd/update.sh",
+      "startA": 15,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/pi/pikchr/update.sh",
+      "startB": 15,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/setup-hooks/wrap-gapps-hook/wrap-gapps-hook.sh",
+      "startA": 51,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/libcosmicAppHook/libcosmic-app-hook.sh",
+      "startB": 58,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/setup-hooks/wrap-gapps-hook/wrap-gapps-hook.sh",
+      "startA": 64,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/li/libcosmicAppHook/libcosmic-app-hook.sh",
+      "startB": 71,
+      "lines": 20,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/node/fetch-yarn-deps/yarn-config-hook.sh",
+      "startA": 10,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ya/yarn-berry/fetcher/yarn-berry-config-hook.sh",
+      "startB": 10,
+      "lines": 36,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/node/fetch-yarn-deps/fixup.js",
+      "startA": 60,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/node/fetch-yarn-deps/index.js",
+      "startB": 186,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/office/libreoffice/skip-broken-tests-fresh.patch",
+      "startA": 56,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/office/libreoffice/skip-broken-tests-still.patch",
+      "startB": 118,
+      "lines": 51,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/office/libreoffice/skip-broken-tests-collabora.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/office/libreoffice/skip-broken-tests-fresh.patch",
+      "startB": 1,
+      "lines": 28,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/office/libreoffice/skip-broken-tests-collabora.patch",
+      "startA": 76,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/office/libreoffice/skip-broken-tests-fresh.patch",
+      "startB": 41,
+      "lines": 66,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/office/libreoffice/skip-broken-tests-collabora.patch",
+      "startA": 157,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/office/libreoffice/skip-broken-tests-fresh.patch",
+      "startB": 135,
+      "lines": 22,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/gis/qgis/set-pyqt-package-dirs-ltr.patch",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/applications/gis/qgis/set-pyqt-package-dirs.patch",
+      "startB": 1,
+      "lines": 49,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/installer/tools/nixos-generate-config.pl",
+      "startA": 408,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/nixos/modules/system/boot/loader/grub/install-grub.pl",
+      "startB": 140,
+      "lines": 8,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/check_bounding_boxes_test.py",
+      "startA": 58,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/check_bounding_boxes_test.py",
+      "startB": 16,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/check_bounding_boxes_test.py",
+      "startA": 71,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/check_bounding_boxes_test.py",
+      "startB": 47,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/check_bounding_boxes_test.py",
+      "startA": 156,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/check_bounding_boxes_test.py",
+      "startB": 116,
+      "lines": 10,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/auto-patchelf-hook-preserve-origin/lib-main.c",
+      "startA": 3,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/test/stdenv-inputs/lib-main.c",
+      "startB": 3,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/stdenv/cygwin/rebase-i686.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/stdenv/cygwin/rebase-x86_64.sh",
+      "startB": 1,
+      "lines": 11,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/stdenv/cygwin/rebase-i686.sh",
+      "startA": 13,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/stdenv/cygwin/rebase-x86_64.sh",
+      "startB": 13,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/shells/bash/update-patch-set.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/libraries/readline/update-patch-set.sh",
+      "startB": 1,
+      "lines": 54,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/home-assistant/update.py",
+      "startA": 24,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/mu/music-assistant/update-providers.py",
+      "startB": 68,
+      "lines": 25,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/home-assistant/update.py",
+      "startA": 116,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/mu/music-assistant/update-providers.py",
+      "startB": 96,
+      "lines": 22,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/servers/home-assistant/update-component-packages.py",
+      "startA": 168,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ap/apache-airflow/update-providers.py",
+      "startB": 56,
+      "lines": 18,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/perl-modules/net-snmp-add-sha-algorithms.patch",
+      "startA": 485,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/perl-modules/net-snmp-add-sha-algorithms.patch",
+      "startB": 310,
+      "lines": 62,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/perl-modules/net-snmp-add-sha-algorithms.patch",
+      "startA": 660,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/perl-modules/net-snmp-add-sha-algorithms.patch",
+      "startB": 310,
+      "lines": 62,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/perl-modules/net-snmp-add-sha-algorithms.patch",
+      "startA": 835,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/perl-modules/net-snmp-add-sha-algorithms.patch",
+      "startB": 310,
+      "lines": 62,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/setup-hooks/role.bash",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/ap/apple-sdk/setup-hooks/role.bash",
+      "startB": 1,
+      "lines": 71,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/references-by-popularity/closure-graph.py",
+      "startA": 13,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/popularity_contest.py",
+      "startB": 7,
+      "lines": 101,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/references-by-popularity/closure-graph.py",
+      "startA": 143,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/popularity_contest_test.py",
+      "startB": 113,
+      "lines": 29,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/references-by-popularity/closure-graph.py",
+      "startA": 178,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/popularity_contest_test.py",
+      "startB": 141,
+      "lines": 32,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/references-by-popularity/closure-graph.py",
+      "startA": 215,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/popularity_contest_test.py",
+      "startB": 171,
+      "lines": 46,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/references-by-popularity/closure-graph.py",
+      "startA": 363,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/popularity_contest_test.py",
+      "startB": 272,
+      "lines": 15,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/references-by-popularity/closure-graph.py",
+      "startA": 456,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/popularity_contest.py",
+      "startB": 280,
+      "lines": 20,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/references-by-popularity/closure-graph.py",
+      "startA": 484,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/by-name/fl/flatten-references-graph/src/flatten_references_graph/popularity_contest_test.py",
+      "startB": 317,
+      "lines": 19,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/cc-wrapper/cc-wrapper.sh",
+      "startA": 89,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/swift/wrapper/wrapper.sh",
+      "startB": 122,
+      "lines": 15,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/cc-wrapper/cc-wrapper.sh",
+      "startA": 106,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/development/compilers/swift/wrapper/wrapper.sh",
+      "startB": 139,
+      "lines": 20,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/cc-wrapper/cc-wrapper.sh",
+      "startA": 248,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/cc-wrapper/gnat-wrapper.sh",
+      "startB": 164,
+      "lines": 17,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/bintools-wrapper/ld-wrapper.sh",
+      "startA": 268,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/cc-wrapper/gnat-wrapper.sh",
+      "startB": 169,
+      "lines": 9,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/bintools-wrapper/darwin-strip-wrapper.sh",
+      "startA": 54,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/bintools-wrapper/ld-wrapper.sh",
+      "startB": 265,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/bintools-wrapper/darwin-install_name_tool-wrapper.sh",
+      "startA": 30,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/bintools-wrapper/darwin-strip-wrapper.sh",
+      "startB": 51,
+      "lines": 20,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/bintools-wrapper/add-hardening.sh",
+      "startA": 24,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/pkgs/build-support/cc-wrapper/add-hardening.sh",
+      "startB": 77,
+      "lines": 16,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/maintainers/scripts/kde/collect-metadata.py",
+      "startA": 18,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/maintainers/scripts/kde/generate-sources.py",
+      "startB": 58,
+      "lines": 14,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/systematic-debugging/condition-based-waiting-example.ts",
+      "startA": 115,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/systematic-debugging/condition-based-waiting-example.ts",
+      "startB": 23,
+      "lines": 9,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/ci/github-script/reviews.js",
+      "startA": 154,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/ci/github-script/reviews.js",
+      "startB": 28,
+      "lines": 12,
+      "tokens": 0
+    },
+    {
+      "fileA": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/ci/nixpkgs-vet.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/ky7q5vm0kgv6qbq5gfzmv1ki79qr4q0z-source/maintainers/scripts/check-by-name.sh",
+      "startB": 1,
+      "lines": 66,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/skill-creator/scripts/quick_validate.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/skill-creator/scripts/quick_validate.py",
+      "startB": 1,
+      "lines": 103,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/skill-creator/scripts/init_skill.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/skill-creator/scripts/init_skill.py",
+      "startB": 1,
+      "lines": 304,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/prompt-engineering-patterns/scripts/optimize-prompt.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/prompt-engineering-patterns/scripts/optimize-prompt.py",
+      "startB": 1,
+      "lines": 279,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/pdf/scripts/fill_pdf_form_with_annotations.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/fill_pdf_form_with_annotations.py",
+      "startB": 1,
+      "lines": 108,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/pdf/scripts/fill_fillable_fields.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/fill_fillable_fields.py",
+      "startB": 1,
+      "lines": 114,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/pdf/scripts/extract_form_field_info.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/extract_form_field_info.py",
+      "startB": 1,
+      "lines": 152,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/pdf/scripts/create_validation_image.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/create_validation_image.py",
+      "startB": 1,
+      "lines": 41,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/pdf/scripts/convert_pdf_to_images.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/convert_pdf_to_images.py",
+      "startB": 1,
+      "lines": 35,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/pdf/scripts/check_bounding_boxes_test.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/check_bounding_boxes_test.py",
+      "startB": 1,
+      "lines": 226,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/pdf/scripts/check_bounding_boxes.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/pdf/scripts/check_bounding_boxes.py",
+      "startB": 1,
+      "lines": 70,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/excalidraw/references/render_template.html",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/excalidraw/references/render_template.html",
+      "startB": 1,
+      "lines": 57,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/excalidraw/references/render_excalidraw.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/excalidraw/references/render_excalidraw.py",
+      "startB": 1,
+      "lines": 205,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/doc-translator/scripts/upload_image_to_outline.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/doc-translator/scripts/upload_image_to_outline.sh",
+      "startB": 1,
+      "lines": 116,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/agent-development/scripts/validate-agent.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/agent-development/scripts/validate-agent.sh",
+      "startB": 1,
+      "lines": 304,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/xlsx/recalc.py",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/xlsx/recalc.py",
+      "startB": 1,
+      "lines": 178,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/systematic-debugging/find-polluter.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/systematic-debugging/find-polluter.sh",
+      "startB": 1,
+      "lines": 63,
+      "tokens": 0
+    },
+    {
+      "fileA": "skills/systematic-debugging/condition-based-waiting-example.ts",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/skills/systematic-debugging/condition-based-waiting-example.ts",
+      "startB": 1,
+      "lines": 158,
+      "tokens": 0
+    },
+    {
+      "fileA": "scripts/validate-agents.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/scripts/validate-agents.sh",
+      "startB": 1,
+      "lines": 182,
+      "tokens": 0
+    },
+    {
+      "fileA": "scripts/test-skill.sh",
+      "startA": 1,
+      "fileB": ".direnv/flake-inputs/s8m7zj41bywjaks2s8cgwr3jbzgmh2y3-source/scripts/test-skill.sh",
+      "startB": 1,
+      "lines": 225,
+      "tokens": 0
+    }
+  ],
+  "duplicatedLines": 13471,
+  "totalLines": 351417,
+  "percentage": 3.83
+}

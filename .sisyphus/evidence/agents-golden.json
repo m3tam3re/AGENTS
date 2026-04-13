@@ -1,0 +1,173 @@
+{
+  "Apollo (Knowledge Management)": {
+    "description": "Private knowledge specialist. Manages Obsidian vault, personal notes, and private knowledge graph.",
+    "mode": "subagent",
+    "model": "zai-coding-plan/glm-5",
+    "permission": {
+      "bash": {
+        "*": "ask",
+        "cat *": "allow"
+      },
+      "edit": {
+        "*": "allow",
+        "/run/agenix/**": "deny"
+      },
+      "external_directory": {
+        "*": "ask",
+        "/run/agenix/**": "allow",
+        "/tmp/**": "allow",
+        "~/.config/opencode/**": "allow",
+        "~/p/**": "allow"
+      },
+      "question": "allow"
+    },
+    "prompt": "{file:./prompts/apollo.txt}"
+  },
+  "Athena (Researcher)": {
+    "description": "Work knowledge specialist. Manages Outline wiki, documentation, and knowledge organization.",
+    "mode": "subagent",
+    "model": "zai-coding-plan/glm-5",
+    "permission": {
+      "bash": {
+        "*": "ask",
+        "cat *": "allow",
+        "grep *": "allow"
+      },
+      "edit": {
+        "*": "allow",
+        "/run/agenix/**": "deny"
+      },
+      "external_directory": {
+        "*": "ask",
+        "/run/agenix/**": "allow",
+        "/tmp/**": "allow",
+        "~/.config/opencode/**": "allow",
+        "~/p/**": "allow"
+      },
+      "question": "allow",
+      "webfetch": "allow",
+      "websearch": "allow"
+    },
+    "prompt": "{file:./prompts/athena.txt}"
+  },
+  "Calliope (Writer)": {
+    "description": "Writing specialist. Creates documentation, reports, meeting notes, and prose.",
+    "mode": "subagent",
+    "model": "zai-coding-plan/glm-5",
+    "permission": {
+      "bash": {
+        "*": "ask",
+        "cat *": "allow",
+        "wc *": "allow"
+      },
+      "edit": {
+        "*": "allow",
+        "/run/agenix/**": "deny"
+      },
+      "external_directory": {
+        "*": "ask",
+        "/run/agenix/**": "allow",
+        "/tmp/**": "allow",
+        "~/.config/opencode/**": "allow",
+        "~/p/**": "allow"
+      },
+      "question": "allow",
+      "webfetch": "allow"
+    },
+    "prompt": "{file:./prompts/calliope.txt}"
+  },
+  "Chiron (Assistant)": {
+    "description": "Personal AI assistant (Plan Mode). Read-only analysis, planning, and guidance.",
+    "mode": "primary",
+    "model": "zai-coding-plan/glm-5",
+    "permission": {
+      "bash": {
+        "*": "ask",
+        "bd *": "allow",
+        "cat *": "allow",
+        "echo *": "allow",
+        "git branch*": "allow",
+        "git diff*": "allow",
+        "git log*": "allow",
+        "git show*": "allow",
+        "git status*": "allow",
+        "grep *": "allow",
+        "head *": "allow",
+        "ls *": "allow",
+        "nix *": "allow",
+        "tail *": "allow",
+        "td *": "allow",
+        "wc *": "allow",
+        "which *": "allow"
+      },
+      "edit": "deny",
+      "external_directory": {
+        "*": "ask",
+        "/run/agenix/**": "allow",
+        "/tmp/**": "allow",
+        "~/.config/opencode/**": "allow",
+        "~/p/**": "allow"
+      },
+      "question": "allow",
+      "webfetch": "allow",
+      "websearch": "allow"
+    },
+    "prompt": "{file:./prompts/chiron.txt}"
+  },
+  "Chiron Forge (Builder)": {
+    "description": "Personal AI assistant (Build Mode). Full execution and task completion capabilities with safety prompts.",
+    "mode": "primary",
+    "model": "zai-coding-plan/glm-5",
+    "permission": {
+      "bash": {
+        "*": "allow",
+        "git push --force*": "deny",
+        "git push -f *": "deny",
+        "git push*": "ask",
+        "git reset --hard*": "ask",
+        "rm -rf *": "ask"
+      },
+      "edit": {
+        "*": "allow",
+        "/run/agenix/**": "deny"
+      },
+      "external_directory": {
+        "*": "ask",
+        "/run/agenix/**": "allow",
+        "/tmp/**": "allow",
+        "~/.config/opencode/**": "allow",
+        "~/p/**": "allow"
+      },
+      "question": "allow",
+      "webfetch": "allow",
+      "websearch": "allow"
+    },
+    "prompt": "{file:./prompts/chiron-forge.txt}"
+  },
+  "Hermes (Communication)": {
+    "description": "Work communication specialist. Handles Basecamp tasks, Outlook email, and MS Teams meetings.",
+    "mode": "subagent",
+    "model": "zai-coding-plan/glm-5",
+    "permission": {
+      "bash": {
+        "*": "ask",
+        "cat *": "allow",
+        "echo *": "allow"
+      },
+      "edit": {
+        "*": "allow",
+        "/run/agenix/**": "deny"
+      },
+      "external_directory": {
+        "*": "ask",
+        "/run/agenix/**": "allow",
+        "/tmp/**": "allow",
+        "~/.config/opencode/**": "allow",
+        "~/p/**": "allow"
+      },
+      "question": "allow",
+      "webfetch": "allow"
+    },
+    "prompt": "{file:./prompts/hermes.txt}"
+  }
+}

@@ -1,0 +1,35 @@
+# agents/hermes/agent.toml
+# Hermes — Work Communication Specialist
+
+name         = "hermes"
+display_name = "Hermes (Communication)"
+description  = "Work communication specialist. Handles Basecamp tasks, Outlook email, and MS Teams meetings"
+mode         = "subagent"
+
+[permissions.question]
+intent = "allow"
+
+[permissions.webfetch]
+intent = "allow"
+
+[permissions.edit]
+intent = "allow"
+rules = [
+  "/run/agenix/**:deny",
+]
+
+[permissions.bash]
+intent = "ask"
+rules = [
+  "cat *:allow",
+  "echo *:allow",
+]
+
+[permissions.external_directory]
+intent = "ask"
+rules = [
+  "~/p/**:allow",
+  "~/.config/opencode/**:allow",
+  "/tmp/**:allow",
+  "/run/agenix/**:allow",
+]

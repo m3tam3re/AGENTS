@@ -1,0 +1,19 @@
+=== Task 17: renderForTool + shellHookForTool ===
+
+--- Tool: opencode ---
+Store path: /nix/store/jmx3s0jgy3v5k4dc0r29d601c7xxy6wr-opencode-agents
+Contents:
+(listing failed)
+
+--- Tool: claude-code ---
+Store path: /nix/store/2hjsch59amjs3nbgh7ahcfzm2bfwl8zi-bash-5.3p9/bin/bash: line 15: nix: command not found
+Contents:
+(listing failed)
+
+--- Tool: pi ---
+Store path: /nix/store/2hjsch59amjs3nbgh7ahcfzm2bfwl8zi-bash-5.3p9/bin/bash: line 15: nix: command not found
+Contents:
+(listing failed)
+
+--- shellHookForTool ---
+/nix/store/2hjsch59amjs3nbgh7ahcfzm2bfwl8zi-bash-5.3p9/bin/bash: line 23: nix: command not found

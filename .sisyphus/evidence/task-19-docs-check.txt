@@ -1,0 +1,32 @@
+=== Task 19: AGENTS.md Documentation Update ===
+
+Check: agent.toml mentioned:
+for f in agents/*/agent.toml; do nix eval --impure --expr "builtins.fromTOML (builtins.readFile ./$f)" --json > /dev/null && echo "OK: $f"; done
+│   ├── SCHEMA.md            # Canonical agent.toml schema definition
+│       ├── agent.toml       # Agent metadata, permissions, references
+Agent definitions live in `agents/<name>/agent.toml` + `agents/<name>/system-prompt.md`.
+1. Create `agents/<name>/agent.toml` with required fields (`name`, `description`) and optional fields (`mode`, `permissions`, etc.)
+3. Verify: `nix eval --impure --expr 'builtins.fromTOML (builtins.readFile ./agents/<name>/agent.toml)' --json`
+- `lib.loadAgents` — loads all canonical `agents/*/agent.toml` + `system-prompt.md` into an attrset
+PASS
+
+Check: system-prompt.md mentioned:
+│       └── system-prompt.md # Agent system prompt (markdown)
+Agent definitions live in `agents/<name>/agent.toml` + `agents/<name>/system-prompt.md`.
+2. Create `agents/<name>/system-prompt.md` with the agent's system prompt
+- `lib.loadAgents` — loads all canonical `agents/*/agent.toml` + `system-prompt.md` into an attrset
+PASS
+
+Check: agents.json NOT as canonical:
+- `lib.agentsJson` — backward-compat bridge producing legacy agents.json shape (temporary, will be removed)
+Found references (check they're not 'canonical'):
+
+Check: loadAgents mentioned:
+Renderers live in **m3ta-nixpkgs** (not this repo). They consume `lib.loadAgents` and produce:
+- `lib.loadAgents` — loads all canonical `agents/*/agent.toml` + `system-prompt.md` into an attrset
+PASS
+
+Check: mkCodingRules mentioned:
+Centralized AI coding rules consumed via `mkCodingRules` from m3ta-nixpkgs
+m3taLib.coding-rules.mkCodingRules {
+PASS
