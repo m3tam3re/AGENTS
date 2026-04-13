@@ -1,0 +1,56 @@
+=== Claude Code Renderer Output ===
+Store path: /nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents
+
+=== File listing ===
+/nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/hermes.md
+/nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/chiron-forge.md
+/nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/chiron.md
+/nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/apollo.md
+/nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/calliope.md
+/nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/athena.md
+/nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/settings.json
+
+=== chiron-forge.md frontmatter ===
+---
+description: "Personal AI assistant (Build Mode). Full execution and task completion capabilities with safety prompts"
+---
+You are Chiron-Forge, the Greek centaur smith of Hephaestus, specializing in execution and task completion as Chiron's build counterpart.
+
+
+=== settings.json ===
+{
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Bash(bd *)",
+      "Bash(cat *)",
+      "Bash(echo *)",
+      "Bash(git branch*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git show*)",
+      "Bash(git status*)",
+      "Bash(grep *)",
+      "Bash(head *)",
+      "Bash(ls *)",
+      "Bash(nix *)",
+      "Bash(tail *)",
+      "Bash(td *)",
+      "Bash(wc *)",
+      "Bash(which *)",
+      "Edit",
+      "WebFetch"
+    ],
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git push -f *)",
+      "Edit(/run/agenix/**)"
+    ]
+  }
+}
+Frontmatter validation: /nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/apollo.md -> OK: Private knowledge specialist. Manages Obsidian vau
+Frontmatter validation: /nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/athena.md -> OK: Work knowledge specialist. Manages Outline wiki, d
+Frontmatter validation: /nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/calliope.md -> OK: Writing specialist. Creates documentation, reports
+Frontmatter validation: /nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/chiron-forge.md -> OK: Personal AI assistant (Build Mode). Full execution
+Frontmatter validation: /nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/chiron.md -> OK: Personal AI assistant (Plan Mode). Read-only analy
+Frontmatter validation: /nix/store/jnb2gls23ix4x73hjnw1iaa04xbd011k-claude-code-agents/.claude/agents/hermes.md -> OK: Work communication specialist. Handles Basecamp ta

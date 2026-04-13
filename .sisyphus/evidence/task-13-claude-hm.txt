@@ -1,0 +1,6 @@
+=== Task 13: Claude Code HM Sub-Module ===
+Module file: modules/home-manager/coding/agents/claude-code.nix
+Options: coding.agents.claude-code.{enable, agentsInput, modelOverrides}
+Config: renders agents to ~/.claude/agents/ + settings.json
+
+Use '--all-systems' to check all.

@@ -1,0 +1,12 @@
+=== Task 16: mkCodingRules rename ===
+File: lib/coding-rules.nix (new)
+Old file: lib/opencode-rules.nix (still exists for reference)
+
+Both functions produce identical results:
+true
+
+lib/default.nix exports:
+  # Coding rules injection utilities (renamed from opencode-rules)
+  coding-rules = import ./coding-rules.nix {inherit lib;};
+  # Backward-compat alias: opencode-rules → coding-rules
+  opencode-rules = import ./coding-rules.nix {inherit lib;};

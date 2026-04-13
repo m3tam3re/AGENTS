@@ -167,26 +167,26 @@ support, "~" means partial/mapped support, "–" means ignored.
 
 | Field | OpenCode | Claude Code | Pi |
 |-------|----------|-------------|----|
-| `name` | ✓ agent identifier | ✓ must be `[a-z0-9-]+` | in `AGENTS.md` |
-| `description` | ✓ agent picker | ✓ required | in `AGENTS.md` |
-| `display_name` | ✓ picker label | – ignored | – ignored |
+| `name` | ✓ agent identifier | ✓ must be `[a-z0-9-]+` | ✓ subagent frontmatter |
+| `description` | ✓ agent picker | ✓ required | ✓ subagent frontmatter |
+| `display_name` | ✓ picker label | – ignored | ✓ in AGENTS.md |
 | `mode` | ✓ maps to `mode` | – all are subagents | primary only → `SYSTEM.md` |
 | `tags` | ~ future use | – ignored | – ignored |
 | `max_turns` | ✓ maps to `steps` | ✓ maps to `maxTurns` | – ignored |
-| `skills` | ✓ SKILL.md loaded | ✓ SKILL.md loaded | ✓ SKILL.md loaded |
+| `skills` | ✓ SKILL.md loaded | ✓ SKILL.md loaded | ✓ subagent `skill` field |
 | `context` | ✓ injected | ✓ injected | ~ manual inclusion |
 | `rules` | ✓ rule injection | ✓ rule injection | – ignored |
-| `permissions.bash` | ✓ rule DSL | ✓ bash tool perms | – no granularity |
-| `permissions.edit` | ✓ path rules | ✓ path rules | – no granularity |
-| `permissions.webfetch` | ✓ intent only | ✓ intent only | – ignored |
-| `permissions.websearch` | ✓ intent only | ✓ intent only | – ignored |
+| `permissions.bash` | ✓ rule DSL | ✓ bash tool perms | ~ tool enable/disable |
+| `permissions.edit` | ✓ path rules | ✓ path rules | ~ tool enable/disable |
+| `permissions.webfetch` | ✓ intent only | ✓ intent only | ~ tool enable/disable |
+| `permissions.websearch` | ✓ intent only | ✓ intent only | ~ tool enable/disable |
 | `permissions.question` | ✓ intent only | – not a tool | – not a concept |
-| `permissions.external_directory` | ✓ path rules | – not supported | – not supported |
+| `permissions.external_directory` | ✓ path rules | – not supported | ~ tools list (allow/ask → include) |
 
 **Renderer summary**:
 - **OpenCode** — full support; most fields have direct mappings
 - **Claude Code** — strong support; drops `display_name`, `external_directory`, `mode`
-- **Pi** — minimal support; reads `name`/`description` from `AGENTS.md`, skills via `SKILL.md`; permissions ignored
+- **Pi** — subagent support via `pi-subagents`; agent .md files with YAML frontmatter; permissions mapped to Pi tool list; skills via `SKILL.md`; AGENTS.md for discovery; SYSTEM.md for primary agent prompt
 
 ---
 

@@ -1,0 +1,7 @@
+=== Task 15: Slimmed opencode.nix ===
+Removed: agentsInput, externalSkills options; agents.json embedding; skills/context/commands/prompts symlinks
+Kept: ohMyOpencodeSettings, extraSettings, extraPlugins, theme/formatter/plugin config
+
+PASS: agentsInput removed
+PASS: externalSkills removed
+PASS: ohMyOpencodeSettings preserved

@@ -1,0 +1,38 @@
+Task 1: Capture Golden File Baseline
+=====================================
+
+Golden File Location:
+  /home/m3tam3re/p/AI/AGENTS/.sisyphus/evidence/agents-golden.json
+
+Verification Results:
+✓ File created successfully
+✓ Valid JSON (jq parseable)
+✓ Agent count: 6
+✓ Sorted alphabetically by agent name
+
+Agent Names (6 total):
+  1. Apollo (Knowledge Management)
+  2. Athena (Researcher)
+  3. Calliope (Writer)
+  4. Chiron (Assistant)
+  5. Chiron Forge (Builder)
+  6. Hermes (Communication)
+
+Agent Object Structure (keys per agent):
+  - description
+  - mode
+  - model
+  - permission
+  - prompt
+
+Permission Subkeys:
+  - question
+  - webfetch
+  - websearch
+  - edit
+  - bash
+  - external_directory
+
+Sorting Method: jq --sort-keys (alphabetical)
+
+Baseline Status: ✓ READY FOR TASK 8 (backward-compat bridge verification)
