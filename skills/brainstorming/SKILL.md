@@ -13,6 +13,7 @@ General-purpose ideation for any domain: business decisions, personal projects, 
 ### 1. Understand Context
 
 Start by understanding the situation:
+
 - What's the situation? What triggered this thinking?
 - What's the current state vs desired state?
 
@@ -21,6 +22,7 @@ Start by understanding the situation:
 ### 2. Clarify the Outcome
 
 Before exploring solutions, clarify what success looks like:
+
 - What would a good outcome enable?
 - What would you be able to do that you can't now?
 - Are there constraints on what "good" means?
@@ -28,6 +30,7 @@ Before exploring solutions, clarify what success looks like:
 ### 3. Explore Constraints
 
 Map the boundaries before generating options:
+
 - **Time**: Deadlines, urgency, available hours
 - **Resources**: Budget, people, skills, tools
 - **External**: Dependencies, stakeholders, regulations
@@ -55,6 +58,7 @@ Lead with your recommendation but present alternatives fairly.
 ### 5. Validate Incrementally
 
 Present thinking in 200-300 word sections. After each section, check:
+
 - "Does this capture it correctly?"
 - "Anything I'm missing?"
 - "Should we go deeper on any aspect?"
@@ -109,6 +113,7 @@ tags: #brainstorm #{{framework_tag}}
 ```
 
 **Framework tags** (use in `tags:` frontmatter):
+
 - `#pros-cons` - Pros/Cons analysis
 - `#swot` - Strategic SWOT assessment
 - `#5-whys` - Root cause analysis
@@ -117,6 +122,7 @@ tags: #brainstorm #{{framework_tag}}
 - `#constraint-mapping` - Boundary analysis
 
 **Status tags** (use in `status:` frontmatter):
+
 - `draft` - Initial capture
 - `final` - Decision made
 - `archived` - No longer active
@@ -138,27 +144,27 @@ For a better editing experience, create a template in Obsidian:
 
 ## Key Principles
 
-| Principle | Why |
-|-----------|-----|
-| **One question at a time** | Avoids overwhelming, gets better answers |
-| **Multiple choice preferred** | Easier to respond, clarifies options |
-| **Domain-agnostic** | Works for any topic, not just technical |
-| **YAGNI ruthlessly** | Remove unnecessary scope from all explorations |
-| **Recommendation-first** | Always lead with your suggested approach |
-| **Flexible** | Go back and clarify when needed |
+| Principle                     | Why                                            |
+| ----------------------------- | ---------------------------------------------- |
+| **One question at a time**    | Avoids overwhelming, gets better answers       |
+| **Multiple choice preferred** | Easier to respond, clarifies options           |
+| **Domain-agnostic**           | Works for any topic, not just technical        |
+| **YAGNI ruthlessly**          | Remove unnecessary scope from all explorations |
+| **Recommendation-first**      | Always lead with your suggested approach       |
+| **Flexible**                  | Go back and clarify when needed                |
 
 ## When to Use Frameworks
 
 For structured analysis, consult [references/thinking-frameworks.md](references/thinking-frameworks.md):
 
-| Situation | Framework |
-|-----------|-----------|
-| Binary decision (A or B, yes or no) | Pros/Cons |
-| Strategic assessment | SWOT |
-| Finding root cause | 5 Whys |
-| Prioritizing many ideas | How-Now-Wow Matrix |
-| Comprehensive exploration | Starbursting (6 Questions) |
-| Understanding boundaries | Constraint Mapping |
+| Situation                           | Framework                  |
+| ----------------------------------- | -------------------------- |
+| Binary decision (A or B, yes or no) | Pros/Cons                  |
+| Strategic assessment                | SWOT                       |
+| Finding root cause                  | 5 Whys                     |
+| Prioritizing many ideas             | How-Now-Wow Matrix         |
+| Comprehensive exploration           | Starbursting (6 Questions) |
+| Understanding boundaries            | Constraint Mapping         |
 
 **Only suggest frameworks when they add value.** Many brainstorms work fine with conversational exploration alone.
 
@@ -167,7 +173,7 @@ For structured analysis, consult [references/thinking-frameworks.md](references/
 ```
 User: "I'm not sure how to approach launching my new course"
 
-AI: "Let me help you think through this. First, what kind of course is it 
+AI: "Let me help you think through this. First, what kind of course is it
 and who's the target audience?"
 
 User: "NixOS course for developers who want to learn Nix"
@@ -192,10 +198,10 @@ c) Flexible, no deadline"
 
 After brainstorming, common next steps:
 
-| Output | Next Skill | Trigger |
-|--------|------------|---------|
-| Project decision | plan-writing | "Create a project plan for this" |
-| Task identified | task-management | "Add this to my tasks" |
-| Work project | basecamp | "Set this up in Basecamp" |
+| Output           | Next Skill       | Trigger                          |
+| ---------------- | ---------------- | -------------------------------- |
+| Project decision | plan-writing     | "Create a project plan for this" |
+| Task identified  | task-management  | "Add this to my tasks"           |
+| Work project     | basecamp-project | "Set this up in Basecamp"        |
 
 All handoffs can reference the Obsidian brainstorm note via WikiLinks or file paths.
