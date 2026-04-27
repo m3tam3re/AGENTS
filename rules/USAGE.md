@@ -42,6 +42,17 @@ Add AI coding rules to your project via `mkOpencodeRules`.
 - `frameworks` (optional): List of framework names (e.g., `["n8n" "django"]`)
 - `extraInstructions` (optional): Additional instruction file paths
 
+## Default Concerns
+
+When `concerns` is not specified, these are included:
+- coding-style
+- naming
+- documentation
+- testing
+- git-workflow
+- git-identity
+- project-structure
+
 ## .gitignore
 
 Add to your project's `.gitignore`:
