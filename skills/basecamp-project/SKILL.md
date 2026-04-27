@@ -1,247 +1,307 @@
 ---
 name: basecamp-project
 description: |
-  Use when: (1) User wants to create a Basecamp project from an existing plan document,
-  (2) User wants to generate a project draft before confirming creation.
-  Triggers: "create basecamp project from plan", "setup project in basecamp",
-  "basecamp draft", "plan to basecamp", "launch project", "initialize project in basecamp"
+  Use when: (1) User wants to create a new Basecamp project,
+  (2) User wants to generate a project draft from plan or Discovery,
+  (3) User wants to duplicate a Basecamp template.
+  Triggers: "create basecamp project", "setup project in basecamp",
+  "basecamp draft", "plan to basecamp", "launch project",
+  "initialize project in basecamp", "new project"
 compatibility: opencode
 ---
 
+# basecamp-project Skill
+
 ## Overview
 
-Creates a Basecamp project from a markdown plan document via a human-in-the-loop workflow:
-draft first, review, then create. Extracts project structure from the plan, prompts for missing
-information, generates a proposal, and creates the full project on confirmation.
+Erstellt Basecamp-Projekte via strukturiertem Workflow: Discovery → Template → Draft → Review → Create.
+Zwei Modi: Discovery-Mode (interaktive Fragen) oder Plan-Mode (aus Markdown-Datei).
 
-## Prerequisites
+## Workflow
 
-- Basecamp CLI configured (`basecamp doctor` passes)
-- Plans stored as markdown files in `docs/plans/`
-- Basecamp skill available for API calls
+### 1. START: Modus wählen
 
-## Core Workflow
+```
+User: "Erstelle ein neues Projekt in Basecamp"
 
-### Step 1: List Plans
-
-List all markdown files in `docs/plans/`:
-
-```bash
-ls -1 docs/plans/*.md
+→ Zeige Modus-Auswahl:
+  [1] 🧭 Discovery Mode (interaktive Fragen)
+  [2] 📄 Plan Mode (aus Markdown-Datei)
+  [3] 📋 Basecamp Template duplizieren
 ```
 
-Present as numbered list for easy selection.
+### 2. DISCOVERY MODE
 
-### Step 2: User Selects Plan
+Führe durch die 8 Discovery-Phasen (siehe `references/discovery-questions.md`):
 
-User picks a plan by number or filename. Validate the file exists before proceeding.
+1. **Vision & Goals** - Projektziel definieren
+2. **Success Criteria** - Woran erkennen wir Erfolg?
+3. **Timeline & Milestones** - Zeitplan mit Meilensteinen
+4. **Team & Roles** - Wer ist dabei?
+5. **Communication Preferences** - Wie kommunizieren?
+6. **Tools & Workflows** - Welche Basecamp-Tools?
+7. **Risks & Dependencies** - Risiken und Abhängigkeiten
+8. **Review** - Zusammenfassung bestätigen
 
-### Step 3: Parse Plan
+**Regeln:**
+- Jede Phase ist überspringbar
+- Multiple Choice mit "Anderes" Freitext-Option
+- Vorherige Antworten als Vorschlag ("Vorlage von: ...")
+- Natürliche Datumsangaben akzeptieren
 
-Read the selected file and extract available fields:
+### 3. TEMPLATE WAHL
 
-| Field | Source | Required |
-|-------|--------|----------|
-| Project name | First heading (`# Title`) or frontmatter `title:` | Yes |
-| Description | Frontmatter `description:` or second paragraph | Yes |
-| Start date | Frontmatter `start:`, `starts:`, or natural mention | Yes |
-| End date | Frontmatter `end:`, `due:`, `deadline:`, or natural mention | Yes |
-| Milestones | Sections with dates (e.g., "## Phase 1: Discovery") | Yes |
-| Tasks | Bulleted lists under milestones | Yes |
-| Assignees | Task modifiers (`@person`, `--assignee`) or frontmatter `team:` | No |
-| Documents | Links (`[ref](url)`) or frontmatter `attachments:` | No |
+Zeige verfügbare Templates:
+```
+Verfügbare Vorlagen:
+  [1] Feature Launch - Neues Feature entwickeln
+  [2] Workshop/Training - Schulung oder Workshop
+  [3] Retrospektive - Team-Retro
+  [4] Meeting Management - Wiederkehrende Meetings
+  [5] Sprint/Iteration - Sprint planen
+  [6] Research/MVP - Forschung oder Prototyp
+  [7] Eigenes Design - Eigene Struktur
+  [8] Basecamp Template - Vorhandenes Template nutzen
+```
 
-If frontmatter uses a non-standard structure, parse body content and use natural language cues.
+### 4. DRAFT GENERATION
 
-### Step 4: Prompt for Missing Information
+#### Plan Mode (aus Datei)
+1. Liste Dateien in `docs/plans/`
+2. User wählt Datei
+3. Parse Plan (siehe unten)
+4. Fehlende Daten via Discovery-Phasen ergänzen
 
-Prompt one field at a time, in this order:
+#### Discovery Mode (aus Fragen)
+1. Generiere Draft basierend auf Discovery-Antworten
+2. Verwende gewähltes Template als Grundstruktur
+3. Fülle mit User-Daten
 
-1. **Project name** — if not found
-2. **Start date** — if not found (use "When should this project begin?")
-3. **End date** — if not found (use "When should this project be completed?")
-4. **Team members** — if not found:
-   - First, fetch Basecamp people: `basecamp people list --json`
-   - Present as picker with names
-   - Fall back to free text if not found
-5. **Assignees** — map tasks to team members (one prompt per unassigned task group)
-6. **Milestone dates** — if milestones lack dates, prompt for each
+### 5. PARSE PLAN (für Plan Mode)
 
-For date fields, accept natural language (`"next Monday"`, `"May 15"`, `"2025-06-01"`).
+Extrahiere aus Markdown:
 
-### Step 5: Generate Draft
+**Project name:**
+- Quelle: `# Title` oder frontmatter `title:`
+- Required: Yes
 
-Compose a structured proposal as markdown:
+**Description:**
+- Quelle: frontmatter `description:` oder erster Absatz
+- Required: Yes
+
+**Start date:**
+- Quelle: frontmatter `start:`, `starts:`, oder natürliche Erwähnung
+- Required: Yes
+
+**End date:**
+- Quelle: frontmatter `end:`, `due:`, `deadline:`, oder natürliche Erwähnung
+- Required: Yes
+
+**Milestones:**
+- Quelle: Sections mit `##` Level
+- Required: Yes
+
+**Tasks:**
+- Quelle: Listen unter Milestones
+- Required: Yes
+
+**Assignees:**
+- Quelle: `@person` Modifier oder frontmatter `team:`
+- Required: No
+
+**Documents:**
+- Quelle: Links `[ref](url)` oder frontmatter `attachments:`
+- Required: No
+
+### 6. PROMPT FÜR FEHLENDE DATEN
+
+Reihenfolge:
+1. Projektname (wenn fehlt)
+2. Start-Datum (natürliche Sprache akzeptiert)
+3. End-Datum
+4. Team-Mitglieder (`basecamp people list --json`)
+5. Assignees
+6. Meilenstein-Daten
+
+### 7. DRAFT PRESENTATION
+
+Zeige strukturierten Draft (Basecamp-kompatibles Format, KEINE Tabellen):
 
 ```markdown
-# Project Proposal: {name}
+# Projekt-Vorschlag: {name}
 
-## Overview
+## Übersicht
 {description}
 
-## Timeline
-- **Start:** {start_date}
-- **End:** {end_date}
-- **Duration:** {X weeks/days}
+## Zeitplan
+- **Start:** {start}
+- **Ende:** {end}
+- **Dauer:** {X Wochen/ Tage}
 
-## Milestones
+## Meilensteine
 
-### {Milestone 1}
-- Date: {date}
-- Tasks:
-  - [ ] {task 1}
-  - [ ] {task 2}
-  - Assigned: @{assignee}
-
-### {Milestone 2}
-...
+### {Meilenstein 1}
+- Datum: {datum}
+- Aufgaben:
+  1. {aufgabe 1}
+  2. {aufgabe 2}
+  - Zugewiesen: @{person}
 
 ## Team
-{list of members}
+{liste}
 
-## Basecamp Structure
-| Tool | Content |
-|------|---------|
-| Message Board | Kickoff message + decision posts |
-| To-Dos | Tasks grouped by milestone |
-| Documents | Project spec and references |
-| Schedule | Milestone dates |
+## Basecamp-Struktur
+- Message Board: Kickoff + Entscheidungen
+- To-Dos: Nach Meilensteinen gruppiert
+- Schedule: Kalender-Einträge
+- Chat: {falls aktiviert}
+- Check-ins: {falls aktiviert}
+- Gauge: {falls aktiviert}
 ```
 
-### Step 6: Present Draft
+**Optionen:**
+```
+[1] Draft speichern → `docs/drafts/{slug}-{timestamp}.md`
+[2] Projekt erstellen
+[3] Abbrechen
+```
 
-Show the draft and offer three options:
+### 8. PROJECT CREATION
 
-1. **Save to markdown** — write to `docs/drafts/{slug}-{timestamp}.md`
-2. **Confirm and create** — proceed to project creation
-3. **Cancel** — discard and exit
+Führe in Reihenfolge aus:
 
-Use inline confirmation: `"Save draft | Create project | Cancel"`
-
-### Step 7: Create Project (on confirm)
-
-Use basecamp skill primitives. Execute in order:
-
-#### 7.1 Create Project
-
+#### 8.1 Project erstellen
 ```bash
 basecamp projects create "{name}" --json
 ```
 
-Extract `project_id` from response.
-
-#### 7.2 Add Team Members
-
+#### 8.2 Team hinzufügen
 ```bash
-# Look up person IDs first
 basecamp people list --jq '.data[] | select(.name == "Name") | .id'
-
-# Add to project
 basecamp people add {person_id} --project {project_id}
 ```
 
-#### 7.3 Create Kickoff Message
-
+#### 8.3 Kickoff-Message
 ```bash
-basecamp message "Kickoff" "{description}" --in {project_id} --json
+basecamp message "Kickoff" "{description}" --in {project_id}
+# HTML content verwenden (markdown_to_trix.py)
 ```
 
-#### 7.4 Create To-Do Lists by Milestone
-
-For each milestone:
-
+#### 8.4 Discovery Document (optional)
 ```bash
-# Create todolist for milestone
-basecamp todolists create "{Milestone Name}" --in {project_id} --json
-
-# Extract todolist_id, then add tasks
-basecamp todo "{task}" --in {project_id} --list {todolist_id} --due {date} --json
-
-# Assign if known
-basecamp assign {todo_id} --to {person_id} --in {project_id}
+basecamp files doc create "Project Brief" "{zusammenfassung}" --in {project_id}
 ```
 
-#### 7.5 Create Schedule Entries for Milestones
-
+#### 8.5 To-Do Listen (nach Meilensteinen)
 ```bash
-basecamp schedule create "{Milestone Name}" \
+basecamp todolists create "{Meilenstein}" --in {project_id}
+# Dann To-Dos hinzufügen:
+basecamp todo "{task}" --in {project_id} --list {list_id} --due {date}
+```
+
+#### 8.6 Schedule Entries
+```bash
+basecamp schedule create "{Meilenstein}" \
   --starts-at "{date}T09:00:00Z" \
-  --all-day \
-  --in {project_id} --json
+  --all-day --in {project_id}
 ```
 
-#### 7.6 Create Documents (if referenced)
-
+#### 8.7 Chat-Kanal (optional)
 ```bash
-basecamp files doc create "{doc title}" "{content}" --in {project_id} --json
+basecamp chat post "Willkommen im Projekt!" --in {project_id}
 ```
 
-#### 7.7 Pin Kickoff Message
-
+#### 8.8 Check-ins (optional)
 ```bash
-basecamp messages pin {message_id} --in {project_id}
+# Questionnaire erstellen
+basecamp checkins question create "Was hast du diese Woche erreicht?" --frequency every_week
 ```
 
-### Step 8: Report Success
+#### 8.9 Cards/Kanban (optional)
+```bash
+basecamp cards list --in {project_id}
+# Spalten erstellen wenn nicht vorhanden
+```
 
-Show summary with links:
+#### 8.10 Gauge (optional)
+```bash
+basecamp gauges enable --in {project_id}
+basecamp gauges create --position 0 --color green --description "Fortschritt" --in {project_id}
+```
+
+### 9. SUCCESS REPORT
 
 ```
-✅ Project created: {name}
+✅ Projekt erstellt: {name}
 🔗 https://3.basecamp.com/{account_id}/buckets/{project_id}
 
-Structure:
-  • Message Board: 1 message (kickoff)
-  • To-Dos: {N} todolists, {M} tasks
-  • Schedule: {X} milestones
-  • Documents: {Y} docs
+Struktur:
+  • Message Board: 1 Nachricht (Kickoff)
+  • Project Brief: 1 Dokument
+  • To-Dos: {N} Listen, {M} Aufgaben
+  • Schedule: {X} Einträge
+  • Chat: {falls aktiviert}
+  • Check-ins: {falls aktiviert}
+  • Gauge: {falls aktiviert}
 ```
 
-## Integration with Basecamp Skill
+## Integration mit anderen Skills
 
-This skill delegates all Basecamp API calls to the basecamp skill. The basecamp skill
-provides:
-
-- `basecamp projects create` — create project
-- `basecamp people list/add` — team management
-- `basecamp message` — message board posts
-- `basecamp todolists create` — milestone grouping
-- `basecamp todo` — individual tasks
-- `basecamp schedule create` — milestone scheduling
-- `basecamp files doc create` — documents
-
-Always use `--json` flag for structured output and `--jq` for filtering.
-
-## Project Structure Mapping
-
-| Plan Element | Basecamp Tool | Notes |
-|--------------|---------------|-------|
-| Overview/description | Message Board | First message pinned as kickoff |
-| Milestones/phases | To-Do Lists | One todolist per milestone |
-| Tasks | To-Dos | Under appropriate todolist |
-| Task assignees | Todo assignment | Map from plan or prompt |
-| Task due dates | Todo due date | Relative to milestone or absolute |
-| Milestone dates | Schedule | All-day entries |
-| References/docs | Documents | Links or inline content |
-| Team | Project members | Add via `people add` |
+| Input | Next Skill | Trigger |
+|-------|------------|---------|
+| Discovery abgeschlossen | basecamp-project | Projekt erstellen |
+| Plan nicht gefunden | brainstorming | "Ich brauche erst einen Plan" |
+| Meeting-Notizen | basecamp | "Notizen zu Basecamp hinzufügen" |
+| Task verfolgen | basecamp | "Todo zu Projekt hinzufügen" |
 
 ## Error Handling
 
 | Scenario | Action |
 |----------|--------|
-| Plan file not found | Show error, re-list plans for selection |
-| Basecamp auth failure | Prompt to run `basecamp auth login` |
-| Project creation fails | Show error, suggest checking Basecamp limits |
-| Person not found | Offer free text entry for name |
-| Rate limit (429) | Wait and retry with backoff |
-| Invalid date input | Reprompt with format hint |
+| Plan nicht gefunden | Fehler zeigen, Pläne neu listen |
+| Basecamp Auth-Fehler | `basecamp auth login` vorschlagen |
+| Projekt-Erstellung fehlgeschlagen | Fehler + Basecamp-Limits prüfen |
+| Person nicht gefunden | Freitext-Eingabe als Fallback |
+| Rate limit (429) | Warten + Retry mit Backoff |
+| Ungültige Datums-Eingabe | Mit Format-Hinweis erneut fragen |
 
-## Handoff to Other Skills
+## Markdown→Basecamp Konvertierung
 
-| Output | Next Skill | Trigger |
-|--------|------------|---------|
-| Draft saved | — | User chose save option |
-| Project created | — | User confirmed |
-| Plan not found | brainstorming | "I need to plan this first" |
-| Task tracking | basecamp | "Add a todo to this project" |
-| Team changes | basecamp | "Add someone to the project" |
+Siehe `references/formatting-rules.md`
+
+Kurzfassung:
+- ✅ Überschriften, bold, italic, Listen, Code, Links
+- ❌ Tabellen → Als strukturierte Listen
+- ❌ Checkboxen in Messages → Als nummerierte Listen oder echte To-Dos
+- ❌ Horizontal Rules → Entfernen
+
+Verwende `scripts/markdown_to_trix.py` für Konvertierung.
+
+## Discovery Questions Reference
+
+Siehe `references/discovery-questions.md`
+
+## Templates
+
+Siehe `templates/` Verzeichnis.
+
+## Dateien
+
+```
+basecamp-project/
+├── SKILL.md                          # Diese Datei
+├── scripts/
+│   ├── markdown_to_trix.py           # Markdown→HTML Konverter
+│   └── requirements.txt              # Python dependencies
+├── templates/
+│   ├── feature-launch.md
+│   ├── workshop.md
+│   ├── retrospective.md
+│   ├── meeting.md
+│   ├── sprint.md
+│   ├── research-mvp.md
+│   └── blank.md
+└── references/
+    ├── formatting-rules.md           # Basecamp-Formatierung
+    └── discovery-questions.md        # Fragen-Katalog
+```
