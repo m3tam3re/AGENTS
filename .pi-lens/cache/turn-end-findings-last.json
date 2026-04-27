@@ -1,3 +1,0 @@
-{
-  "signature": "/home/m3tam3re/p/NIX/nixpkgs/modules/home-manager/coding/agents/claude-code.nix::📐 Cascade errors in 1 other file(s) — fix before finishing turn:\n<diagnostics file=\"/home/m3tam3re/p/NIX/nixpkgs/modules/home-manager/coding/agents/pi.nix\">\n  line 205, col 10 code=sema-duplicated-attrname: duplicated attrname `file`\n</diagnostics>"
-}

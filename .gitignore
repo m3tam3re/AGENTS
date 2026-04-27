@@ -12,3 +12,5 @@
 # Nix / direnv
 .direnv/
 result
+
+.pi*
