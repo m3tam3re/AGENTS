@@ -1,0 +1,2 @@
+# Markdown to Trix Converter Dependencies
+markdown>=3.4.0
