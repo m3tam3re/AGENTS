@@ -444,6 +444,38 @@ m3taLib.coding-rules.mkCodingRules {
 
 See `rules/USAGE.md` for full documentation.
 
+## Agent Git Identity
+
+All agent commits use a dedicated bot identity for clear audit trails.
+
+### Configuration
+
+```nix
+coding.agents.gitIdentity = {
+  enable = true;
+  name = "m3ta-chiron";
+  email = "m3ta-chiron@agentmail.to";
+  sshKey = "/run/agenix/m3ta-chiron-ssh-key";
+};
+```
+
+### Environment Variables
+
+When enabled, these are automatically set:
+- `GIT_AUTHOR_NAME`, `GIT_AUTHOR_EMAIL`
+- `GIT_COMMITTER_NAME`, `GIT_COMMITTER_EMAIL`
+- `GIT_SSH_COMMAND` (for authenticated push)
+
+### Rules
+
+See `rules/concerns/git-identity.md` for detailed instructions.
+
+### Setup
+
+1. Generate SSH key: `ssh-keygen -t ed25519 -C "m3ta-chiron@agentmail.to" -f ~/.ssh/m3ta-chiron`
+2. Add public key to https://code.m3ta.dev/user/settings/keys
+3. Configure in NixOS: `coding.agents.gitIdentity.enable = true`
+
 ## Notes for AI Agents
 
 1. **Config-only repo** — no compilation step; `./scripts/test-skill.sh --validate` is the build
