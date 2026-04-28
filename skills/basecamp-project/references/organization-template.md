@@ -24,7 +24,28 @@ Use the active Basecamp CLI account unless the user specifies a different Baseca
 
 ## Construction Command
 
-Construct a project from the organization template with:
+`basecamp templates construct` has a bug (v0.7.2) that returns "Bad Request" for all templates. Use the API directly instead:
+
+```bash
+basecamp api POST "/templates/<template_id>/project_constructions.json" \
+  -d '{"project":{"name":"<project name>","description":"<project description>"}}'
+```
+
+**Critical:** The `name` and `description` must be wrapped in a `project` object — this is what the CLI gets wrong.
+
+### Polling
+
+After construction, poll until `status` is `"completed"`:
+
+```bash
+basecamp api GET "/templates/<template_id>/project_constructions/<construction_id>.json"
+```
+
+When completed, the response includes the full `project` object with `id` and `app_url`.
+
+### CLI Alternative (when fixed)
+
+Once the CLI bug is resolved, the command should be:
 
 ```bash
 basecamp templates construct <template_id> \
