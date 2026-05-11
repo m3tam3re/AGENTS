@@ -265,7 +265,7 @@ agents = {
 **Exports:**
 
 - `lib.loadAgents` — loads all canonical `agents/*/agent.toml` + `system-prompt.md` into an attrset
-- `lib.mkOpencodeSkills` — compose custom + external [skills.sh](https://skills.sh) skills into one directory
+- `lib.mkSkills` — compose custom + external [skills.sh](https://skills.sh) skills into one directory
 - `lib.agentsJson` — backward-compat bridge producing legacy agents.json shape (temporary, will be removed)
 - `packages.skills-runtime` — composable runtime with all skill dependencies
 - `devShells.default` — dev environment for working with skills
@@ -273,7 +273,7 @@ agents = {
 **Mapping** (via home-manager + m3ta-nixpkgs renderers):
 
 - `agents/` → rendered per-tool via `lib.agents.renderForTool` in m3ta-nixpkgs
-- `skills/` → composed via `mkOpencodeSkills` (custom + external merged)
+- `skills/` → composed via `mkSkills` (custom + external merged)
 - `context/`, `commands/` → symlinks
 - Agent changes via file-based agents: visible on next tool restart (no `home-manager switch` needed for prompt changes)
 
@@ -283,7 +283,7 @@ This repo supports composing skills from external [skills.sh](https://skills.sh)
 alongside custom skills. External repos follow the [Agent Skills](https://agentskills.io)
 standard (same `SKILL.md` format).
 
-**`lib.mkOpencodeSkills` parameters:**
+**`lib.mkSkills` parameters:**
 
 - `pkgs` (required) — nixpkgs package set
 - `customSkills` (optional) — path to custom skills directory (e.g., `"${inputs.agents}/skills"`)
@@ -303,7 +303,7 @@ inputs = {
 };
 
 xdg.configFile."opencode/skills".source =
-  inputs.agents.lib.mkOpencodeSkills {
+  inputs.agents.lib.mkSkills {
     pkgs = nixpkgs.legacyPackages.${system};
     customSkills = "${inputs.agents}/skills";
   };
@@ -389,7 +389,7 @@ rmdir prompts/  # if empty
 # Delete the lib.agentsJson section from flake.nix
 ```
 
-After removing `lib.agentsJson`, update flake.nix to remove the bridge function. The `lib.loadAgents` and `lib.mkOpencodeSkills` exports remain.
+After removing `lib.agentsJson`, update flake.nix to remove the bridge function. The `lib.loadAgents` and `lib.mkSkills` exports remain.
 
 ### Step 4: Verify
 
@@ -462,6 +462,7 @@ coding.agents.gitIdentity = {
 ### Environment Variables
 
 When enabled, these are automatically set:
+
 - `GIT_AUTHOR_NAME`, `GIT_AUTHOR_EMAIL`
 - `GIT_COMMITTER_NAME`, `GIT_COMMITTER_EMAIL`
 - `GIT_SSH_COMMAND` (for authenticated push)

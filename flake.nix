@@ -19,7 +19,7 @@
     #
     # Usage (home-manager):
     #   xdg.configFile."opencode/skills".source =
-    #     inputs.agents.lib.mkOpencodeSkills {
+    #     inputs.agents.lib.mkSkills {
     #       pkgs = nixpkgs.legacyPackages.${system};
     #       customSkills = "${inputs.agents}/skills";
     #       externalSkills = [
@@ -30,7 +30,7 @@
     #
     # Usage (project flake — project-level skills):
     #   ".agents/skills".source =
-    #     inputs.agents.lib.mkOpencodeSkills {
+    #     inputs.agents.lib.mkSkills {
     #       pkgs = nixpkgs.legacyPackages.${system};
     #       externalSkills = [
     #         { src = inputs.skills-anthropic; selectSkills = [ "mcp-builder" ]; }
@@ -50,7 +50,7 @@
     #   Custom skills always take priority over external ones.
     #   Among external sources, earlier entries in the list take priority.
 
-    lib.mkOpencodeSkills = {
+    lib.mkSkills = {
       pkgs,
       customSkills ? null,
       externalSkills ? [],

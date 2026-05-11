@@ -66,7 +66,7 @@ This repository is a **Nix flake** that exports:
 
 - **`devShells.default`** — development environment for working on skills (activated via direnv)
 - **`packages.skills-runtime`** — composable runtime with all skill script dependencies (Python packages + system tools)
-- **`lib.mkOpencodeSkills`** — compose custom skills with external [skills.sh](https://skills.sh) skills into a single directory
+- **`lib.mkSkills`** — compose custom skills with external [skills.sh](https://skills.sh) skills into a single directory
 
 **Consume in your system flake:**
 
@@ -92,7 +92,7 @@ let
 in {
   # Skills — composed from custom + external sources
   xdg.configFile."opencode/skills".source =
-    inputs.agents.lib.mkOpencodeSkills {
+    inputs.agents.lib.mkSkills {
       inherit pkgs;
       customSkills = "${inputs.agents}/skills";
       externalSkills = [
@@ -118,6 +118,7 @@ in {
 ```
 
 > **Note**: If you don't use external skills, you can still use the simple form:
+>
 > ```nix
 > xdg.configFile."opencode/skills".source = "${inputs.agents}/skills";
 > ```
@@ -140,7 +141,7 @@ in {
     in {
       # Project-level skills (placed in .agents/skills/)
       ".agents/skills".source =
-        agents.lib.mkOpencodeSkills {
+        agents.lib.mkSkills {
           inherit pkgs;
           externalSkills = [
             { src = skills-anthropic; selectSkills = [ "mcp-builder" ]; }
@@ -256,40 +257,40 @@ python3 skills/skill-creator/scripts/quick_validate.py skills/my-skill-name
 
 ## 📚 Available Skills
 
-| Skill                           | Purpose                                                        | Status          |
-| ------------------------------- | -------------------------------------------------------------- | --------------- |
-| **agent-development**           | Create and configure Opencode agents                           | ✅ Active       |
-| **brainstorming**               | General-purpose ideation and strategic thinking                | ✅ Active       |
-| **doc-translator**              | Documentation translation to German/Czech with Outline publish | ✅ Active       |
-| **excalidraw**                  | Architecture diagrams from codebase analysis                   | ✅ Active       |
-| **obsidian**                    | Obsidian vault management via Local REST API                   | ✅ Active       |
-| **outline**                     | Outline wiki integration for team documentation                | ✅ Active       |
-| **pdf**                         | PDF manipulation, extraction, creation, and forms              | ✅ Active       |
-| **prompt-engineering-patterns** | Advanced prompt engineering techniques                         | ✅ Active       |
-| **qmd**                         | Knowledge retrieval and memory via Query Markup Documents      | ✅ Active       |
-| **reflection**                  | Conversation analysis and skill improvement                    | ✅ Active       |
-| **skill-creator**               | Guide for creating new Opencode skills                         | ✅ Active       |
-| **systematic-debugging**        | Debugging methodology for bugs and test failures               | ✅ Active       |
-| **xlsx**                        | Spreadsheet creation, editing, and analysis                    | ✅ Active       |
-| **mem0-memory**                 | Legacy memory skill (deprecated — use opencode-memory plugin)  | ⚠️ Deprecated  |
+| Skill                           | Purpose                                                        | Status        |
+| ------------------------------- | -------------------------------------------------------------- | ------------- |
+| **agent-development**           | Create and configure Opencode agents                           | ✅ Active     |
+| **brainstorming**               | General-purpose ideation and strategic thinking                | ✅ Active     |
+| **doc-translator**              | Documentation translation to German/Czech with Outline publish | ✅ Active     |
+| **excalidraw**                  | Architecture diagrams from codebase analysis                   | ✅ Active     |
+| **obsidian**                    | Obsidian vault management via Local REST API                   | ✅ Active     |
+| **outline**                     | Outline wiki integration for team documentation                | ✅ Active     |
+| **pdf**                         | PDF manipulation, extraction, creation, and forms              | ✅ Active     |
+| **prompt-engineering-patterns** | Advanced prompt engineering techniques                         | ✅ Active     |
+| **qmd**                         | Knowledge retrieval and memory via Query Markup Documents      | ✅ Active     |
+| **reflection**                  | Conversation analysis and skill improvement                    | ✅ Active     |
+| **skill-creator**               | Guide for creating new Opencode skills                         | ✅ Active     |
+| **systematic-debugging**        | Debugging methodology for bugs and test failures               | ✅ Active     |
+| **xlsx**                        | Spreadsheet creation, editing, and analysis                    | ✅ Active     |
+| **mem0-memory**                 | Legacy memory skill (deprecated — use opencode-memory plugin)  | ⚠️ Deprecated |
 
 ## 🤖 AI Agents
 
 ### Primary Agents
 
-| Agent                      | Mode    | Purpose                                              |
-| -------------------------- | ------- | ---------------------------------------------------- |
-| **Chiron (Assistant)**     | primary | Read-only analysis, planning, and guidance           |
-| **Chiron Forge (Builder)** | primary | Full execution and task completion with safety       |
+| Agent                      | Mode    | Purpose                                        |
+| -------------------------- | ------- | ---------------------------------------------- |
+| **Chiron (Assistant)**     | primary | Read-only analysis, planning, and guidance     |
+| **Chiron Forge (Builder)** | primary | Full execution and task completion with safety |
 
 ### Subagents (Specialists)
 
-| Agent                           | Domain            | Purpose                                    |
-| ------------------------------- | ----------------- | ------------------------------------------ |
-| **Hermes (Communication)**      | Communication     | Basecamp, Outlook, MS Teams                |
-| **Athena (Researcher)**         | Research          | Outline wiki, documentation, knowledge     |
-| **Apollo (Knowledge Management)** | Private Knowledge | Obsidian vault, personal notes           |
-| **Calliope (Writer)**           | Writing           | Documentation, reports, prose              |
+| Agent                             | Domain            | Purpose                                |
+| --------------------------------- | ----------------- | -------------------------------------- |
+| **Hermes (Communication)**        | Communication     | Basecamp, Outlook, MS Teams            |
+| **Athena (Researcher)**           | Research          | Outline wiki, documentation, knowledge |
+| **Apollo (Knowledge Management)** | Private Knowledge | Obsidian vault, personal notes         |
+| **Calliope (Writer)**             | Writing           | Documentation, reports, prose          |
 
 **Model**: All agents use `zai-coding-plan/glm-5`.  
 **Configuration**: `agents/agents.json` + `prompts/*.txt`

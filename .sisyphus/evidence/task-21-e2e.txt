@@ -19,7 +19,7 @@ PASS: 6 .md files in .claude/agents/ + settings.json with permission DSL
 PASS: AGENTS.md + SYSTEM.md, SYSTEM.md byte-identical to chiron prompt
 
 --- 7. Skills composition ---
-PASS: 18 skills in linkFarm output, mkOpencodeSkills unchanged
+PASS: 18 skills in linkFarm output, mkSkills unchanged
 
 --- 8. Backward-compat bridge ---
 PASS: agentsJson output matches golden file (zero diff)

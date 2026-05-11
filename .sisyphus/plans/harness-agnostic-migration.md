@@ -3,14 +3,15 @@
 ## TL;DR
 
 > **Quick Summary**: Migrate AGENTS repo from OpenCode-specific agents.json to a tool-agnostic canonical format (agent.toml + system-prompt.md per agent). Build Nix rendering pipeline in m3ta-nixpkgs that generates tool-specific configs for OpenCode, Claude Code, and Pi. Support system-level (home-manager) and project-level (flake.nix + direnv).
-> 
+>
 > **Deliverables**:
+>
 > - 6 canonical agent definitions in AGENTS repo (TOML + Markdown)
 > - 3 tool renderers in m3ta-nixpkgs (OpenCode, Claude Code, Pi)
 > - Home-manager modules per tool replacing current opencode.nix
 > - Project-level lib functions for flake.nix + direnv usage
 > - Backward-compatible bridge during migration
-> 
+>
 > **Estimated Effort**: Large
 > **Parallel Execution**: YES — 4 waves
 > **Critical Path**: TOML spike → canonical agents → lib/agents.nix → per-tool HM modules → golden file verification
@@ -20,10 +21,13 @@
 ## Context
 
 ### Original Request
+
 Restructure AGENTS repo to be harness-agnostic so the same agent definitions, skills, prompts work across OpenCode, Claude Code, Codex, Pi, and future coding agents. Build corresponding Nix infrastructure in m3ta-nixpkgs for system-level and project-level consumption.
 
 ### Interview Summary
+
 **Key Discussions**:
+
 - YAML rejected for canonical format — TOML chosen (native `builtins.fromTOML`, no IFD)
 - Renderers belong in m3ta-nixpkgs, not AGENTS repo (AGENTS stays pure data)
 - OpenCode + Claude Code + Pi renderers now; Codex/Aider later on demand
@@ -35,6 +39,7 @@ Restructure AGENTS repo to be harness-agnostic so the same agent definitions, sk
 - Project-level: lib functions returning derivations, usable via shellHook in devShells
 
 **Research Findings**:
+
 - **OpenCode**: Now supports file-based agents (`.opencode/agent/*.md` with YAML frontmatter) — modern path, avoids config.json embedding
 - **Claude Code**: Subagents require `name` (kebab-case) + `description` as mandatory frontmatter fields
 - **Pi**: No subagent concept. Uses AGENTS.md/CLAUDE.md for instructions, SYSTEM.md for prompt override, same SKILL.md format as OpenCode
@@ -43,7 +48,9 @@ Restructure AGENTS repo to be harness-agnostic so the same agent definitions, sk
 - **TOML in Nix**: `builtins.fromTOML` supports TOML 1.0.0 strict. No datetime fields, no multi-line inline tables.
 
 ### Metis Review
+
 **Identified Gaps** (addressed):
+
 - **oh-my-opencode.json ownership**: Non-agent OpenCode config stays in slimmed opencode.nix (not in agents.nix)
 - **Pi has no subagents**: Pi renderer produces AGENTS.md + SYSTEM.md from primary agent only. Subagents skipped.
 - **Claude Code name format**: Renderer must slugify to `[a-z0-9-]+`
@@ -59,9 +66,11 @@ Restructure AGENTS repo to be harness-agnostic so the same agent definitions, sk
 ## Work Objectives
 
 ### Core Objective
+
 Transform the AGENTS repository into a tool-agnostic data repository and build a Nix rendering pipeline that generates tool-specific configurations for multiple coding agents.
 
 ### Concrete Deliverables
+
 - `AGENTS/agents/{chiron,chiron-forge,hermes,athena,apollo,calliope}/agent.toml` — 6 canonical agent definitions
 - `AGENTS/agents/{name}/system-prompt.md` — 6 system prompts (byte-identical to current .txt files)
 - `AGENTS/flake.nix` — Updated with `lib.loadAgents` and backward-compat `lib.agentsJson`
@@ -73,6 +82,7 @@ Transform the AGENTS repository into a tool-agnostic data repository and build a
 - `nixpkgs/lib/coding-rules.nix` — Renamed from opencode-rules.nix with backward-compat alias
 
 ### Definition of Done
+
 - [ ] `nix flake check` passes on both repos
 - [ ] Rendered OpenCode agent output is semantically equivalent to current agents.json (golden file diff = 0)
 - [ ] All 6 agents parse successfully via `builtins.fromTOML`
@@ -80,9 +90,10 @@ Transform the AGENTS repository into a tool-agnostic data repository and build a
 - [ ] Pi renderer produces valid AGENTS.md + optional settings.json
 - [ ] System prompt content is byte-identical to current .txt files
 - [ ] `nix fmt` (alejandra) produces no changes
-- [ ] `lib.mkOpencodeSkills` still works unchanged
+- [ ] `lib.mkSkills` still works unchanged
 
 ### Must Have
+
 - All 6 agents in canonical TOML format with system-prompt.md
 - OpenCode renderer producing `.opencode/agent/*.md` file-based agents
 - Claude Code renderer producing `.claude/agents/*.md` with valid YAML frontmatter
@@ -92,13 +103,14 @@ Transform the AGENTS repository into a tool-agnostic data repository and build a
 - Project-level `renderForTool` lib function for flake.nix + direnv
 
 ### Must NOT Have (Guardrails)
+
 - No YAML files as canonical source (TOML only — no IFD)
 - No renderer code in AGENTS repo (renderers live in nixpkgs)
 - No Codex or Aider renderers (design for extensibility, implement only 3)
 - No MCP configuration in agent.toml (MCP is tool-specific infrastructure)
 - No prompt content changes during migration (byte-identical rename only)
 - No skills/rules/context migration in this plan (separate concern)
-- No `mkOpencodeSkills` changes (stays as-is)
+- No `mkSkills` changes (stays as-is)
 - No datetime fields in TOML schema (requires experimental Nix flag)
 - No multi-line inline tables in TOML (not supported by Nix's TOML 1.0.0)
 - No generic permission translation DSL (each renderer hard-codes its own mapping)
@@ -111,11 +123,13 @@ Transform the AGENTS repository into a tool-agnostic data repository and build a
 > **ZERO HUMAN INTERVENTION** — ALL verification is agent-executed. No exceptions.
 
 ### Test Decision
+
 - **Infrastructure exists**: YES — Nix evaluation + alejandra formatter
 - **Automated tests**: Nix eval comparison (golden file diff)
 - **Framework**: `nix eval`, `jq --sort-keys`, `diff`, `python3` for YAML validation
 
 ### QA Policy
+
 Every task MUST include agent-executed QA scenarios.
 Evidence saved to `.sisyphus/evidence/task-{N}-{scenario-slug}.{ext}`.
 
@@ -170,29 +184,29 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
 
 ### Dependency Matrix
 
-| Task | Depends On | Blocks | Wave |
-|------|-----------|--------|------|
-| 1 | — | 8, 21 | 1 |
-| 2 | — | 3, 5 | 1 |
-| 3 | 2 | 5, 6, 7 | 1 |
-| 4 | — | 9, 12 | 1 |
-| 5 | 2, 3 | 6, 8, 9, 10, 11 | 2 |
-| 6 | 3, 5 | 8, 17 | 2 |
-| 7 | 3 | 9, 10, 11, 12, 13, 14, 17 | 2 |
-| 8 | 1, 5, 6 | 20 | 2 |
-| 9 | 4, 5, 7 | 12 | 3 |
-| 10 | 5, 7 | 13 | 3 |
-| 11 | 5, 7 | 14 | 3 |
-| 12 | 9 | 18, 21 | 3 |
-| 13 | 10 | 18, 21 | 3 |
-| 14 | 11 | 18, 21 | 3 |
-| 15 | — | 18 | 3 |
-| 16 | — | 18 | 3 |
-| 17 | 6, 7 | 21 | 4 |
-| 18 | 12, 13, 14, 15, 16 | 21 | 4 |
-| 19 | 5 | — | 4 |
-| 20 | 8 | — | 4 |
-| 21 | 1, 12, 13, 14, 17, 18 | F1-F4 | 4 |
+| Task | Depends On            | Blocks                    | Wave |
+| ---- | --------------------- | ------------------------- | ---- |
+| 1    | —                     | 8, 21                     | 1    |
+| 2    | —                     | 3, 5                      | 1    |
+| 3    | 2                     | 5, 6, 7                   | 1    |
+| 4    | —                     | 9, 12                     | 1    |
+| 5    | 2, 3                  | 6, 8, 9, 10, 11           | 2    |
+| 6    | 3, 5                  | 8, 17                     | 2    |
+| 7    | 3                     | 9, 10, 11, 12, 13, 14, 17 | 2    |
+| 8    | 1, 5, 6               | 20                        | 2    |
+| 9    | 4, 5, 7               | 12                        | 3    |
+| 10   | 5, 7                  | 13                        | 3    |
+| 11   | 5, 7                  | 14                        | 3    |
+| 12   | 9                     | 18, 21                    | 3    |
+| 13   | 10                    | 18, 21                    | 3    |
+| 14   | 11                    | 18, 21                    | 3    |
+| 15   | —                     | 18                        | 3    |
+| 16   | —                     | 18                        | 3    |
+| 17   | 6, 7                  | 21                        | 4    |
+| 18   | 12, 13, 14, 15, 16    | 21                        | 4    |
+| 19   | 5                     | —                         | 4    |
+| 20   | 8                     | —                         | 4    |
+| 21   | 1, 12, 13, 14, 17, 18 | F1-F4                     | 4    |
 
 ### Agent Dispatch Summary
 
@@ -564,11 +578,11 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
     - Maps canonical permission format back to OpenCode's nested objects
     - Maps `systemPrompt` back to `"prompt": "{file:./prompts/chiron.txt}"` format (or inline)
     - Adds `model` field from a configurable default (since agent.toml has no model)
-  - Keep ALL existing exports unchanged: `lib.mkOpencodeSkills`, `packages.skills-runtime`, `devShells.default`
+  - Keep ALL existing exports unchanged: `lib.mkSkills`, `packages.skills-runtime`, `devShells.default`
   - `lib` export must be system-independent (no `forAllSystems` wrapper — pure functions)
 
   **Must NOT do**:
-  - Change mkOpencodeSkills
+  - Change mkSkills
   - Remove any existing exports
   - Add renderer logic (that goes in nixpkgs)
   - Hardcode machine-specific model assignments
@@ -585,7 +599,7 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
 
   **References**:
   - `flake.nix` — Current AGENTS flake (188 lines). Keep structure, add to `lib` section.
-  - `flake.nix:52-123` — `lib.mkOpencodeSkills` pattern (linkFarm approach)
+  - `flake.nix:52-123` — `lib.mkSkills` pattern (linkFarm approach)
   - `agents/agents.json` — Target output shape for agentsJson bridge function
   - `agents/SCHEMA.md` (from Task 3) — Canonical schema definition
 
@@ -636,7 +650,7 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
       - Returns the canonical attrset (or wraps/validates it)
     - Stub functions for renderers (to be implemented in Tasks 9-11):
       - `renderForOpencode { canonical; modelOverrides ? {}; }` → derivation placeholder
-      - `renderForClaudeCode { canonical; modelOverrides ? {}; }` → derivation placeholder  
+      - `renderForClaudeCode { canonical; modelOverrides ? {}; }` → derivation placeholder
       - `renderForPi { canonical; }` → derivation placeholder
       - `renderForTool { agentsInput; tool; modelOverrides ? {}; }` → dispatcher
   - Wire into `lib/default.nix` alongside existing `ports` and `opencode-rules`
@@ -917,17 +931,21 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
     - Skill symlinks — Pi uses same SKILL.md dirs at `~/.pi/agent/skills/` or `.agents/skills/`
   - Only PRIMARY agents render to SYSTEM.md. Subagent prompts get embedded as sections in AGENTS.md.
   - Generate AGENTS.md with sections per agent:
+
     ```markdown
     # Agent Instructions
-    
+
     ## Chiron (Assistant)
+
     Primary assistant for read-only analysis...
-    
+
     ## Available Specialists
+
     - Hermes: Work communication (Basecamp, Outlook, Teams)
     - Athena: Work knowledge (Outline wiki)
-    ...
+      ...
     ```
+
   - Pi's tools config: `--tools read,bash,edit,write` maps from canonical permissions
   - Handle: Pi has no permission granularity — only tool enable/disable
 
@@ -1001,7 +1019,7 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
   - Config (mkIf enabled):
     - Call `lib.agents.renderForOpencode { canonical; modelOverrides; }` to get rendered derivation
     - Symlink rendered `.opencode/agent/` dir via `xdg.configFile` or `home.file`
-    - Symlink skills via existing `mkOpencodeSkills` (if agentsInput set)
+    - Symlink skills via existing `mkSkills` (if agentsInput set)
     - Symlink context/ and commands/ from AGENTS input
   - Create `modules/home-manager/coding/agents/default.nix` aggregator importing opencode.nix, claude-code.nix, pi.nix
   - Update `modules/home-manager/coding/default.nix` to import `./agents` subdir
@@ -1476,7 +1494,7 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
 
 ---
 
-- [ ] 20. Remove Legacy agents.json + prompts/*.txt from AGENTS Repo
+- [ ] 20. Remove Legacy agents.json + prompts/\*.txt from AGENTS Repo
 
   **What to do**:
   - ONLY after Task 8 confirms backward-compat bridge works
@@ -1543,7 +1561,7 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
        - Claude Code: rendered .claude/agents/ contains 6 .md files with valid YAML + required fields
        - Pi: rendered output contains AGENTS.md + SYSTEM.md
     3. Project-level: test `renderForTool` for each tool
-    4. Skills: verify `mkOpencodeSkills` still produces correct output
+    4. Skills: verify `mkSkills` still produces correct output
     5. Formatting: `nix fmt --check` on both repos
     6. Flake checks: `nix flake check` on both repos
   - Document all results in evidence files
@@ -1587,9 +1605,9 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
 
   Scenario: Skills composition unchanged
     Tool: Bash
-    Preconditions: mkOpencodeSkills not modified
+    Preconditions: mkSkills not modified
     Steps:
-      1. nix eval --raw '/home/m3tam3re/p/AI/AGENTS#lib.mkOpencodeSkills { pkgs = import <nixpkgs> {}; customSkills = ./skills; }'
+      1. nix eval --raw '/home/m3tam3re/p/AI/AGENTS#lib.mkSkills { pkgs = import <nixpkgs> {}; customSkills = ./skills; }'
       2. List contents of output directory
       3. Assert contains all active skill directories
     Expected Result: Skills output identical to before migration
@@ -1608,32 +1626,34 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
 > **Do NOT auto-proceed after verification. Wait for user's explicit approval before marking work complete.**
 
 - [ ] F1. **Plan Compliance Audit** — `oracle`
-  Read the plan end-to-end. For each "Must Have": verify implementation exists (read file, nix eval, diff). For each "Must NOT Have": search codebase for forbidden patterns — reject with file:line if found. Check evidence files exist in .sisyphus/evidence/. Compare deliverables against plan.
-  Output: `Must Have [N/N] | Must NOT Have [N/N] | Tasks [N/N] | VERDICT: APPROVE/REJECT`
+      Read the plan end-to-end. For each "Must Have": verify implementation exists (read file, nix eval, diff). For each "Must NOT Have": search codebase for forbidden patterns — reject with file:line if found. Check evidence files exist in .sisyphus/evidence/. Compare deliverables against plan.
+      Output: `Must Have [N/N] | Must NOT Have [N/N] | Tasks [N/N] | VERDICT: APPROVE/REJECT`
 
 - [ ] F2. **Code Quality Review** — `unspecified-high`
-  Run `nix flake check` on both repos. Run `nix fmt --check` (alejandra). Review all .nix files for: unused variables, hardcoded paths, missing mkIf guards, type errors. Check TOML files parse without error. Verify no AI slop: no excessive comments, no placeholder values, no TODO markers in production code.
-  Output: `Flake Check [PASS/FAIL] | Format [PASS/FAIL] | Nix Quality [N clean/N issues] | TOML Parse [N/N] | VERDICT`
+      Run `nix flake check` on both repos. Run `nix fmt --check` (alejandra). Review all .nix files for: unused variables, hardcoded paths, missing mkIf guards, type errors. Check TOML files parse without error. Verify no AI slop: no excessive comments, no placeholder values, no TODO markers in production code.
+      Output: `Flake Check [PASS/FAIL] | Format [PASS/FAIL] | Nix Quality [N clean/N issues] | TOML Parse [N/N] | VERDICT`
 
 - [ ] F3. **Real Manual QA** — `unspecified-high`
-  Execute EVERY QA scenario from EVERY task. Capture evidence. Test cross-task integration: AGENTS repo `lib.loadAgents` → nixpkgs `loadCanonical` → each renderer → home-manager module output. Test edge cases: agent with many permission rules, agent with minimal config, model override. Save to `.sisyphus/evidence/final-qa/`.
-  Output: `Scenarios [N/N pass] | Integration [N/N] | Edge Cases [N tested] | VERDICT`
+      Execute EVERY QA scenario from EVERY task. Capture evidence. Test cross-task integration: AGENTS repo `lib.loadAgents` → nixpkgs `loadCanonical` → each renderer → home-manager module output. Test edge cases: agent with many permission rules, agent with minimal config, model override. Save to `.sisyphus/evidence/final-qa/`.
+      Output: `Scenarios [N/N pass] | Integration [N/N] | Edge Cases [N tested] | VERDICT`
 
 - [ ] F4. **Scope Fidelity Check** — `deep`
-  For each task: read "What to do", read actual changes. Verify 1:1 — everything in spec was built (no missing), nothing beyond spec was built (no creep). Check "Must NOT do" compliance. Detect: skills/rules changes (forbidden), MCP in agent.toml (forbidden), Codex/Aider renderers (forbidden), prompt content changes (forbidden). Flag unaccounted changes.
-  Output: `Tasks [N/N compliant] | Scope [CLEAN/N issues] | Forbidden Patterns [CLEAN/N found] | VERDICT`
+      For each task: read "What to do", read actual changes. Verify 1:1 — everything in spec was built (no missing), nothing beyond spec was built (no creep). Check "Must NOT do" compliance. Detect: skills/rules changes (forbidden), MCP in agent.toml (forbidden), Codex/Aider renderers (forbidden), prompt content changes (forbidden). Flag unaccounted changes.
+      Output: `Tasks [N/N compliant] | Scope [CLEAN/N issues] | Forbidden Patterns [CLEAN/N found] | VERDICT`
 
 ---
 
 ## Commit Strategy
 
 ### AGENTS Repo
-- **Commit A1**: `feat: add canonical agent.toml definitions for all 6 agents` — agents/*/agent.toml + system-prompt.md
+
+- **Commit A1**: `feat: add canonical agent.toml definitions for all 6 agents` — agents/\*/agent.toml + system-prompt.md
 - **Commit A2**: `feat: export loadAgents and backward-compat agentsJson from flake` — flake.nix updates
 - **Commit A3** (after nixpkgs consuming): `chore: remove legacy agents.json and prompts/*.txt`
 - **Commit A4**: `docs: update AGENTS.md for canonical agent format`
 
 ### m3ta-nixpkgs
+
 - **Commit N1**: `feat(lib): add agents.nix with loadCanonical and 3 tool renderers`
 - **Commit N2**: `feat(hm): add per-tool agent HM sub-modules (opencode, claude-code, pi)`
 - **Commit N3**: `refactor(hm): slim opencode.nix to non-agent config only`
@@ -1646,6 +1666,7 @@ Wave FINAL (After ALL tasks — 4 parallel reviews, then user okay):
 ## Success Criteria
 
 ### Verification Commands
+
 ```bash
 # AGENTS repo: all TOML files parse
 for f in agents/*/agent.toml; do nix eval --expr "builtins.fromTOML (builtins.readFile ./$f)" --json > /dev/null; done
@@ -1667,6 +1688,7 @@ diff <(nix eval --json '.#homeConfigurations.sk.config.xdg.configFile."opencode/
 ```
 
 ### Final Checklist
+
 - [ ] All 6 agents have both `agent.toml` and `system-prompt.md`
 - [ ] All "Must Have" items present and verified
 - [ ] All "Must NOT Have" items absent
@@ -1675,5 +1697,5 @@ diff <(nix eval --json '.#homeConfigurations.sk.config.xdg.configFile."opencode/
 - [ ] Golden file comparison passes (OpenCode output unchanged)
 - [ ] Claude Code frontmatter valid (name + description present, kebab-case)
 - [ ] Pi output valid (AGENTS.md exists, optional JSON valid)
-- [ ] `lib.mkOpencodeSkills` unchanged and functional
+- [ ] `lib.mkSkills` unchanged and functional
 - [ ] Prompt content byte-identical to originals
