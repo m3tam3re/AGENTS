@@ -13,5 +13,5 @@
 .direnv/
 result
 
-.pi/
+.pi*/
 .sisyphus/
