@@ -107,7 +107,7 @@ python3 -c "
 import os, re
 from collections import defaultdict
 
-VAULT = '/var/lib/hermes/workspace/m3ta-brain'
+VAULT = os.path.expanduser('~/m3ta-brain')
 md_files = []
 for root, dirs, files in os.walk(VAULT):
     if '.git' in root or '.obsidian' in root: continue

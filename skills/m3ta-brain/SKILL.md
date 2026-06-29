@@ -10,14 +10,14 @@ Shared Obsidian vault — the persistent, compounding working memory between Sas
 
 ## Prerequisites
 
-- Vault cloned at `/var/lib/hermes/workspace/m3ta-brain` (server) or local machine
+- Vault cloned at `~/m3ta-brain` (resolves per-machine: `/var/lib/hermes/m3ta-brain` on m3-hermes, `/home/m3tam3re/m3ta-brain` on desktop, etc.)
 - Git configured with push access to `ssh://gitea@code.m3ta.dev/m3tam3re/m3ta-brain.git`
 - Obsidian settings (auto-configured via `.obsidian/app.json`): Wikilinks OFF, relative paths ON
 
 Always pull before reading or writing:
 
 ```bash
-cd /var/lib/hermes/workspace/m3ta-brain && git pull --rebase
+cd ~/m3ta-brain && git pull --rebase
 ```
 
 ## Vault Structure (Quick Reference)
@@ -45,7 +45,7 @@ See `references/vault-map.md` for full layout. Key directories:
 ### Step 1: Pull latest
 
 ```bash
-cd /var/lib/hermes/workspace/m3ta-brain && git pull --rebase
+cd ~/m3ta-brain && git pull --rebase
 ```
 
 ### Step 2: Read core context
@@ -77,7 +77,7 @@ qmd query "{topic}" -c brain --md -n 5
 If qmd is NOT installed, use `search_files` on the vault directory:
 
 ```
-search_files(pattern="{topic}", path="/var/lib/hermes/workspace/m3ta-brain", target="content")
+search_files(pattern="{topic}", path="~/m3ta-brain", target="content")
 ```
 
 ### Step 5: Recall relevant decisions
@@ -132,7 +132,7 @@ If something new was learned about the user, a person, or a pattern — write to
 ### Step 5: Commit and push
 
 ```bash
-cd /var/lib/hermes/workspace/m3ta-brain
+cd ~/m3ta-brain
 git add -A
 git commit -m "session: {brief description}
 
@@ -215,7 +215,7 @@ The vault accumulates drafts, candidates, and potentially stale information. The
 ### Step 1: Pull and scan
 
 ```bash
-cd /var/lib/hermes/workspace/m3ta-brain && git pull --rebase
+cd ~/m3ta-brain && git pull --rebase
 ```
 
 ### Step 2: Process inbox
