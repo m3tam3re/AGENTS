@@ -199,26 +199,39 @@ Update `30-Decisions/INDEX.md` with a new row.
 
 ---
 
-## Workflow 5: Nightly / Weekly Digest
+## Workflow 5: Nightly Dream Pass
 
-**When:** Run as a cronjob (daily or weekly). Can also be triggered manually.
+**When:** Runs automatically every night at 3:00 AM as a cronjob. Can also be triggered manually.
+
+**Cronjob ID:** `0b52e6f0eac8` (scheduled, delivers to Matrix)
+
+**Autonomy level:** Full autonomous — may promote patterns, create decisions, update projects, mark stale, fix links, sync memory. Only reports the digest.
 
 ### Purpose
 
-The vault accumulates drafts, candidates, and potentially stale information. The digest pass:
-1. Consolidates inbox candidates
-2. Promotes stable patterns
-3. Flags stale projects
-4. Reports broken links
-5. Sends a summary to the user
+The vault accumulates drafts, candidates, and potentially stale information. The dream pass:
+1. Harvests learnings from recent sessions (session_search → vault)
+2. Consolidates inbox candidates
+3. Synthesizes new patterns from accumulated observations
+4. Flags stale projects
+5. Fixes broken links
+6. Syncs stable facts to Hermes internal memory
+7. Reports a summary to the user
 
-### Step 1: Pull and scan
+### Step 1: Pull
 
 ```bash
 cd ~/m3ta-brain && git pull --rebase
 ```
 
-### Step 2: Process inbox
+### Step 2: Session Harvest (last 24h)
+
+Use `session_search()` (browse mode) to list recent sessions. For each relevant session:
+- If important work was done and no session summary exists yet → write one to `60-Learning/sessions/`
+- If a decision was made without an ADR → create `30-Decisions/`
+- If project state changed without a project update → update `20-Projects/`
+
+### Step 3: Process Inbox
 
 Read all files in `60-Learning/inbox/`. For each:
 
@@ -226,55 +239,65 @@ Read all files in `60-Learning/inbox/`. For each:
 - **Keep**: if still uncertain → leave in inbox with a `reviewed: YYYY-MM-DD` frontmatter field.
 - **Discard**: if proven wrong or stale → move to `90-Archive/`.
 
-### Step 3: Check project freshness
+### Step 4: Pattern Synthesis
+
+Read the last 5-10 session summaries and existing patterns. Look for recurring themes:
+- Same correction multiple times → `60-Learning/corrections/` note
+- Same preference confirmed → update `10-Preferences/` or create new pattern
+- Recurring project topic → update project card
+- New stable insight about working style → create pattern note
+
+### Step 5: Check Project Freshness
 
 For each `20-Projects/*.md`, check the `updated` frontmatter field:
 
 - **> 30 days without update** → flag as "stale" in the digest report
-- **Next Actions all checked** → suggest moving to `90-Archive/`
+- **Next Actions all checked** → suggest archiving (but do not archive without user confirmation)
 
-### Step 4: Link health check
+### Step 6: Link Health Check
 
-Run a link audit script (see `references/vault-map.md` for the audit command). Report any broken links.
+Run the link audit script (see `references/vault-map.md`). If broken links found: fix them (standard markdown relative links).
 
-### Step 5: Update INDEX.md
+### Step 7: Update INDEX.md
 
 Refresh stats, recent decisions, recent sessions.
 
-### Step 6: Commit and push
+### Step 8: Memory Sync
+
+If new stable facts were discovered that belong in Hermes internal memory (short, critical hot facts): update internal memory. Only for things that must be present at every session start. The vault is the detailed source, internal memory is the cache.
+
+### Step 9: Commit and Push
 
 ```bash
+cd ~/m3ta-brain
 git add -A
-git commit -m "digest: {date} pass
+git commit -m "dream: $(date +%Y-%m-%d) nightly pass
 
-- {N} inbox items processed
-- {N} patterns promoted
+- {N} sessions harvested
+- {N} inbox items processed ({promoted} promoted, {kept} kept, {discarded} discarded)
+- {N} patterns created/updated
+- {N} decisions created
 - {N} stale projects flagged
-- {N} broken links found"
+- {N} broken links fixed"
 git push origin main
 ```
 
-### Step 7: Report to user
+Only push if something changed (skip on empty diff).
 
-Send a concise digest message:
+### Step 10: Report to User
 
-```
-📋 m3ta-brain Digest {date}
-
-- {N} neue Session-Summaries
-- {N} Inbox-Candidates verarbeitet ({promoted} promoted, {kept} kept)
-- {N} Decisions hinzugefügt
-- Projekte als stale markiert: {list}
-- Broken Links: {N}
-```
-
-### Cronjob setup
+Send a concise digest:
 
 ```
-schedule: "0 6 * * 1"  # Weekly Monday 6am
-deliver: origin  # back to chat
-skills: ["m3ta-brain"]
-prompt: "Run the m3ta-brain weekly digest pass. Follow the Nightly/Weekly Digest workflow in the m3ta-brain skill. Pull the vault, process inbox, check freshness, run link audit, commit, and report a concise summary."
+🌙 m3ta-brain Dream Pass — {date}
+
+Sessions: {N} harvested, {N} summaries written
+Inbox: {N} processed ({promoted} promoted, {kept} kept, {discarded} discarded)
+Patterns: {N} created/updated
+Decisions: {N} new
+Stale Projects: {list or "none"}
+Broken Links: {N} fixed
+Memory: {N} facts synced
 ```
 
 ---
