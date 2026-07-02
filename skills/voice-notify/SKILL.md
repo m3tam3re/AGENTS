@@ -11,7 +11,7 @@ ElevenLabs TTS voice notifications with a dismissable desktop popup. Audio playb
 ## Prerequisites
 
 - `talk` binary installed (via `m3ta-nixpkgs pkgs.talk`)
-- `ELEVENLABS_API_KEY` set in environment
+- ElevenLabs API key at `/run/agenix/elevenlabs-key` (preferred) or `ELEVENLABS_API_KEY` env var (fallback)
 - Desktop notification daemon (DMS, dunst, mako, etc.)
 - Audio playback (`mpv`) and PipeWire/PulseAudio running
 
@@ -114,7 +114,7 @@ Set per-shell, per-user, or system-wide via Home-Manager `home.sessionVariables`
 
 ## Pitfalls
 
-- **No audio?** Check `ELEVENLABS_API_KEY` is set and has credits (HTTP 402 = no credits)
+- **No audio?** Check `/run/agenix/elevenlabs-key` exists and is readable (or `ELEVENLABS_API_KEY` env var). HTTP 402 = no credits
 - **No popup?** Ensure a notification daemon is running (`notify-send` needs a daemon)
 - **Cancel button doesn't stop audio?** Fixed: the poll loop now uses `[ -s ]` (non-empty check) instead of `[ -f ]` (exists). The action file is created as empty by the shell redirect; it's only filled when the user clicks Abbrechen.
 - **`pw-play` doesn't work** — it can't decode MP3; `talk` uses `mpv` which handles all formats
