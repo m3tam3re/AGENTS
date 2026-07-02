@@ -23,20 +23,27 @@ This repository serves as a **personal AI operating system** - a collection of s
 │   └── profile.md   # Work style, PARA areas, preferences
 ├── commands/        # Custom command definitions
 │   └── reflection.md
-├── skills/          # Opencode Agent Skills (14 skills)
+├── skills/          # Opencode Agent Skills (18 skills)
 │   ├── agent-development/    # Agent creation and configuration
+│   ├── basecamp-project/     # Basecamp project setup & workflows
 │   ├── brainstorming/        # Ideation & strategic thinking
+│   ├── changelog/            # Changelog generation
+│   ├── crunch-jobs/          # Scheduled voice notifications & AI jobs
 │   ├── doc-translator/       # Documentation translation
 │   ├── excalidraw/           # Architecture diagrams
+│   ├── m3ta-brain/           # Shared brain vault integration
 │   ├── mem0-memory/          # DEPRECATED — replaced by opencode-memory plugin
 │   ├── obsidian/             # Obsidian vault management
 │   ├── outline/              # Outline wiki integration
 │   ├── pdf/                  # PDF manipulation toolkit
+│   ├── plan-writing/         # Implementation plan authoring
 │   ├── prompt-engineering-patterns/   # Prompt patterns
 │   ├── qmd/                  # Knowledge retrieval via QMD
 │   ├── reflection/           # Conversation analysis
+│   ├── shared-brain-vault/   # Git-synced Obsidian vault
 │   ├── skill-creator/        # Meta-skill for creating skills
 │   ├── systematic-debugging/ # Debugging methodology
+│   ├── voice-notify/         # ElevenLabs TTS voice notifications
 │   └── xlsx/                 # Spreadsheet handling
 ├── scripts/         # Repository utility scripts
 │   └── test-skill.sh # Test skills without deploying
